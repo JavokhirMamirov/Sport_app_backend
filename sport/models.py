@@ -13,6 +13,9 @@ class Images(models.Model):
     image = models.ImageField(upload_to='images/')
 
 
+class ObjectType(models.Model):
+    name = models.CharField(max_length=255)
+
 class SportObject(models.Model):
     name = models.CharField(max_length=255, verbose_name="Nomi")
     address = models.CharField(max_length=255, null=True, blank=True, verbose_name="Manzili")
@@ -30,6 +33,9 @@ class SportObject(models.Model):
     tribunes = models.BooleanField(default=False, verbose_name="O'rindiqlar")
     parking = models.BooleanField(default=False, verbose_name="Parkovka")
     location = PlainLocationField(based_fields=['city'], zoom=7)
+    type = models.ForeignKey(ObjectType, on_delete=models.CASCADE, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return self.name
