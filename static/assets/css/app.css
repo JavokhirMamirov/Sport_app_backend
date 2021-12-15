@@ -55,7 +55,8 @@ a {
 }
 
 .logo-icon {
-	width: 30px
+	width: 100px;
+	margin-left: 30px;
 }
 
 .logo-text {

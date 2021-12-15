@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+{% load static %}
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -7,7 +8,7 @@
                     <div class="row align-items-center">
                         <div class="col-lg-3 col-xl-2">
                             <a href="{% url 'add-sport-object' %}" class="btn btn-primary mb-3 mb-lg-0"><i
-                                    class='bx bxs-plus-square'></i>New Product</a>
+                                    class='bx bxs-plus-square'></i>Sport obyekt</a>
                         </div>
                         <div class="col-lg-9 col-xl-10">
                             <form class="float-lg-end">
@@ -15,61 +16,18 @@
                                     <div class="col-12">
                                         <div class="position-relative">
                                             <input type="text" class="form-control ps-5"
-                                                   placeholder="Search Product..."> <span
+                                                   placeholder="Qidiruv..."> <span
                                                 class="position-absolute top-50 product-show translate-middle-y"><i
                                                 class="bx bx-search"></i></span>
                                         </div>
                                     </div>
                                     <div class="col-12">
-                                        <div class="btn-group" role="group"
-                                             aria-label="Button group with nested dropdown">
-                                            <button type="button" class="btn btn-white">Sort By</button>
-                                            <div class="btn-group" role="group">
-                                                <button id="btnGroupDrop1" type="button"
-                                                        class="btn btn-white dropdown-toggle dropdown-toggle-nocaret px-1"
-                                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <i class='bx bx-chevron-down'></i>
-                                                </button>
-                                                <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                                    <li><a class="dropdown-item" href="#">Dropdown link</a></li>
-                                                    <li><a class="dropdown-item" href="#">Dropdown link</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="btn-group" role="group"
-                                             aria-label="Button group with nested dropdown">
-                                            <button type="button" class="btn btn-white">Collection Type</button>
-                                            <div class="btn-group" role="group">
-                                                <button id="btnGroupDrop1" type="button"
-                                                        class="btn btn-white dropdown-toggle dropdown-toggle-nocaret px-1"
-                                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <i class='bx bxs-category'></i>
-                                                </button>
-                                                <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                                    <li><a class="dropdown-item" href="#">Dropdown link</a></li>
-                                                    <li><a class="dropdown-item" href="#">Dropdown link</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="btn-group" role="group">
-                                            <button type="button" class="btn btn-white">Price Range</button>
-                                            <div class="btn-group" role="group">
-                                                <button id="btnGroupDrop1" type="button"
-                                                        class="btn btn-white dropdown-toggle dropdown-toggle-nocaret px-1"
-                                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <i class='bx bx-slider'></i>
-                                                </button>
-                                                <ul class="dropdown-menu dropdown-menu-start"
-                                                    aria-labelledby="btnGroupDrop1">
-                                                    <li><a class="dropdown-item" href="#">Dropdown link</a></li>
-                                                    <li><a class="dropdown-item" href="#">Dropdown link</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
+                                        <select class="form-select mb-10" aria-label="Default select example">
+                                            <option selected="">Sport Turi</option>
+                                            <option value="1">One</option>
+                                            <option value="2">Two</option>
+                                            <option value="3">Three</option>
+                                        </select>
                                     </div>
                                 </div>
                             </form>
@@ -82,18 +40,15 @@
     <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-5 product-grid">
         <div class="col">
             <div class="card">
-                <img src="assets/images/products/01.png" class="card-img-top" alt="...">
-                <div class="">
-                    <div class="position-absolute top-0 end-0 m-3 product-discount"><span class="">-10%</span></div>
-                </div>
+                <img src="{% static 'assets/images/products/01.png' %}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h6 class="card-title cursor-pointer">
-                        <a href="{% url 'sport-object-detail' %}">Nest Shaped Chair</a></h6>
+                        <a href="{% url 'sport-object-detail' %}">DC boks</a></h6>
                     <div class="clearfix">
-                        <p class="mb-0 float-start"><strong>134</strong> Sales</p>
-                        <p class="mb-0 float-end fw-bold"><span
-                                class="me-2 text-decoration-line-through text-secondary">$350</span><span>$240</span>
+                        <p class="mb-0 float-start">raqami:</p>
+                        <p class="mb-0 float-end fw-bold"><span>+998946660112</span>
                         </p>
+                        <p class="mb-0 float-start"><strong>Manzili:</strong> Andijon shahri</p>
                     </div>
                     <div class="d-flex align-items-center mt-3 fs-6">
                         <div class="cursor-pointer">
@@ -110,17 +65,15 @@
         </div>
         <div class="col">
             <div class="card">
-                <img src="assets/images/products/02.png" class="card-img-top" alt="...">
-                <div class="">
-                    <div class="position-absolute top-0 end-0 m-3 product-discount"><span class="">-10%</span></div>
-                </div>
+                <img src="{% static 'assets/images/products/02.png' %}" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h6 class="card-title cursor-pointer">Nest Shaped Chair</h6>
+                    <h6 class="card-title cursor-pointer">
+                        <a href="{% url 'sport-object-detail' %}">DC boks</a></h6>
                     <div class="clearfix">
-                        <p class="mb-0 float-start"><strong>134</strong> Sales</p>
-                        <p class="mb-0 float-end fw-bold"><span
-                                class="me-2 text-decoration-line-through text-secondary">$350</span><span>$240</span>
+                        <p class="mb-0 float-start">raqami:</p>
+                        <p class="mb-0 float-end fw-bold"><span>+998946660112</span>
                         </p>
+                        <p class="mb-0 float-start"><strong>Manzili:</strong> Andijon shahri</p>
                     </div>
                     <div class="d-flex align-items-center mt-3 fs-6">
                         <div class="cursor-pointer">
@@ -137,17 +90,15 @@
         </div>
         <div class="col">
             <div class="card">
-                <img src="assets/images/products/03.png" class="card-img-top" alt="...">
-                <div class="">
-                    <div class="position-absolute top-0 end-0 m-3 product-discount"><span class="">-10%</span></div>
-                </div>
+                <img src="{% static 'assets/images/products/03.png' %}" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h6 class="card-title cursor-pointer">Nest Shaped Chair</h6>
+                    <h6 class="card-title cursor-pointer">
+                        <a href="{% url 'sport-object-detail' %}">DC boks</a></h6>
                     <div class="clearfix">
-                        <p class="mb-0 float-start"><strong>134</strong> Sales</p>
-                        <p class="mb-0 float-end fw-bold"><span
-                                class="me-2 text-decoration-line-through text-secondary">$350</span><span>$240</span>
+                        <p class="mb-0 float-start">raqami:</p>
+                        <p class="mb-0 float-end fw-bold"><span>+998946660112</span>
                         </p>
+                        <p class="mb-0 float-start"><strong>Manzili:</strong> Andijon shahri</p>
                     </div>
                     <div class="d-flex align-items-center mt-3 fs-6">
                         <div class="cursor-pointer">
@@ -164,17 +115,15 @@
         </div>
         <div class="col">
             <div class="card">
-                <img src="assets/images/products/04.png" class="card-img-top" alt="...">
-                <div class="">
-                    <div class="position-absolute top-0 end-0 m-3 product-discount"><span class="">-10%</span></div>
-                </div>
+                <img src="{% static 'assets/images/products/04.png' %}" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h6 class="card-title cursor-pointer">Nest Shaped Chair</h6>
+                    <h6 class="card-title cursor-pointer">
+                        <a href="{% url 'sport-object-detail' %}">DC boks</a></h6>
                     <div class="clearfix">
-                        <p class="mb-0 float-start"><strong>134</strong> Sales</p>
-                        <p class="mb-0 float-end fw-bold"><span
-                                class="me-2 text-decoration-line-through text-secondary">$350</span><span>$240</span>
+                        <p class="mb-0 float-start">raqami:</p>
+                        <p class="mb-0 float-end fw-bold"><span>+998946660112</span>
                         </p>
+                        <p class="mb-0 float-start"><strong>Manzili:</strong> Andijon shahri</p>
                     </div>
                     <div class="d-flex align-items-center mt-3 fs-6">
                         <div class="cursor-pointer">
@@ -191,17 +140,15 @@
         </div>
         <div class="col">
             <div class="card">
-                <img src="assets/images/products/05.png" class="card-img-top" alt="...">
-                <div class="">
-                    <div class="position-absolute top-0 end-0 m-3 product-discount"><span class="">-10%</span></div>
-                </div>
+                <img src="{% static 'assets/images/products/05.png' %}" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h6 class="card-title cursor-pointer">Nest Shaped Chair</h6>
+                    <h6 class="card-title cursor-pointer">
+                        <a href="{% url 'sport-object-detail' %}">DC boks</a></h6>
                     <div class="clearfix">
-                        <p class="mb-0 float-start"><strong>134</strong> Sales</p>
-                        <p class="mb-0 float-end fw-bold"><span
-                                class="me-2 text-decoration-line-through text-secondary">$350</span><span>$240</span>
+                        <p class="mb-0 float-start">raqami:</p>
+                        <p class="mb-0 float-end fw-bold"><span>+998946660112</span>
                         </p>
+                        <p class="mb-0 float-start"><strong>Manzili:</strong> Andijon shahri</p>
                     </div>
                     <div class="d-flex align-items-center mt-3 fs-6">
                         <div class="cursor-pointer">
@@ -218,17 +165,15 @@
         </div>
         <div class="col">
             <div class="card">
-                <img src="assets/images/products/06.png" class="card-img-top" alt="...">
-                <div class="">
-                    <div class="position-absolute top-0 end-0 m-3 product-discount"><span class="">-10%</span></div>
-                </div>
+                <img src="{% static 'assets/images/products/06.png' %}" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h6 class="card-title cursor-pointer">Nest Shaped Chair</h6>
+                    <h6 class="card-title cursor-pointer">
+                        <a href="{% url 'sport-object-detail' %}">DC boks</a></h6>
                     <div class="clearfix">
-                        <p class="mb-0 float-start"><strong>134</strong> Sales</p>
-                        <p class="mb-0 float-end fw-bold"><span
-                                class="me-2 text-decoration-line-through text-secondary">$350</span><span>$240</span>
+                        <p class="mb-0 float-start">raqami:</p>
+                        <p class="mb-0 float-end fw-bold"><span>+998946660112</span>
                         </p>
+                        <p class="mb-0 float-start"><strong>Manzili:</strong> Andijon shahri</p>
                     </div>
                     <div class="d-flex align-items-center mt-3 fs-6">
                         <div class="cursor-pointer">
@@ -245,17 +190,15 @@
         </div>
         <div class="col">
             <div class="card">
-                <img src="assets/images/products/07.png" class="card-img-top" alt="...">
-                <div class="">
-                    <div class="position-absolute top-0 end-0 m-3 product-discount"><span class="">-10%</span></div>
-                </div>
+                <img src="{% static 'assets/images/products/07.png' %}" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h6 class="card-title cursor-pointer">Nest Shaped Chair</h6>
+                    <h6 class="card-title cursor-pointer">
+                        <a href="{% url 'sport-object-detail' %}">DC boks</a></h6>
                     <div class="clearfix">
-                        <p class="mb-0 float-start"><strong>134</strong> Sales</p>
-                        <p class="mb-0 float-end fw-bold"><span
-                                class="me-2 text-decoration-line-through text-secondary">$350</span><span>$240</span>
+                        <p class="mb-0 float-start">raqami:</p>
+                        <p class="mb-0 float-end fw-bold"><span>+998946660112</span>
                         </p>
+                        <p class="mb-0 float-start"><strong>Manzili:</strong> Andijon shahri</p>
                     </div>
                     <div class="d-flex align-items-center mt-3 fs-6">
                         <div class="cursor-pointer">
@@ -272,17 +215,15 @@
         </div>
         <div class="col">
             <div class="card">
-                <img src="assets/images/products/08.png" class="card-img-top" alt="...">
-                <div class="">
-                    <div class="position-absolute top-0 end-0 m-3 product-discount"><span class="">-10%</span></div>
-                </div>
+                <img src="{% static 'assets/images/products/08.png' %}" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h6 class="card-title cursor-pointer">Nest Shaped Chair</h6>
+                    <h6 class="card-title cursor-pointer">
+                        <a href="{% url 'sport-object-detail' %}">DC boks</a></h6>
                     <div class="clearfix">
-                        <p class="mb-0 float-start"><strong>134</strong> Sales</p>
-                        <p class="mb-0 float-end fw-bold"><span
-                                class="me-2 text-decoration-line-through text-secondary">$350</span><span>$240</span>
+                        <p class="mb-0 float-start">raqami:</p>
+                        <p class="mb-0 float-end fw-bold"><span>+998946660112</span>
                         </p>
+                        <p class="mb-0 float-start"><strong>Manzili:</strong> Andijon shahri</p>
                     </div>
                     <div class="d-flex align-items-center mt-3 fs-6">
                         <div class="cursor-pointer">
@@ -299,17 +240,15 @@
         </div>
         <div class="col">
             <div class="card">
-                <img src="assets/images/products/09.png" class="card-img-top" alt="...">
-                <div class="">
-                    <div class="position-absolute top-0 end-0 m-3 product-discount"><span class="">-10%</span></div>
-                </div>
+                <img src="{% static 'assets/images/products/09.png' %}" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h6 class="card-title cursor-pointer">Nest Shaped Chair</h6>
+                    <h6 class="card-title cursor-pointer">
+                        <a href="{% url 'sport-object-detail' %}">DC boks</a></h6>
                     <div class="clearfix">
-                        <p class="mb-0 float-start"><strong>134</strong> Sales</p>
-                        <p class="mb-0 float-end fw-bold"><span
-                                class="me-2 text-decoration-line-through text-secondary">$350</span><span>$240</span>
+                        <p class="mb-0 float-start">raqami:</p>
+                        <p class="mb-0 float-end fw-bold"><span>+998946660112</span>
                         </p>
+                        <p class="mb-0 float-start"><strong>Manzili:</strong> Andijon shahri</p>
                     </div>
                     <div class="d-flex align-items-center mt-3 fs-6">
                         <div class="cursor-pointer">
@@ -326,17 +265,15 @@
         </div>
         <div class="col">
             <div class="card">
-                <img src="assets/images/products/10.png" class="card-img-top" alt="...">
-                <div class="">
-                    <div class="position-absolute top-0 end-0 m-3 product-discount"><span class="">-10%</span></div>
-                </div>
+                <img src="{% static 'assets/images/products/10.png' %}" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h6 class="card-title cursor-pointer">Nest Shaped Chair</h6>
+                    <h6 class="card-title cursor-pointer">
+                        <a href="{% url 'sport-object-detail' %}">DC boks</a></h6>
                     <div class="clearfix">
-                        <p class="mb-0 float-start"><strong>134</strong> Sales</p>
-                        <p class="mb-0 float-end fw-bold"><span
-                                class="me-2 text-decoration-line-through text-secondary">$350</span><span>$240</span>
+                        <p class="mb-0 float-start">raqami:</p>
+                        <p class="mb-0 float-end fw-bold"><span>+998946660112</span>
                         </p>
+                        <p class="mb-0 float-start"><strong>Manzili:</strong> Andijon shahri</p>
                     </div>
                     <div class="d-flex align-items-center mt-3 fs-6">
                         <div class="cursor-pointer">
@@ -352,4 +289,20 @@
             </div>
         </div>
     </div><!--end row-->
+    <div class=" float-end ">
+        <nav aria-label="Page navigation">
+            <ul class="pagination pagination-lg round-pagination">
+                <li class="page-item"><a class="page-link" href="javascript:;">Previous</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="javascript:;javascript:;">1</a>
+                </li>
+                <li class="page-item active"><a class="page-link" href="javascript:;">2</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="javascript:;">3</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="javascript:;">Next</a>
+                </li>
+            </ul>
+        </nav> <br> <br>  
+    </div>  
 {% endblock content %}

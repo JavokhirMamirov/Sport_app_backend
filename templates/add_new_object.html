@@ -2,124 +2,157 @@
 {% load static %}
 {% block css %}
 <link href="{% static 'assets/plugins/Drag-And-Drop/dist/imageuploadify.min.css' %}" rel="stylesheet" />
+<link rel="stylesheet" href="{% static 'assets/css/dark-theme.css' %}" />
+<link rel="stylesheet" href="{% static 'assets/css/semi-dark.css' %}" />
+<link rel="stylesheet" href="{% static 'assets/css/header-colors.css' %}" />
+<link rel="stylesheet" href="{% static 'assets/css/dark-theme.css' %}" />
+<link rel="stylesheet" href="{% static 'assets/css/semi-dark.css' %}" />
+<link rel="stylesheet" href="{% static 'assets/css/header-colors.css' %}" />
 {% endblock css %}
 {% block content %}
     <!--breadcrumb-->
     <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-        <div class="breadcrumb-title pe-3">eCommerce</div>
+        <div class="breadcrumb-title pe-3">SportApp</div>
         <div class="ps-3">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0 p-0">
                     <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">Add New Product</li>
+                    <li class="breadcrumb-item active" aria-current="page">Yangi obyekt qo`shish</li>
                 </ol>
             </nav>
-        </div>
-        <div class="ms-auto">
-            <div class="btn-group">
-                <button type="button" class="btn btn-primary">Settings</button>
-                <button type="button" class="btn btn-primary split-bg-primary dropdown-toggle dropdown-toggle-split"
-                        data-bs-toggle="dropdown"><span class="visually-hidden">Toggle Dropdown</span>
-                </button>
-                <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end"><a class="dropdown-item"
-                                                                                       href="javascript:;">Action</a>
-                    <a class="dropdown-item" href="javascript:;">Another action</a>
-                    <a class="dropdown-item" href="javascript:;">Something else here</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="javascript:;">Separated link</a>
-                </div>
-            </div>
         </div>
     </div>
     <!--end breadcrumb-->
 
     <div class="card">
         <div class="card-body p-4">
-            <h5 class="card-title">Add New Product</h5>
+            <h5 class="card-title">Sport obyekt qo`shish</h5>
             <hr/>
             <div class="form-body mt-4">
                 <div class="row">
                     <div class="col-lg-8">
                         <div class="border border-3 p-4 rounded">
                             <div class="mb-3">
-                                <label for="inputProductTitle" class="form-label">Product Title</label>
+                                <label for="inputProductTitle" class="form-label">Nomi</label>
                                 <input type="email" class="form-control" id="inputProductTitle"
-                                       placeholder="Enter product title">
+                                       placeholder="nomi">
                             </div>
                             <div class="mb-3">
-                                <label for="inputProductDescription" class="form-label">Description</label>
+                                <label for="inputProductDescription" class="form-label">Ta`rifi</label>
                                 <textarea class="form-control" id="inputProductDescription" rows="3"></textarea>
                             </div>
                             <div class="mb-3">
-                                <label for="inputProductDescription" class="form-label">Product Images</label>
+                                <label for="inputProductDescription" class="form-label">Rasmlari</label>
                                 <input id="image-uploadify" type="file"
                                        accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf"
                                        multiple>
+                            </div>
+                            <div class="mb-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div id="simple-map" class="gmaps"></div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="border border-3 p-4 rounded">
                             <div class="row g-3">
-                                <div class="col-md-6">
-                                    <label for="inputPrice" class="form-label">Price</label>
-                                    <input type="email" class="form-control" id="inputPrice" placeholder="00.00">
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="inputCompareatprice" class="form-label">Compare at Price</label>
-                                    <input type="password" class="form-control" id="inputCompareatprice"
-                                           placeholder="00.00">
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="inputCostPerPrice" class="form-label">Cost Per Price</label>
-                                    <input type="email" class="form-control" id="inputCostPerPrice" placeholder="00.00">
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="inputStarPoints" class="form-label">Star Points</label>
-                                    <input type="password" class="form-control" id="inputStarPoints"
-                                           placeholder="00.00">
+                                <div class="col-12">
+                                    <label for="inputProductTags" class="form-label">Manzili</label>
+                                    <input type="text" class="form-control" id="inputProductTags"
+                                           placeholder="Manzil">
                                 </div>
                                 <div class="col-12">
-                                    <label for="inputProductType" class="form-label">Product Type</label>
+                                    <label for="inputProductTags" class="form-label">Tel raqam</label>
+                                    <input type="text" class="form-control" id="inputProductTags"
+                                           placeholder="Tel raqam">
+                                </div>
+                                <div class="col-12">
+                                    <label for="inputProductTags" class="form-label">Ish kunlari</label>
+                                    <input type="text" class="form-control" id="inputProductTags"
+                                           placeholder="Ish kunlari">
+                                </div>
+                                <div class="col-12">
+                                    <label for="inputProductTags" class="form-label">Obyekt turi</label>
+                                    <input type="text" class="form-control" id="inputProductTags"
+                                           placeholder="usti ochiq/yopiq">
+                                </div>
+                                <div class="col-12">
+                                    <label for="inputProductType" class="form-label">Kategoriyasi</label>
                                     <select class="form-select" id="inputProductType">
                                         <option></option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
+                                        <option value="1">Kurash</option>
+                                        <option value="2">Boks</option>
+                                        <option value="3">Footbool</option>
                                     </select>
                                 </div>
                                 <div class="col-12">
-                                    <label for="inputVendor" class="form-label">Vendor</label>
-                                    <select class="form-select" id="inputVendor">
+                                    <label for="inputProductTags" class="form-label">Ta`mirlangan vaqti</label>
+                                    <input type="date" class="form-control" id="inputProductTags"
+                                           placeholder="usti ochiq/yopiq">
+                                </div>
+                                <div class="col-12">
+                                    <label for="inputProductType" class="form-label">kimlar uchun</label>
+                                    <select class="form-select" id="inputProductType">
                                         <option></option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
+                                        <option value="1">bollalar</option>
+                                        <option value="2">Ayollar</option>
+                                        <option value="3">Professionallar</option>
                                     </select>
                                 </div>
-                                <div class="col-12">
-                                    <label for="inputCollection" class="form-label">Collection</label>
-                                    <select class="form-select" id="inputCollection">
-                                        <option></option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
-                                    </select>
+                                <div class="col-md-6">
+                                    <label for="inputPrice" class="form-label">Ochilish vaqti</label>
+                                    <input type="time" class="form-control" id="inputPrice" placeholder="00.00">
                                 </div>
-                                <div class="col-12">
-                                    <label for="inputProductTags" class="form-label">Product Tags</label>
-                                    <input type="text" class="form-control" id="inputProductTags"
-                                           placeholder="Enter Product Tags">
+                                <div class="col-md-6">
+                                    <label for="inputCompareatprice" class="form-label">Yopilish vaqti</label>
+                                    <input type="time" class="form-control" id="inputCompareatprice"
+                                           placeholder="00.00">
                                 </div>
-                                <div class="col-12">
-                                    <div class="d-grid">
-                                        <button type="button" class="btn btn-primary">Save Product</button>
+                                <div class="col-6">
+                                    <div class="form-check mb-3">
+                                        <input type="checkbox" class="form-check-input" id="validationFormCheck1" >
+                                        <label class="form-check-label" for="validationFormCheck1">Yuvinish xonasi</label>
                                     </div>
                                 </div>
+                               <div class="col-6">
+                                    <div class="form-check mb-3">
+                                        <input type="checkbox" class="form-check-input" id="validationFormCheck1" >
+                                        <label class="form-check-label" for="validationFormCheck1">Kiyinish xonasi</label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-check mb-3">
+                                        <input type="checkbox" class="form-check-input" id="validationFormCheck1" >
+                                        <label class="form-check-label" for="validationFormCheck1">Yoruqlik</label>
+                                    </div>
+                                </div>
+                               <div class="col-6">
+                                    <div class="form-check mb-3">
+                                        <input type="checkbox" class="form-check-input" id="validationFormCheck1" >
+                                        <label class="form-check-label" for="validationFormCheck1">O`rindiqlar</label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-check mb-3">
+                                        <input type="checkbox" class="form-check-input" id="validationFormCheck1" >
+                                        <label class="form-check-label" for="validationFormCheck1">Avto turargox</label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-check mb-3">
+                                        <input type="checkbox" class="form-check-input" id="validationFormCheck1" >
+                                        <label class="form-check-label" for="validationFormCheck1">Faolligi</label>
+                                    </div>
+                                </div>
+                               
                             </div>
-                        </div>
-                    </div>
+                        </div> 
+                        <br> <button type="button" class="btn btn-primary px-5" style="float: right; margin: 7px;">Saqlash</button>
+                    </div> 
                 </div><!--end row-->
             </div>
         </div>
@@ -127,10 +160,12 @@
 {% endblock content %}
 {% block js %}
 <script src="{% static 'assets/plugins/Drag-And-Drop/dist/imageuploadify.min.js' %}"></script>
-	<script>
-		$(document).ready(function () {
-			$('#image-uploadify').imageuploadify();
-		})
+<script>
+    $(document).ready(function () {
+        $('#image-uploadify').imageuploadify();
+    })
 	</script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKXKdHQdtqgPVl2HI2RnUa_1bjCxRCQo4&callback=initMap" async defer></script>
+    <script src="{% static 'assets/plugins/gmaps/map-custom-script.js' %}"></script>
 	<!--app JS-->
 {% endblock js %}

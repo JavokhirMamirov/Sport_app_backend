@@ -12,3 +12,6 @@ def AddNewObjectView(request):
 
 def ObjectDetailView(request):
     return render(request, 'object_detail.html')
+
+def login(request):
+    return render(request, 'account/login.html')
