@@ -1,232 +1,246 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block css %}
-<link href="{% static 'assets/plugins/Drag-And-Drop/dist/imageuploadify.min.css' %}" rel="stylesheet" />
-<link rel="stylesheet" href="{% static 'assets/css/dark-theme.css' %}" />
-<link rel="stylesheet" href="{% static 'assets/css/semi-dark.css' %}" />
-<link rel="stylesheet" href="{% static 'assets/css/header-colors.css' %}" />
-<link rel="stylesheet" href="{% static 'assets/css/dark-theme.css' %}" />
-<link rel="stylesheet" href="{% static 'assets/css/semi-dark.css' %}" />
-<link rel="stylesheet" href="{% static 'assets/css/header-colors.css' %}" />
+    <link href="{% static 'assets/plugins/Drag-And-Drop/dist/imageuploadify.min.css' %}" rel="stylesheet"/>
+    <link rel="stylesheet" href="{% static 'assets/css/dark-theme.css' %}"/>
+    <link rel="stylesheet" href="{% static 'assets/css/semi-dark.css' %}"/>
+    <link rel="stylesheet" href="{% static 'assets/css/header-colors.css' %}"/>
+    <link rel="stylesheet" href="{% static 'assets/css/dark-theme.css' %}"/>
+    <link rel="stylesheet" href="{% static 'assets/css/semi-dark.css' %}"/>
+    <link rel="stylesheet" href="{% static 'assets/css/header-colors.css' %}"/>
 
-<!-- Theme Style CSS -->
-<link rel="stylesheet" href="{% static 'assets/css/dark-theme.css' %}" />
-	<link rel="stylesheet" href="{% static 'assets/css/semi-dark.css' %}" />
-	<link rel="stylesheet" href="{% static 'assets/css/header-colors.css' %}" />
+    <!-- Theme Style CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/dark-theme.css' %}"/>
+    <link rel="stylesheet" href="{% static 'assets/css/semi-dark.css' %}"/>
+    <link rel="stylesheet" href="{% static 'assets/css/header-colors.css' %}"/>
 {% endblock css %}
 {% block content %}
-<!--breadcrumb-->
-<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-    <div class="breadcrumb-title pe-3">SportApp</div>
-    <div class="ps-3">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb mb-0 p-0">
-                <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
-                </li>
-                <li class="breadcrumb-item active" aria-current="page">Yangi obyekt qo`shish</li>
-            </ol>
-        </nav>
+    <!--breadcrumb-->
+    <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+        <div class="breadcrumb-title pe-3">SportApp</div>
+        <div class="ps-3">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0 p-0">
+                    <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">Yangi obyekt qo`shish</li>
+                </ol>
+            </nav>
+        </div>
     </div>
-</div>
-<!--end breadcrumb-->
+    <!--end breadcrumb-->
 
-<div class="card" style="width:100%;">
-    <div class="card-body p-4" style="width:100%;">
-        <div class="container" style="width:100%;margin: 0;padding: 0;">
-            <div class="row" style="width:100%; ">
-                <div class="col" style="width:100%;">
-                    <h5 class="card-title">Sport obyekt qo`shish</h5>
-                </div>
-                <div class="col" style="text-align: center;">
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary " data-bs-toggle="modal"
-                        data-bs-target="#exampleVerticallycenteredModal">Kategoriya qo`shish</button>
-                    <!-- Modal -->
-                    <form method="post" action="{% url 'add-category-url' %}">
-                        {% csrf_token %}
-                        <div class="modal fade" id="exampleVerticallycenteredModal" tabindex="-1" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title">Kategoriya qo`shing</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <input class="modal-body" class="form-control" name="name">
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Qaytish</button>
-                                        <button type="submit" class="btn btn-primary">Saqlash</button>
+    <div class="card" style="width:100%;">
+        <div class="card-body p-4" style="width:100%;">
+            <div class="container" style="width:100%;margin: 0;padding: 0;">
+                <div class="row" style="width:100%; ">
+                    <div class="col" style="width:100%;">
+                        <h5 class="card-title">Sport obyekt qo`shish</h5>
+                    </div>
+                    <div class="col" style="text-align: center;">
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary " data-bs-toggle="modal"
+                                data-bs-target="#exampleVerticallycenteredModal">Kategoriya qo`shish
+                        </button>
+                        <!-- Modal -->
+                        <form method="post" action="{% url 'add-category-url' %}">
+                            {% csrf_token %}
+                            <div class="modal fade" id="exampleVerticallycenteredModal" tabindex="-1"
+                                 aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Kategoriya qo`shing</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                        </div>
+                                        <input class="modal-body" class="form-control" name="name">
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Qaytish
+                                            </button>
+                                            <button type="submit" class="btn btn-primary">Saqlash</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="col" style="text-align:end;">
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary " data-bs-toggle="modal"
-                        data-bs-target="#exampleVerticallycenteredModal2">Foydalanuvchilar turini qo`shish</button>
-                    <!-- Modal -->
-                    <form action="{% url 'add-type-url' %}" method="post">
-                        {% csrf_token %}
-                        <div class="modal fade" id="exampleVerticallycenteredModal2" tabindex="1" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title">Foydalanuvchilar turini qo`shing</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <input class="modal-body" class="form-control" name="name">
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Qaytish</button>
-                                        <button type="submit" class="btn btn-primary">Saqlash</button>
+                        </form>
+                    </div>
+                    <div class="col" style="text-align:end;">
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary " data-bs-toggle="modal"
+                                data-bs-target="#exampleVerticallycenteredModal2">Foydalanuvchilar turini qo`shish
+                        </button>
+                        <!-- Modal -->
+                        <form action="{% url 'add-type-url' %}" method="post">
+                            {% csrf_token %}
+                            <div class="modal fade" id="exampleVerticallycenteredModal2" tabindex="1"
+                                 aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Foydalanuvchilar turini qo`shing</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                        </div>
+                                        <input class="modal-body" class="form-control" name="name">
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Qaytish
+                                            </button>
+                                            <button type="submit" class="btn btn-primary">Saqlash</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <hr />
-    <div class="form-body mt-4">
-        <div class="row">
-            <div class="col-lg-8">
-                <div class="border border-3 p-4 rounded">
-                    <div class="mb-3">
-                        <label for="inputProductTitle" class="form-label">Nomi</label>
-                        <input type="email" class="form-control" id="inputProductTitle" placeholder="nomi">
-                    </div>
-                    <div class="mb-3">
-                        <label for="inputProductDescription" class="form-label">Ta`rifi</label>
-                        <textarea class="form-control" id="inputProductDescription" rows="3"></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label for="inputProductDescription" class="form-label">Rasmlari</label>
-                        <input id="image-uploadify" type="file"
-                            accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf" multiple>
-                    </div>
-                    <div class="mb-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <div id="simple-map" class="gmaps"></div>
+        <hr/>
+        <div class="form-body mt-4">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="border border-3 p-4 rounded">
+                        <div class="mb-3">
+                            <label for="inputProductTitle" class="form-label">Nomi</label>
+                            <input type="email" class="form-control" id="inputProductTitle" placeholder="nomi">
+                        </div>
+                        <div class="mb-3">
+                            <label for="inputProductDescription" class="form-label">Ta`rifi</label>
+                            <textarea class="form-control" id="inputProductDescription" rows="3"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="inputProductDescription" class="form-label">Rasmlari</label>
+                            <input id="image-uploadify" type="file"
+                                   accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf" multiple>
+                        </div>
+                        <div class="mb-3">
+                            <label for="inputProductTitle" class="form-label">Lakatsiya</label>
+                            <input type="text" class="form-control" id="location_inp"
+                                   placeholder="nomi">
+                        </div>
+                        <div class="mb-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div id="simple-map" class="gmaps"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="border border-3 p-4 rounded">
-                    <div class="row g-3">
-                        <div class="col-12">
-                            <label for="inputProductTags" class="form-label">Manzili</label>
-                            <input type="text" class="form-control" id="inputProductTags" placeholder="Manzil">
-                        </div>
-                        <div class="col-12">
-                            <label for="inputProductTags" class="form-label">Tel raqam</label>
-                            <input type="text" class="form-control" id="inputProductTags" placeholder="Tel raqam">
-                        </div>
-                        <div class="col-12">
-                            <label for="inputProductTags" class="form-label">Ish kunlari</label>
-                            <input type="text" class="form-control" id="inputProductTags" placeholder="Ish kunlari">
-                        </div>
-                        <div class="col-12">
-                            <label for="inputProductTags" class="form-label">Obyekt turi</label>
-                            <input type="text" class="form-control" id="inputProductTags"
-                                placeholder="usti ochiq/yopiq">
-                        </div>
-                        <div class="col-12">
-                            <label for="inputProductType" class="form-label">Kategoriyasi</label>
-                            <select class="form-select" id="inputProductType">
-                                <option></option>
-                                <option value="1">Kurash</option>
-                                <option value="2">Boks</option>
-                                <option value="3">Footbool</option>
-                            </select>
-                        </div>
-                        <div class="col-12">
-                            <label for="inputProductTags" class="form-label">Ta`mirlangan vaqti</label>
-                            <input type="date" class="form-control" id="inputProductTags"
-                                placeholder="usti ochiq/yopiq">
-                        </div>
-                        <div class="col-12">
-                            <label for="inputProductType" class="form-label">Foydalanuvchilar turi</label>
-                            <select class="form-select" id="inputProductType">
-                                <option></option>
-                                <option value="1">bollalar</option>
-                                <option value="2">Ayollar</option>
-                                <option value="3">Professionallar</option>
-                            </select>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="inputPrice" class="form-label">Ochilish vaqti</label>
-                            <input type="time" class="form-control" id="inputPrice" placeholder="00.00">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="inputCompareatprice" class="form-label">Yopilish vaqti</label>
-                            <input type="time" class="form-control" id="inputCompareatprice" placeholder="00.00">
-                        </div>
-                        <div class="col-6">
-                            <div class="form-check mb-3">
-                                <input type="checkbox" class="form-check-input" id="validationFormCheck1">
-                                <label class="form-check-label" for="validationFormCheck1">Yuvinish xonasi</label>
+                <div class="col-lg-4">
+                    <div class="border border-3 p-4 rounded">
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <label for="inputProductTags" class="form-label">Manzili</label>
+                                <input type="text" class="form-control" id="inputProductTags" placeholder="Manzil">
                             </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="form-check mb-3">
-                                <input type="checkbox" class="form-check-input" id="validationFormCheck1">
-                                <label class="form-check-label" for="validationFormCheck1">Kiyinish xonasi</label>
+                            <div class="col-12">
+                                <label for="inputProductTags" class="form-label">Tel raqam</label>
+                                <input type="text" class="form-control" id="inputProductTags" placeholder="Tel raqam">
                             </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="form-check mb-3">
-                                <input type="checkbox" class="form-check-input" id="validationFormCheck1">
-                                <label class="form-check-label" for="validationFormCheck1">Yoruqlik</label>
+                            <div class="col-12">
+                                <label for="inputProductTags" class="form-label">Ish kunlari</label>
+                                <input type="text" class="form-control" id="inputProductTags" placeholder="Ish kunlari">
                             </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="form-check mb-3">
-                                <input type="checkbox" class="form-check-input" id="validationFormCheck1">
-                                <label class="form-check-label" for="validationFormCheck1">O`rindiqlar</label>
+                            <div class="col-12">
+                                <label for="inputProductTags" class="form-label">Obyekt turi</label>
+                                <input type="text" class="form-control" id="inputProductTags"
+                                       placeholder="usti ochiq/yopiq">
                             </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="form-check mb-3">
-                                <input type="checkbox" class="form-check-input" id="validationFormCheck1">
-                                <label class="form-check-label" for="validationFormCheck1">Avto turargox</label>
+                            <div class="col-12">
+                                <label for="inputProductType" class="form-label">Kategoriyasi</label>
+                                <select class="form-select" id="inputProductType">
+                                    <option></option>
+                                    <option value="1">Kurash</option>
+                                    <option value="2">Boks</option>
+                                    <option value="3">Footbool</option>
+                                </select>
                             </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="form-check mb-3">
-                                <input type="checkbox" class="form-check-input" id="validationFormCheck1">
-                                <label class="form-check-label" for="validationFormCheck1">Faolligi</label>
+                            <div class="col-12">
+                                <label for="inputProductTags" class="form-label">Ta`mirlangan vaqti</label>
+                                <input type="date" class="form-control" id="inputProductTags"
+                                       placeholder="usti ochiq/yopiq">
                             </div>
-                        </div>
+                            <div class="col-12">
+                                <label for="inputProductType" class="form-label">Foydalanuvchilar turi</label>
+                                <select class="form-select" id="inputProductType">
+                                    <option></option>
+                                    <option value="1">bollalar</option>
+                                    <option value="2">Ayollar</option>
+                                    <option value="3">Professionallar</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="inputPrice" class="form-label">Ochilish vaqti</label>
+                                <input type="time" class="form-control" id="inputPrice" placeholder="00.00">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="inputCompareatprice" class="form-label">Yopilish vaqti</label>
+                                <input type="time" class="form-control" id="inputCompareatprice" placeholder="00.00">
+                            </div>
+                            <div class="col-6">
+                                <div class="form-check mb-3">
+                                    <input type="checkbox" class="form-check-input" id="validationFormCheck1">
+                                    <label class="form-check-label" for="validationFormCheck1">Yuvinish xonasi</label>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-check mb-3">
+                                    <input type="checkbox" class="form-check-input" id="validationFormCheck1">
+                                    <label class="form-check-label" for="validationFormCheck1">Kiyinish xonasi</label>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-check mb-3">
+                                    <input type="checkbox" class="form-check-input" id="validationFormCheck1">
+                                    <label class="form-check-label" for="validationFormCheck1">Yoruqlik</label>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-check mb-3">
+                                    <input type="checkbox" class="form-check-input" id="validationFormCheck1">
+                                    <label class="form-check-label" for="validationFormCheck1">O`rindiqlar</label>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-check mb-3">
+                                    <input type="checkbox" class="form-check-input" id="validationFormCheck1">
+                                    <label class="form-check-label" for="validationFormCheck1">Avto turargox</label>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-check mb-3">
+                                    <input type="checkbox" class="form-check-input" id="validationFormCheck1">
+                                    <label class="form-check-label" for="validationFormCheck1">Faolligi</label>
+                                </div>
+                            </div>
 
+                        </div>
                     </div>
+                    <br>
+                    <button type="button" class="btn btn-primary px-5"
+                            style="float: right; margin: 7px;">Saqlash
+                    </button>
                 </div>
-                <br> <button type="button" class="btn btn-primary px-5"
-                    style="float: right; margin: 7px;">Saqlash</button>
             </div>
+            <!--end row-->
         </div>
-        <!--end row-->
     </div>
-</div>
-</div>
+    </div>
 {% endblock content %}
 {% block js %}
-<script src="{% static 'assets/plugins/Drag-And-Drop/dist/imageuploadify.min.js' %}"></script>
-<script>
-    $(document).ready(function () {
-        $('#image-uploadify').imageuploadify();
-    })
-</script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKXKdHQdtqgPVl2HI2RnUa_1bjCxRCQo4&callback=initMap" async
-    defer></script>
-<script src="{% static 'assets/plugins/gmaps/map-custom-script.js' %}"></script>
-<!--app JS-->
+    <script src="{% static 'assets/plugins/Drag-And-Drop/dist/imageuploadify.min.js' %}"></script>
+    <script>
+        $(document).ready(function () {
+            $('#image-uploadify').imageuploadify();
+        })
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKXKdHQdtqgPVl2HI2RnUa_1bjCxRCQo4&callback=initMap"
+            async
+            defer></script>
+    <script src="{% static 'assets/map.js' %}"></script>
+    <!--app JS-->
 {% endblock js %}
