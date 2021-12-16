@@ -28,3 +28,5 @@ class SportObjectAdmin(admin.ModelAdmin):
         "parking",
         "location",
     ]
+
+admin.site.register(ObjectType)

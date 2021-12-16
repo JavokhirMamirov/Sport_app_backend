@@ -1,7 +1,7 @@
 from django import forms
 from django.db import models
 from django.forms import fields
-from .models import SportObject, ObjectType, Category, 
+from .models import SportObject, ObjectType, Category, Images
 
 class LoginForm(forms.Form):
     username = forms.CharField()
@@ -22,4 +22,3 @@ class CategoryForm(forms.ModelForm):
         model = Category
         fields = ['name']
 
-class 

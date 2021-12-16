@@ -1,7 +1,8 @@
+from django import forms
 from django.http.response import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate,logout
-from .forms import LoginForm
+from .forms import *
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 
@@ -16,11 +17,38 @@ def ObjectsView(request):
 
     
 def AddNewObjectView(request):
-    return render(request, 'add_new_object.html')
+    if request.method == 'POST':
+            form = CategoryForm(request.POST)
+            if form.is_valid:
+                form.save()
+    else:
+        form = CategoryForm()
+    context = {
+        'catory':form
+    }
+    return render(request, 'add_new_object.html', context)
+
+
+def AddTypeUsers(request):
+    if request.method == 'POST':
+            form = ObjectTypeForm(request.POST)
+            if form.is_valid:
+                form.save()
+                return redirect('add-sport-object')
+
+
+def AddObjectCategory(request):
+    if request.method == 'POST':
+            form = CategoryForm(request.POST)
+            if form.is_valid:
+                form.save()
+                return redirect('add-sport-object')
 
 def ObjectDetailView(request):
     return render(request, 'object_detail.html')
 
+
+# Auth system
 def login_view(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
