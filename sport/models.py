@@ -9,7 +9,7 @@ class Category(models.Model):
     name = models.CharField(max_length=255)
 
 
-class Images(models.Model):
+class Category(models.Model):
     image = models.ImageField(upload_to='images/')
 
 
