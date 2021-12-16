@@ -1,7 +1,8 @@
 from django.contrib.auth import logout
 from django.urls import path
 
-from sport.views import HomeView, ObjectsView, AddNewObjectView, ObjectDetailView, login_view, AddTypeUsers, AddObjectCategory
+from sport.views import HomeView, ObjectsView, AddNewObjectView, ObjectDetailView, login_view, AddTypeUsers, \
+    AddObjectCategory, CreateObject
 
 urlpatterns = [
     path('', HomeView, name="home"),
@@ -10,7 +11,8 @@ urlpatterns = [
     path('sport-object-detail/', ObjectDetailView, name="sport-object-detail"),
     path('login/', login_view, name="login"),
     path('logout/', logout, name="logout"),
-    #action
-    path('add-type-users',AddTypeUsers, name='add-type-url'),
-    path('add-category-users', AddObjectCategory , name='add-category-url')
+    # action
+    path('add-type-users', AddTypeUsers, name='add-type-url'),
+    path('add-category-users', AddObjectCategory, name='add-category-url'),
+    path('create-object', CreateObject, name='create-object'),
 ]

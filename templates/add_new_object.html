@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="{% static 'assets/css/semi-dark.css' %}"/>
     <link rel="stylesheet" href="{% static 'assets/css/header-colors.css' %}"/>
 
+    <link href="{% static 'assets/plugins/select2/css/select2.min.css' %}" rel="stylesheet"/>
+    <link href="{% static 'assets/plugins/select2/css/select2-bootstrap4.css' %}" rel="stylesheet"/>
+    <link rel="stylesheet" href="{% static 'assets/plugins/notifications/css/lobibox.min.css' %}"/>
     <!-- Theme Style CSS -->
     <link rel="stylesheet" href="{% static 'assets/css/dark-theme.css' %}"/>
     <link rel="stylesheet" href="{% static 'assets/css/semi-dark.css' %}"/>
@@ -54,7 +57,8 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                         </div>
-                                        <input  type="text" class="form-control" id="inputProductTags" placeholder="..." name="name">
+                                        <input type="text" class="form-control" id="inputProductTags" placeholder="..."
+                                               name="name">
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">Qaytish
@@ -83,7 +87,8 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                         </div>
-                                        <input  type="text" class="form-control" id="inputProductTags" placeholder="..." name="name" >
+                                        <input type="text" class="form-control" id="inputProductTags" placeholder="..."
+                                               name="name">
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">Qaytish
@@ -100,132 +105,151 @@
         </div>
         <hr/>
         <div class="form-body mt-4">
-            <div class="row">
-                <div class="col-lg-8">
-                    <div class="border border-3 p-4 rounded">
-                        <div class="mb-3">
-                            <label for="inputProductTitle" class="form-label">Nomi</label>
-                            <input type="email" class="form-control" id="inputProductTitle" placeholder="nomi" name="name">
-                        </div>
-                        <div class="mb-3">
-                            <label for="inputProductDescription" class="form-label">Ta`rifi</label>
-                            <textarea class="form-control" id="inputProductDescription" rows="3" name="description"></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="inputProductDescription" class="form-label">Rasmlari</label>
-                            <input id="image-uploadify" type="file"
-                                   accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf" multiple>
-                        </div>
-                        <div class="mb-3">
-                            <label for="inputProductTitle" class="form-label">Lakatsiya</label>
-                            <input type="text" class="form-control" id="location_inp" name="location"
-                                   placeholder="nomi">
-                        </div>
-                        <div class="mb-3">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div id="simple-map" class="gmaps"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="border border-3 p-4 rounded">
-                        <div class="row g-3">
-                            <div class="col-12">
-                                <label for="inputProductTags" class="form-label">Manzili</label>
-                                <input type="text" class="form-control" id="inputProductTags" placeholder="Manzil" name="address">
-                            </div>
-                            <div class="col-12">
-                                <label for="inputProductTags" class="form-label">Tel raqam</label>
-                                <input type="text" class="form-control" id="inputProductTags" placeholder="Tel raqam" name="phone">
-                            </div>
-                            <div class="col-12">
-                                <label for="inputProductTags" class="form-label">Ish kunlari</label>
-                                <input type="text" class="form-control" id="inputProductTags" placeholder="Ish kunlari" name="work_date">
-                            </div>
-                            <div class="col-12">
-                                <label for="inputProductTags" class="form-label">Obyekt turi</label>
-                                <input type="text" class="form-control" id="inputProductTags"
-                                       placeholder="usti ochiq/yopiq" name="area">
-                            </div>
-                            <div class="col-12">
-                                <label for="inputProductType" class="form-label">Kategoriyasi</label>
-                                <select class="form-select" id="inputProductType" name="category">
-                                    <option></option>
-                                    <option value="1">Kurash</option>
-                                    <option value="2">Boks</option>
-                                    <option value="3">Footbool</option>
-                                </select>
-                            </div>
-                            <div class="col-12">
-                                <label for="inputProductTags" class="form-label">Ta`mirlangan vaqti</label>
-                                <input type="date" class="form-control" id="inputProductTags"
-                                       placeholder="usti ochiq/yopiq" name="invent_date">
-                            </div>
-                            <div class="col-12">
-                                <label for="inputProductType" class="form-label">Foydalanuvchilar turi</label>
-                                <select class="form-select" id="inputProductType" name="type">
-                                    <option></option>
-                                    <option value="1">bollalar</option>
-                                    <option value="2">Ayollar</option>
-                                    <option value="3">Professionallar</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="inputPrice" class="form-label">Ochilish vaqti</label>
-                                <input type="time" class="form-control" id="inputPrice" placeholder="00.00" name="date_start">
-                            </div>
-                            <div class="col-md-6">
-                                <label for="inputCompareatprice" class="form-label">Yopilish vaqti</label>
-                                <input type="time" class="form-control" id="inputCompareatprice" placeholder="00.00" name="date_end">
-                            </div>
-                            <div class="col-6">
-                                <div class="form-check mb-3">
-                                    <input type="checkbox" class="form-check-input" id="validationFormCheck1" name="shower"> 
-                                    <label class="form-check-label" for="validationFormCheck1">Yuvinish xonasi</label>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-check mb-3">
-                                    <input type="checkbox" class="form-check-input" id="validationFormCheck1" name="changing_room">
-                                    <label class="form-check-label" for="validationFormCheck1">Kiyinish xonasi</label>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-check mb-3">
-                                    <input type="checkbox" class="form-check-input" id="validationFormCheck1" name="lighting">
-                                    <label class="form-check-label" for="validationFormCheck1">Yoruqlik</label>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-check mb-3">
-                                    <input type="checkbox" class="form-check-input" id="validationFormCheck1" name="tribunes">
-                                    <label class="form-check-label" for="validationFormCheck1">O`rindiqlar</label>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-check mb-3">
-                                    <input type="checkbox" class="form-check-input" id="validationFormCheck1" name="parking">
-                                    <label class="form-check-label" for="validationFormCheck1">Avto turargox</label>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-check mb-3">
-                                    <input type="checkbox" class="form-check-input" id="validationFormCheck1" name="is_active">
-                                    <label class="form-check-label" for="validationFormCheck1" >Faolligi</label>
-                                </div>
-                            </div>
 
+            <form enctype="multipart/form-data" method="post" action="{% url 'create-object' %}">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="border border-3 p-4 rounded">
+                            <div class="mb-3">
+                                <label for="inputProductTitle" class="form-label">Nomi</label>
+                                <input type="text" class="form-control" id="inputProductTitle" placeholder="nomi"
+                                       name="name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="inputProductDescription" class="form-label">Ta`rifi</label>
+                                <textarea class="form-control" id="inputProductDescription" rows="3"
+                                          name="description"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="inputProductDescription" class="form-label">Rasmlari</label>
+                                <input id="image-uploadify" type="file" name="images"
+                                       accept="image/*" multiple>
+                            </div>
+                            <div class="mb-3">
+                                <label for="inputProductTitle" class="form-label">Lakatsiya</label>
+                                <input type="text" class="form-control" id="location_inp" name="location"
+                                       placeholder="nomi" required>
+                            </div>
+                            <div class="mb-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div id="simple-map" class="gmaps"></div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <br>
-                    <button type="button" class="btn btn-primary px-5"
-                            style="float: right; margin: 7px;">Saqlash
-                    </button>
+                    <div class="col-lg-4">
+                        <div class="border border-3 p-4 rounded">
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <label for="inputProductTags" class="form-label">Manzili</label>
+                                    <input type="text" class="form-control" id="inputProductTags" placeholder="Manzil"
+                                           name="address" required>
+                                </div>
+                                <div class="col-12">
+                                    <label for="inputProductTags" class="form-label">Tel raqam</label>
+                                    <input type="text" class="form-control" id="inputProductTags"
+                                           placeholder="Tel raqam" name="phone" required>
+                                </div>
+                                <div class="col-12">
+                                    <label for="inputProductTags" class="form-label">Ish kunlari</label>
+                                    <input type="text" class="form-control" id="inputProductTags"
+                                           placeholder="Ish kunlari" name="work_date" required>
+                                </div>
+                                <div class="col-12">
+                                    <label for="inputProductTags" class="form-label">Obyekt turi</label>
+                                    <input type="text" class="form-control" id="inputProductTags"
+                                           placeholder="usti ochiq/yopiq" name="area" required>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label">Select2 Multiple Control</label>
+                                    <select class="multiple-select" data-placeholder="Choose anything"
+                                            multiple="multiple" name="category">
+                                        {% for cat in categories %}
+                                            <option value="{{ cat.id }}">{{ cat.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <label for="inputProductTags" class="form-label">Ta`mirlangan vaqti</label>
+                                    <input type="date" class="form-control" id="inputProductTags"
+                                           placeholder="usti ochiq/yopiq" name="invent_date" required>
+                                </div>
+                                <div class="col-12">
+                                    <label for="inputProductType" class="form-label">Foydalanuvchilar turi</label>
+                                    <select class="form-select" id="inputProductType" name="type" required>
+                                        {% for type in types %}
+                                            <option value="{{ type.id }}">{{ type.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="inputPrice" class="form-label">Ochilish vaqti</label>
+                                    <input type="time" class="form-control" id="inputPrice" placeholder="00.00"
+                                           name="date_start">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="inputCompareatprice" class="form-label">Yopilish vaqti</label>
+                                    <input type="time" class="form-control" id="inputCompareatprice" placeholder="00.00"
+                                           name="date_end">
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-check mb-3">
+                                        <input type="checkbox" class="form-check-input"
+                                               name="shower">
+                                        <label class="form-check-label" for="validationFormCheck1">Yuvinish
+                                            xonasi</label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-check mb-3">
+                                        <input type="checkbox" class="form-check-input"
+                                               name="changing_room">
+                                        <label class="form-check-label" for="validationFormCheck1">Kiyinish
+                                            xonasi</label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-check mb-3">
+                                        <input type="checkbox" class="form-check-input"
+                                               name="lighting">
+                                        <label class="form-check-label" for="validationFormCheck1">Yoruqlik</label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-check mb-3">
+                                        <input type="checkbox" class="form-check-input"
+                                               name="tribunes">
+                                        <label class="form-check-label" for="validationFormCheck1">O`rindiqlar</label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-check mb-3">
+                                        <input type="checkbox" class="form-check-input"
+                                               name="parking">
+                                        <label class="form-check-label" for="validationFormCheck1">Avto turargox</label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-check mb-3">
+                                        <input type="checkbox" class="form-check-input"
+                                               name="is_active">
+                                        <label class="form-check-label" for="validationFormCheck1">Faolligi</label>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <br>
+                        <button type="submit" class="btn btn-primary px-5"
+                                style="float: right; margin: 7px;">Saqlash
+                        </button>
+                    </div>
                 </div>
-            </div>
+            </form>
+
             <!--end row-->
         </div>
     </div>
@@ -233,14 +257,62 @@
 {% endblock content %}
 {% block js %}
     <script src="{% static 'assets/plugins/Drag-And-Drop/dist/imageuploadify.min.js' %}"></script>
-    <script>
+    <script src="{% static 'assets/plugins/select2/js/select2.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/notifications/js/lobibox.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/notifications/js/notifications.min.js' %}"></script>
+    <script type="text/javascript">
+
+    </script>
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.tags == "error" %}
+                <script>
+                    Lobibox.notify('error', {
+                        pauseDelayOnHover: true,
+                        size: 'mini',
+                        rounded: true,
+                        delayIndicator: false,
+                        icon: 'bx bx-x-circle',
+                        continueDelayOnInactiveTab: false,
+                        position: 'top right',
+                        msg: '{{ message }}'
+                    });
+                </script>
+            {% endif %}
+            {% if message.tags == "success" %}
+                <script>
+                    Lobibox.notify('success', {
+                        pauseDelayOnHover: true,
+                        size: 'mini',
+                        rounded: true,
+                        icon: 'bx bx-check-circle',
+                        delayIndicator: false,
+                        continueDelayOnInactiveTab: false,
+                        position: 'top right',
+                        msg: '{{ message }}'
+                    });
+                </script>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+        <script>
         $(document).ready(function () {
             $('#image-uploadify').imageuploadify();
         })
+
+        $('.multiple-select').select2({
+            theme: 'bootstrap4',
+            width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+            placeholder: $(this).data('placeholder'),
+            allowClear: Boolean($(this).data('allow-clear')),
+        });
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKXKdHQdtqgPVl2HI2RnUa_1bjCxRCQo4&callback=initMap"
             async
             defer></script>
+
+
+
     <script src="{% static 'assets/map.js' %}"></script>
     <!--app JS-->
 {% endblock js %}
