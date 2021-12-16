@@ -18,11 +18,11 @@ def ObjectsView(request):
     
 def AddNewObjectView(request):
     if request.method == 'POST':
-            form = CategoryForm(request.POST)
+            form = AddNewObjectView(request.POST)
             if form.is_valid:
                 form.save()
     else:
-        form = CategoryForm()
+        form = AddNewObjectView()
     context = {
         'catory':form
     }

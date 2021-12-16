@@ -54,7 +54,7 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                         </div>
-                                        <input class="modal-body" class="form-control" name="name">
+                                        <input  type="text" class="form-control" id="inputProductTags" placeholder="..." name="name">
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">Qaytish
@@ -83,7 +83,7 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                         </div>
-                                        <input class="modal-body" class="form-control" name="name">
+                                        <input  type="text" class="form-control" id="inputProductTags" placeholder="..." name="name" >
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">Qaytish
@@ -105,11 +105,11 @@
                     <div class="border border-3 p-4 rounded">
                         <div class="mb-3">
                             <label for="inputProductTitle" class="form-label">Nomi</label>
-                            <input type="email" class="form-control" id="inputProductTitle" placeholder="nomi">
+                            <input type="email" class="form-control" id="inputProductTitle" placeholder="nomi" name="name">
                         </div>
                         <div class="mb-3">
                             <label for="inputProductDescription" class="form-label">Ta`rifi</label>
-                            <textarea class="form-control" id="inputProductDescription" rows="3"></textarea>
+                            <textarea class="form-control" id="inputProductDescription" rows="3" name="description"></textarea>
                         </div>
                         <div class="mb-3">
                             <label for="inputProductDescription" class="form-label">Rasmlari</label>
@@ -118,7 +118,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="inputProductTitle" class="form-label">Lakatsiya</label>
-                            <input type="text" class="form-control" id="location_inp"
+                            <input type="text" class="form-control" id="location_inp" name="location"
                                    placeholder="nomi">
                         </div>
                         <div class="mb-3">
@@ -135,24 +135,24 @@
                         <div class="row g-3">
                             <div class="col-12">
                                 <label for="inputProductTags" class="form-label">Manzili</label>
-                                <input type="text" class="form-control" id="inputProductTags" placeholder="Manzil">
+                                <input type="text" class="form-control" id="inputProductTags" placeholder="Manzil" name="address">
                             </div>
                             <div class="col-12">
                                 <label for="inputProductTags" class="form-label">Tel raqam</label>
-                                <input type="text" class="form-control" id="inputProductTags" placeholder="Tel raqam">
+                                <input type="text" class="form-control" id="inputProductTags" placeholder="Tel raqam" name="phone">
                             </div>
                             <div class="col-12">
                                 <label for="inputProductTags" class="form-label">Ish kunlari</label>
-                                <input type="text" class="form-control" id="inputProductTags" placeholder="Ish kunlari">
+                                <input type="text" class="form-control" id="inputProductTags" placeholder="Ish kunlari" name="work_date">
                             </div>
                             <div class="col-12">
                                 <label for="inputProductTags" class="form-label">Obyekt turi</label>
                                 <input type="text" class="form-control" id="inputProductTags"
-                                       placeholder="usti ochiq/yopiq">
+                                       placeholder="usti ochiq/yopiq" name="area">
                             </div>
                             <div class="col-12">
                                 <label for="inputProductType" class="form-label">Kategoriyasi</label>
-                                <select class="form-select" id="inputProductType">
+                                <select class="form-select" id="inputProductType" name="category">
                                     <option></option>
                                     <option value="1">Kurash</option>
                                     <option value="2">Boks</option>
@@ -162,11 +162,11 @@
                             <div class="col-12">
                                 <label for="inputProductTags" class="form-label">Ta`mirlangan vaqti</label>
                                 <input type="date" class="form-control" id="inputProductTags"
-                                       placeholder="usti ochiq/yopiq">
+                                       placeholder="usti ochiq/yopiq" name="invent_date">
                             </div>
                             <div class="col-12">
                                 <label for="inputProductType" class="form-label">Foydalanuvchilar turi</label>
-                                <select class="form-select" id="inputProductType">
+                                <select class="form-select" id="inputProductType" name="type">
                                     <option></option>
                                     <option value="1">bollalar</option>
                                     <option value="2">Ayollar</option>
@@ -175,46 +175,46 @@
                             </div>
                             <div class="col-md-6">
                                 <label for="inputPrice" class="form-label">Ochilish vaqti</label>
-                                <input type="time" class="form-control" id="inputPrice" placeholder="00.00">
+                                <input type="time" class="form-control" id="inputPrice" placeholder="00.00" name="date_start">
                             </div>
                             <div class="col-md-6">
                                 <label for="inputCompareatprice" class="form-label">Yopilish vaqti</label>
-                                <input type="time" class="form-control" id="inputCompareatprice" placeholder="00.00">
+                                <input type="time" class="form-control" id="inputCompareatprice" placeholder="00.00" name="date_end">
                             </div>
                             <div class="col-6">
                                 <div class="form-check mb-3">
-                                    <input type="checkbox" class="form-check-input" id="validationFormCheck1">
+                                    <input type="checkbox" class="form-check-input" id="validationFormCheck1" name="shower"> 
                                     <label class="form-check-label" for="validationFormCheck1">Yuvinish xonasi</label>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-check mb-3">
-                                    <input type="checkbox" class="form-check-input" id="validationFormCheck1">
+                                    <input type="checkbox" class="form-check-input" id="validationFormCheck1" name="changing_room">
                                     <label class="form-check-label" for="validationFormCheck1">Kiyinish xonasi</label>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-check mb-3">
-                                    <input type="checkbox" class="form-check-input" id="validationFormCheck1">
+                                    <input type="checkbox" class="form-check-input" id="validationFormCheck1" name="lighting">
                                     <label class="form-check-label" for="validationFormCheck1">Yoruqlik</label>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-check mb-3">
-                                    <input type="checkbox" class="form-check-input" id="validationFormCheck1">
+                                    <input type="checkbox" class="form-check-input" id="validationFormCheck1" name="tribunes">
                                     <label class="form-check-label" for="validationFormCheck1">O`rindiqlar</label>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-check mb-3">
-                                    <input type="checkbox" class="form-check-input" id="validationFormCheck1">
+                                    <input type="checkbox" class="form-check-input" id="validationFormCheck1" name="parking">
                                     <label class="form-check-label" for="validationFormCheck1">Avto turargox</label>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-check mb-3">
-                                    <input type="checkbox" class="form-check-input" id="validationFormCheck1">
-                                    <label class="form-check-label" for="validationFormCheck1">Faolligi</label>
+                                    <input type="checkbox" class="form-check-input" id="validationFormCheck1" name="is_active">
+                                    <label class="form-check-label" for="validationFormCheck1" >Faolligi</label>
                                 </div>
                             </div>
 
