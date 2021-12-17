@@ -8,6 +8,9 @@ from location_field.models.plain import PlainLocationField
 class Category(models.Model):
     name = models.CharField(max_length=255)
 
+    def __str__(self):
+        return self.name
+
 
 class Images(models.Model):
     image = models.ImageField(upload_to='images/')

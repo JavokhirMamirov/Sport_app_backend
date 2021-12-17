@@ -116,7 +116,8 @@ USE_TZ = True
 STATIC_URL = 'static/'
 MEDIA_URL = '/media/'
 STATICFILES_DIRS = [BASE_DIR/'static']
-MEDIA_ROOT = BASE_DIR/'media'
+
+MEDIA_ROOT = BASE_DIR / 'media'
 
 LOCATION_FIELD = {
     'provider.google.api': '//maps.google.com/maps/api/js?sensor=false',

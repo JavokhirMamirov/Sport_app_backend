@@ -1,10 +1,12 @@
+from django.db.models.query_utils import select_related_descend
+from django.forms.widgets import Select
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from .forms import *
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-
+from django.core.paginator import Paginator
 # Create your views here.
 
 
@@ -13,7 +15,25 @@ def HomeView(request):
 
 
 def ObjectsView(request):
-    return render(request, 'objects.html')
+    obj = SportObject.objects.all()
+    category = Category.objects.all()
+    req = request.GET.get('category')
+    search = request.GET.get('q')
+    
+    if req != '' and req is not None:
+        obj = obj.filter(category__id=req)
+    elif search is not None and search != "":
+        obj = obj.filter(name__icontains=search)
+    page = request.GET.get('page')
+    p = Paginator(obj, 2)
+    pages = p.get_page(page)
+    num_of_obj = 'a' * pages.paginator.num_pages
+    context = {
+        'pages':pages,
+        'num_of_obj':num_of_obj,
+        'category':category
+    }
+    return render(request, 'objects.html', context)
 
 
 def AddNewObjectView(request):
@@ -42,8 +62,13 @@ def AddObjectCategory(request):
             return redirect('add-sport-object')
 
 
-def ObjectDetailView(request):
-    return render(request, 'object_detail.html')
+def ObjectDetailView(request, pk):
+    object = SportObject.objects.get(id=pk)
+    # imges = Images.objects.select_related('SportObject')
+    context = {
+        'object':object
+    }
+    return render(request, 'object_detail.html', context)
 
 
 # Auth system
