@@ -1,3 +1,4 @@
+from types import resolve_bases
 from django.db.models.query_utils import select_related_descend
 from django.forms.widgets import Select
 from django.shortcuts import render, redirect
@@ -71,6 +72,24 @@ def ObjectDetailView(request, pk):
     return render(request, 'object_detail.html', context)
 
 
+def DeleteObjectView(request):
+    object = request.GET.get('object_id')
+    print(object)
+    delete_object = SportObject.objects.get(id=object)
+    delete_object.delete()
+    return redirect('sport-object')
+
+
+def update(request, pk):
+    form = SportObjectForm(instance=SportObject.objects.get(id=pk))
+    if request.method == 'POST':
+        form = SportObjectForm(request.POST, instance=SportObject.objects.get(id=pk))
+        if form.is_valid():
+            form.save()
+        return HttpResponse(True)
+    else:
+        form
+    return render(request, 'update-object.html')
 # Auth system
 def login_view(request):
     if request.method == 'POST':

@@ -12,12 +12,16 @@
     <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
         <div class="breadcrumb-title pe-3">Sport App</div>  
         <div class="ps-3">
-            <nav aria-label="breadcrumb">
+            <nav aria-label="breadcrumb" style="display: flex;">
                 <ol class="breadcrumb mb-0 p-0">
-                    <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+                    <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt" style="padding-top: 7px;"></i></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">Sport turi</li>
+                    <li class="breadcrumb-item active" aria-current="page"style="padding-top: 7px;" >Sport turi</li>
                 </ol>
+                <a href="#" type="button" class="btn btn-success px-3" style="margin-left: 500px; font-size: large;">Tahrirlash <i class="bx bx-pencil" style="padding-left: 7px;"></i></a>
+                <form action="{% url 'delete-object'%}" method="get" >
+                    <button type="submit" class="btn btn-danger px-3" style="margin-left: 100px; font-size: large;" name="object_id" value="{{object.id}}">O`chirish<i class="bx bx-trash" style="margin-left: 7px;" ></i></button>
+                </form>
             </nav>
         </div>
         
