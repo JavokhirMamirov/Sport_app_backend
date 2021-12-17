@@ -1,4 +1,5 @@
 from types import resolve_bases
+from typing import Type
 from django.db.models.query_utils import select_related_descend
 from django.forms.widgets import Select
 from django.shortcuts import render, redirect
@@ -65,31 +66,31 @@ def AddObjectCategory(request):
 
 def ObjectDetailView(request, pk):
     object = SportObject.objects.get(id=pk)
-    # imges = Images.objects.select_related('SportObject')
     context = {
-        'object':object
+        'object':object,
     }
     return render(request, 'object_detail.html', context)
 
 
 def DeleteObjectView(request):
     object = request.GET.get('object_id')
-    print(object)
     delete_object = SportObject.objects.get(id=object)
     delete_object.delete()
     return redirect('sport-object')
 
 
-def update(request, pk):
-    form = SportObjectForm(instance=SportObject.objects.get(id=pk))
-    if request.method == 'POST':
-        form = SportObjectForm(request.POST, instance=SportObject.objects.get(id=pk))
-        if form.is_valid():
-            form.save()
-        return HttpResponse(True)
-    else:
-        form
-    return render(request, 'update-object.html')
+def UpdateObjectView(request, pk):
+    form = SportObject.objects.get(id=pk)
+    categories = Category.objects.all()
+    types = ObjectType.objects.all()
+    context = {
+        'form': form,
+        'categories': categories,
+        'types':types
+    }
+    return render(request, 'update-object.html', context)
+
+
 # Auth system
 def login_view(request):
     if request.method == 'POST':
@@ -201,3 +202,87 @@ def CreateObject(request):
     else:
         return redirect('add-sport-object')
 
+
+
+def UpdateObject(request, id):
+    if request.method == "POST":
+        object = SportObject.objects.get(id=id)
+        try:
+            name = request.POST['name']
+            description = request.POST['description']
+            location = request.POST['location']
+            address = request.POST['address']
+            phone = request.POST['phone']
+            work_date = request.POST['work_date']
+            area = request.POST['area']
+            category = request.POST.getlist('category')
+            invent_date = request.POST['invent_date']
+            type = request.POST['type']
+            print(type)
+            date_start = request.POST['date_start']
+            date_end = request.POST['date_end']
+            shower = request.POST['shower']
+            changing_room = request.POST['changing_room']
+            lighting = request.POST['lighting']
+            tribunes = request.POST['tribunes']
+            parking = request.POST['parking']
+            is_active = request.POST['is_active']
+            if shower == "on":
+                shower = True
+            else:
+                shower = False
+
+            if changing_room == "on":
+                changing_room = True
+            else:
+                changing_room = False
+
+            if lighting == "on":
+                lighting = True
+            else:
+                lighting = False
+
+            if parking == "on":
+                parking = True
+            else:
+                parking = False
+
+            if tribunes == "on":
+                tribunes = True
+            else:
+                tribunes = False
+
+            if is_active == "on":
+                is_active = True
+            else:
+                is_active = False
+            object.name=name
+            object.address=address
+            object.phone=phone
+            object.date_start=date_start
+            object.date_end=date_end
+            object.work_date=work_date 
+            object.area=area
+            object.invent_date=invent_date 
+            object.shower=shower
+            object.lighting=lighting
+            object.tribunes=tribunes 
+            object.parking=parking
+            object.location=location
+            object.type_id=type
+            object.description=description 
+            object.is_active=is_active
+            object.changing_room=changing_room
+            object.save()
+            for cat in category:
+                try:
+                    ct = Category.objects.get(id=cat)
+                    object.category.add(ct)
+                    object.save()
+                    return redirect('sport-object')
+                except:
+                    messages.error(request, "Obyekt yangilashda xatolik1!")
+                    return redirect('sport-object')
+        except:
+            messages.error(request, "Obyekt yangilashda xatolik2!")
+            return redirect('sport-object')

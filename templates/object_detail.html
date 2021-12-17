@@ -18,7 +18,7 @@
                     </li>
                     <li class="breadcrumb-item active" aria-current="page"style="padding-top: 7px;" >Sport turi</li>
                 </ol>
-                <a href="#" type="button" class="btn btn-success px-3" style="margin-left: 500px; font-size: large;">Tahrirlash <i class="bx bx-pencil" style="padding-left: 7px;"></i></a>
+                <a href="{% url 'update-object' object.id %}" type="button" class="btn btn-success px-3" style="margin-left: 500px; font-size: large;">Tahrirlash <i class="bx bx-pencil" style="padding-left: 7px;"></i></a>
                 <form action="{% url 'delete-object'%}" method="get" >
                     <button type="submit" class="btn btn-danger px-3" style="margin-left: 100px; font-size: large;" name="object_id" value="{{object.id}}">O`chirish<i class="bx bx-trash" style="margin-left: 7px;" ></i></button>
                 </form>

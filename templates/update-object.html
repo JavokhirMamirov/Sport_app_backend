@@ -26,7 +26,7 @@
                 <ol class="breadcrumb mb-0 p-0">
                     <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">Yangi obyekt qo`shish</li>
+                    <li class="breadcrumb-item active" aria-current="page">Sport obyektini tahrirlash</li>
                 </ol>
             </nav>
         </div>
@@ -38,7 +38,7 @@
             <div class="container" style="width:100%;margin: 0;padding: 0;">
                 <div class="row" style="width:100%; ">
                     <div class="col" style="width:100%;">
-                        <h5 class="card-title">Sport obyekt qo`shish</h5>
+                        <h5 class="card-title">Sport obyektini tahrirlash</h5>
                     </div>
                     <div class="col" style="text-align: center;">
                         <!-- Button trigger modal -->
@@ -46,7 +46,7 @@
                                 data-bs-target="#exampleVerticallycenteredModal">Kategoriya qo`shish
                         </button>
                         <!-- Modal -->
-                        <form method="post" action="{% url 'add-category-url' %}">
+                        <form method="post" action="{% url 'update-object-post' form.pk %}">
                             {% csrf_token %}
                             <div class="modal fade" id="exampleVerticallycenteredModal" tabindex="-1"
                                  aria-hidden="true">
@@ -57,7 +57,7 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close" ></button>
                                         </div>
-                                        <input type="text" class="form-control" id="inputProductTags" placeholder="..."
+                                        <input type="text" class="form-control"  placeholder="..."
                                                name="name">
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
@@ -87,7 +87,7 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                         </div>
-                                        <input type="text" class="form-control" id="inputProductTags" placeholder="..."
+                                        <input type="text" class="form-control"  placeholder="..."
                                                name="name">
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
@@ -106,7 +106,7 @@
         <hr/>
         <div class="form-body mt-4">
 
-            <form enctype="multipart/form-data" method="post" action="{% url 'create-object' %}">
+            <form enctype="multipart/form-data" method="post" action="{% url 'update-object-post' form.id %}">
                 {% csrf_token %}
                 <div class="row">
                     <div class="col-lg-8">
@@ -114,22 +114,22 @@
                             <div class="mb-3">
                                 <label for="inputProductTitle" class="form-label">Nomi</label>
                                 <input type="text" class="form-control" id="inputProductTitle" placeholder="nomi"
-                                       name="name" required>
+                                       name="name" required value="{{form.name}}">
                             </div>
-                            <div class="mb-3">
-                                <label for="inputProductDescription" class="form-label">Ta`rifi</label>
+                                <div class="mb-3">
+                                <label for="inputProductDescription" class="form-label" >Ta`rifi</label>
                                 <textarea class="form-control" id="inputProductDescription" rows="3"
-                                          name="description"></textarea>
+                                          name="description">{{form.description}}</textarea>
                             </div>
                             <div class="mb-3">
                                 <label for="inputProductDescription" class="form-label">Rasmlari</label>
                                 <input id="image-uploadify" type="file" name="images"
-                                       accept="image/*" multiple>
+                                       accept="image/*" multiple value="{{form.images.url}}" >
                             </div>
                             <div class="mb-3">
                                 <label for="inputProductTitle" class="form-label">Lakatsiya</label>
                                 <input type="text" class="form-control" id="location_inp" name="location"
-                                       placeholder="nomi" required>
+                                       placeholder="nomi" value="{{form.location}}" required>
                             </div>
                             <div class="mb-3">
                                 <div class="card">
@@ -145,37 +145,33 @@
                             <div class="row g-3">
                                 <div class="col-12">
                                     <label for="inputProductTags" class="form-label">Manzili</label>
-                                    <input type="text" class="form-control" id="inputProductTags" placeholder="Manzil"
-                                           name="address" required>
+                                    <input type="text" class="form-control" name="address"  value="{{form.address}}">
                                 </div>
                                 <div class="col-12">
                                     <label for="inputProductTags" class="form-label">Tel raqam</label>
-                                    <input type="text" class="form-control" id="inputProductTags"
-                                           placeholder="Tel raqam" name="phone" required>
+                                    <input  value="{{form.phone}}" type="text" class="form-control"  name="phone" />
                                 </div>
                                 <div class="col-12">
                                     <label for="inputProductTags" class="form-label">Ish kunlari</label>
-                                    <input type="text" class="form-control" id="inputProductTags"
-                                           placeholder="Ish kunlari" name="work_date" required>
+                                    <input type="text" class="form-control"  name="work_date" required value="{{form.work_date}}">
                                 </div>
                                 <div class="col-12">
                                     <label for="inputProductTags" class="form-label">Obyekt turi</label>
-                                    <input type="text" class="form-control" id="inputProductTags"
-                                           placeholder="usti ochiq/yopiq" name="area" required>
+                                    <input type="select" class="form-control" id="inputProductTags" name="area" required value="{{form.type}}" >
                                 </div>
                                 <div class="col-12">
-                                    <label class="form-label">Select2 Multiple Control</label>
+                                    <label class="form-label">Kategoriyasi</label>
                                     <select class="multiple-select" data-placeholder="Choose anything"
-                                            multiple="multiple" name="category">
+                                            multiple="multiple" id="category_select" name="category">
                                         {% for cat in categories %}
                                             <option value="{{ cat.id }}">{{ cat.name }}</option>
                                         {% endfor %}
                                     </select>
                                 </div>
                                 <div class="col-12">
-                                    <label for="inputProductTags" class="form-label">Ta`mirlangan vaqti</label>
-                                    <input type="date" class="form-control" id="inputProductTags"
-                                           placeholder="usti ochiq/yopiq" name="invent_date" required>
+                                    <label for="inputProductTags" class="form-label">Ta`mirlangan vaqti </label>
+                                    <input type="date" class="form-control" id="invent_date" value="{{form.invent_date|date:'Y-m-d'}}"
+                                          name="invent_date" required >
                                 </div>
                                 <div class="col-12">
                                     <label for="inputProductType" class="form-label">Foydalanuvchilar turi</label>
@@ -187,28 +183,24 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label for="inputPrice" class="form-label">Ochilish vaqti</label>
-                                    <input type="time" class="form-control" id="inputPrice" placeholder="00.00"
-                                           name="date_start">
+                                    <input type="time" class="form-control" id="inputPrice" name="date_start" value="{{form.date_start|time:'H:i'}}">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="inputCompareatprice" class="form-label">Yopilish vaqti</label>
-                                    <input type="time" class="form-control" id="inputCompareatprice" placeholder="00.00"
-                                           name="date_end">
+                                    <input type="time" class="form-control" id="inputCompareatprice" name="date_end" value="{{form.date_end|time:'H:i'}}">
                                 </div>
                                 <div class="col-6">
                                     <div class="form-check mb-3">
                                         <input type="checkbox" class="form-check-input"
-                                               name="shower">
-                                        <label class="form-check-label" for="validationFormCheck1">Yuvinish
-                                            xonasi</label>
+                                               name="shower" value="{{form.shower}}"  >
+                                        <label class="form-check-label" for="validationFormCheck1" >Yuvinish xonasi</label>
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="form-check mb-3">
                                         <input type="checkbox" class="form-check-input"
                                                name="changing_room">
-                                        <label class="form-check-label" for="validationFormCheck1">Kiyinish
-                                            xonasi</label>
+                                        <label class="form-check-label" for="validationFormCheck1">Kiyinish xonasi</label>
                                     </div>
                                 </div>
                                 <div class="col-6">
@@ -260,9 +252,11 @@
     <script src="{% static 'assets/plugins/select2/js/select2.min.js' %}"></script>
     <script src="{% static 'assets/plugins/notifications/js/lobibox.min.js' %}"></script>
     <script src="{% static 'assets/plugins/notifications/js/notifications.min.js' %}"></script>
+    {%for cat in form.category.all%}
     <script type="text/javascript">
-
+        $("#category_select option[value='" + "{{cat.id}}" + "']").prop("selected", true); 
     </script>
+    {%endfor%}
     {% if messages %}
         {% for message in messages %}
             {% if message.tags == "error" %}
