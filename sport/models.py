@@ -19,6 +19,9 @@ class Images(models.Model):
 class ObjectType(models.Model):
     name = models.CharField(max_length=255)
 
+    def __str__(self):
+        return self.name
+
 class SportObject(models.Model):
     name = models.CharField(max_length=255, verbose_name="Nomi") #ok
     address = models.CharField(max_length=255, null=True, blank=True, verbose_name="Manzili") #ok

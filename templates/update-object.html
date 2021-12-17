@@ -156,8 +156,8 @@
                                     <input type="text" class="form-control"  name="work_date" required value="{{form.work_date}}">
                                 </div>
                                 <div class="col-12">
-                                    <label for="inputProductTags" class="form-label">Obyekt turi</label>
-                                    <input type="select" class="form-control" id="inputProductTags" name="area" required value="{{form.type}}" >
+                                    <label for="inputProductTags" class="form-label">Obyekt hajmi</label>
+                                    <input type="text" class="form-control" id="inputProductTags" name="area" required value="{{form.area}}" >
                                 </div>
                                 <div class="col-12">
                                     <label class="form-label">Kategoriyasi</label>
@@ -170,14 +170,15 @@
                                 </div>
                                 <div class="col-12">
                                     <label for="inputProductTags" class="form-label">Ta`mirlangan vaqti </label>
-                                    <input type="date" class="form-control" id="invent_date" value="{{form.invent_date|date:'Y-m-d'}}"
+                                    <input type="date" class="form-control" id="category_select" value="{{form.invent_date|date:'Y-m-d'}}"
                                           name="invent_date" required >
                                 </div>
                                 <div class="col-12">
                                     <label for="inputProductType" class="form-label">Foydalanuvchilar turi</label>
                                     <select class="form-select" id="inputProductType" name="type" required>
+                                        <option selected>{{ form.type.name }}</option>
                                         {% for type in types %}
-                                            <option value="{{ type.id }}">{{ type.name }}</option>
+                                            <option value="{{ type.id }}">{{ type.name }}</option>                                            
                                         {% endfor %}
                                     </select>
                                 </div>
@@ -191,43 +192,61 @@
                                 </div>
                                 <div class="col-6">
                                     <div class="form-check mb-3">
-                                        <input type="checkbox" class="form-check-input"
-                                               name="shower" value="{{form.shower}}"  >
+                                        {% if form.shower == True %}
+                                        <input type="checkbox" class="form-check-input" name="shower" value="{{form.shower}}" checked>
+                                        {% else %}
+                                        <input type="checkbox" class="form-check-input" name="shower" value="{{form.shower}}">
+                                        {% endif %}
                                         <label class="form-check-label" for="validationFormCheck1" >Yuvinish xonasi</label>
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="form-check mb-3">
-                                        <input type="checkbox" class="form-check-input"
-                                               name="changing_room">
+                                        {% if form.changing_room == True %}
+                                        <input type="checkbox" class="form-check-input" name="changing_room"value="{{form.changing_room}}" checked>
+                                        {% else %}
+                                        <input type="checkbox" class="form-check-input" name="changing_room"value="{{form.changing_room}}">
+                                        {% endif %}
                                         <label class="form-check-label" for="validationFormCheck1">Kiyinish xonasi</label>
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="form-check mb-3">
-                                        <input type="checkbox" class="form-check-input"
-                                               name="lighting">
+                                        {% if form.lighting == True %}
+                                        <input type="checkbox" class="form-check-input" name="lighting"checked value="{{form.lighting}}">
+                                        {% else %}
+                                        <input type="checkbox" class="form-check-input" name="lighting"value="{{form.lighting}}">
+                                        {% endif %}
                                         <label class="form-check-label" for="validationFormCheck1">Yoruqlik</label>
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="form-check mb-3">
-                                        <input type="checkbox" class="form-check-input"
-                                               name="tribunes">
+                                        {% if form.tribunes == True %}
+                                        <input type="checkbox" class="form-check-input" name="tribunes" checked value="{{form.tribunes}}">
+                                        {% else %}
+                                        <input type="checkbox" class="form-check-input" name="tribunes"value="{{form.tribunes}}">
+                                        {% endif %}
                                         <label class="form-check-label" for="validationFormCheck1">O`rindiqlar</label>
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="form-check mb-3">
-                                        <input type="checkbox" class="form-check-input"
-                                               name="parking">
+                                        {% if form.parking == True %}
+                                        <input type="checkbox" class="form-check-input" name="parking" checked value="{{form.parking}}">
+                                        {% else %}
+                                        <input type="checkbox" class="form-check-input" name="parking" value="{{form.parking}}">
+                                        {% endif %}
                                         <label class="form-check-label" for="validationFormCheck1">Avto turargox</label>
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="form-check mb-3">
-                                        <input type="checkbox" class="form-check-input"
-                                               name="is_active">
+                                        {% if form.is_active == True %}
+                                        <input type="checkbox" class="form-check-input" name="is_active" checked value="{{form.is_active}}">
+                                        {% else %}
+                                        <input type="checkbox" class="form-check-input" name="is_active" value="{{form.is_active}}">
+                                        {% endif %}
                                         <label class="form-check-label" for="validationFormCheck1">Faolligi</label>
                                     </div>
                                 </div>

@@ -270,6 +270,7 @@ def UpdateObject(request, id):
             object.parking=parking
             object.location=location
             object.type_id=type
+            print(object.type_id)
             object.description=description 
             object.is_active=is_active
             object.changing_room=changing_room
@@ -279,6 +280,7 @@ def UpdateObject(request, id):
                     ct = Category.objects.get(id=cat)
                     object.category.add(ct)
                     object.save()
+                    print(object.type_id)
                     return redirect('sport-object')
                 except:
                     messages.error(request, "Obyekt yangilashda xatolik1!")
