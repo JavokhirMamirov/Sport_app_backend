@@ -12,7 +12,7 @@ class CategorySerializer(serializers.ModelSerializer):
         model = Category
         fields = ('name',)
 
-class objectTypeSerializer(serializers.ModelSerializer):
+class ObjectTypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = ObjectType
         fields = ('name',)
