@@ -36,7 +36,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'sport.apps.SportConfig',
-    'api.apps.ApiConfig',
     'location_field.apps.DefaultConfig',
     'rest_framework'
 ]

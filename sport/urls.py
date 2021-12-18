@@ -1,5 +1,5 @@
 from django.contrib.auth import logout
-from django.urls import path
+from django.urls import path,include
 
 from sport.views import HomeView, ObjectsView, AddNewObjectView, ObjectDetailView, UpdateObjectView, login_view, \
     AddTypeUsers, \
@@ -7,6 +7,7 @@ from sport.views import HomeView, ObjectsView, AddNewObjectView, ObjectDetailVie
 
 urlpatterns = [
     path('', HomeView, name="home"),
+    path('api/',include('sport.api.urls')),
     path('sport-object/', ObjectsView, name="sport-object"),
     path('update-object/<int:pk>/', UpdateObjectView, name="update-object"),
     path('add-sport-object/', AddNewObjectView, name="add-sport-object"),
