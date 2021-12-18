@@ -36,7 +36,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'sport.apps.SportConfig',
-    'location_field.apps.DefaultConfig',
     'rest_framework',
     'django_filters',
 ]
@@ -129,14 +128,6 @@ STATICFILES_DIRS = [BASE_DIR/'static']
 
 MEDIA_ROOT = BASE_DIR / 'media'
 
-LOCATION_FIELD = {
-    'provider.google.api': '//maps.google.com/maps/api/js?sensor=false',
-    'provider.google.api_key': 'AIzaSyB8NHCF-5fMix0w2363RhC3V4vcyw8SHSM',
-    'provider.google.api_libraries': '',
-    'provider.google.map.type': 'ROADMAP',
-}
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

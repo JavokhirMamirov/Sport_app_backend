@@ -139,10 +139,8 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKXKdHQdtqgPVl2HI2RnUa_1bjCxRCQo4&callback=initMap" async defer></script>
     <script>
     function initMap() {
-        let local = "{{ object.location }}"
-        local = local.split(",")
-        let Lat = parseFloat(local[0])
-        let Lng = parseFloat(local[1])
+        let Lat = parseFloat('{{ object.lat }}')
+        let Lng = parseFloat('{{ object.lng }}')
         let mapOptions = {
             center: {lat: Lat, lng: Lng},
             zoom: 6

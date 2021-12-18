@@ -1,17 +1,23 @@
-from types import resolve_bases
-from typing import Type
-from django.db.models.query_utils import select_related_descend
-from django.forms.widgets import Select
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from .forms import *
 from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
-# Create your views here.
+def PagenatorPage(List, num, request):
+    paginator = Paginator(List, num)
+    pages = request.GET.get('page')
+
+    try:
+        list = paginator.page(pages)
+    except PageNotAnInteger:
+        list = paginator.page(1)
+    except EmptyPage:
+        list = paginator.page(paginator.num_pages)
+    return list
 
 
 def HomeView(request):
@@ -25,17 +31,12 @@ def ObjectsView(request):
     search = request.GET.get('q')
 
     if req != '' and req is not None:
-        obj = obj.filter(category__id=req)
+        obj = obj.filter(category_id=req)
     elif search is not None and search != "":
         obj = obj.filter(name__icontains=search)
-    page = request.GET.get('page')
-    p = Paginator(obj, 2)
-    pages = p.get_page(page)
-    num_of_obj = 'a' * pages.paginator.num_pages
     context = {
-        'pages': pages,
-        'num_of_obj': num_of_obj,
-        'category': category
+        'category': category,
+        'objects': PagenatorPage(obj, 10, request)
     }
     return render(request, 'objects.html', context)
 
@@ -124,7 +125,8 @@ def CreateObject(request):
             name = request.POST['name']
             description = request.POST['description']
             images = request.FILES.getlist('images')
-            location = request.POST['location']
+            lat = request.POST['lat']
+            lng = request.POST['lng']
             address = request.POST['address']
             phone = request.POST['phone']
             work_date = request.POST['work_date']
@@ -134,38 +136,38 @@ def CreateObject(request):
             type = request.POST['type']
             date_start = request.POST['date_start']
             date_end = request.POST['date_end']
-            shower = request.POST['shower']
-            changing_room = request.POST['changing_room']
-            lighting = request.POST['lighting']
-            tribunes = request.POST['tribunes']
-            parking = request.POST['parking']
-            is_active = request.POST['is_active']
-            if shower == "on":
+            shower = request.POST.get('shower')
+            changing_room = request.POST.get('changing_room')
+            lighting = request.POST.get('lighting')
+            tribunes = request.POST.get('tribunes')
+            parking = request.POST.get('parking')
+            is_active = request.POST.get('is_active')
+            if shower is not None:
                 shower = True
             else:
                 shower = False
 
-            if changing_room == "on":
+            if changing_room is not None:
                 changing_room = True
             else:
                 changing_room = False
 
-            if lighting == "on":
+            if lighting is not None:
                 lighting = True
             else:
                 lighting = False
 
-            if parking == "on":
+            if parking is not None:
                 parking = True
             else:
                 parking = False
 
-            if tribunes == "on":
+            if tribunes is not None:
                 tribunes = True
             else:
                 tribunes = False
 
-            if is_active == "on":
+            if is_active is not None:
                 is_active = True
             else:
                 is_active = False
@@ -175,7 +177,7 @@ def CreateObject(request):
                 name=name, address=address, phone=phone, date_start=date_start,
                 date_end=date_end, work_date=work_date, area=area,
                 invent_date=invent_date, shower=shower, lighting=lighting,
-                tribunes=tribunes, parking=parking, location=location,
+                tribunes=tribunes, parking=parking, lat=lat, lng=lng,
                 type_id=type, description=description, is_active=is_active,
                 changing_room=changing_room
             )
@@ -211,7 +213,8 @@ def UpdateObject(request, id):
         try:
             name = request.POST['name']
             description = request.POST['description']
-            location = request.POST['location']
+            lat = request.POST['lat']
+            lng = request.POST['lng']
             address = request.POST['address']
             phone = request.POST['phone']
             work_date = request.POST['work_date']
@@ -227,7 +230,6 @@ def UpdateObject(request, id):
             tribunes = request.POST.get('tribunes')
             parking = request.POST.get('parking')
             is_active = request.POST.get('is_active')
-            print(shower)
             if shower is not None:
                 shower = True
             else:
@@ -269,7 +271,8 @@ def UpdateObject(request, id):
             object.lighting = lighting
             object.tribunes = tribunes
             object.parking = parking
-            object.location = location
+            object.lat = lat
+            object.lng = lng
             object.type_id = type
             object.description = description
             object.is_active = is_active
@@ -293,7 +296,6 @@ def UpdateObject(request, id):
 
 
 def add_image(request):
-
     try:
         object_id = request.POST.get('object_id')
         img = request.FILES.get('img')
@@ -302,13 +304,14 @@ def add_image(request):
         obj.images.add(image)
         obj.save()
         context = {
-            "success":True
+            "success": True
         }
     except:
         context = {
-            "success":False
+            "success": False
         }
     return JsonResponse(context)
+
 
 def delete_image(request):
     try:
@@ -319,16 +322,18 @@ def delete_image(request):
         obj.images.remove(image)
         obj.save()
         context = {
-            "success":True
+            "success": True
         }
     except:
         context = {
-            "success":False
+            "success": False
         }
     return JsonResponse(context)
 
+
 def notf(request):
-    return  render(request, 'errors/404.html')
+    return render(request, 'errors/404.html')
+
 
 def server(request):
-    return  render(request, 'errors/500.html')
+    return render(request, 'errors/500.html')

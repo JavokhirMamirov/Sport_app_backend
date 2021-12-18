@@ -158,9 +158,16 @@
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <label for="inputProductTitle" class="form-label">Lakatsiya</label>
-                                <input type="text" class="form-control" id="location_inp" name="location"
-                                       placeholder="nomi" value="{{ form.location }}" required>
+                                <label for="inputProductTitle" class="form-label">Lakatsiya uzunlik</label>
+                                <input type="number" step="0.00000000000001" class="form-control" id="lc_lat" name="lat"
+                                       value="{{ form.lat }}"
+                                       placeholder="Uzunlik" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="inputProductTitle" class="form-label">Lakatsiya kenglik</label>
+                                <input type="number" step="0.00000000000001" class="form-control" id="lc_lng" name="lng"
+                                       value="{{ form.lng }}"
+                                       placeholder="Kenglik" required>
                             </div>
                             <div class="mb-3">
                                 <div class="card">
@@ -415,6 +422,30 @@
 
 
 
-    <script src="{% static 'assets/map.js' %}"></script>
+    <script >
+    function initMap() {
+            let Lat = parseFloat('{{ form.lat }}')
+            let Lng = parseFloat('{{ form.lng }}')
+            let mapOptions = {
+                center: {lat: Lat, lng: Lng},
+                zoom: 6
+            }
+
+            let map = new google.maps.Map(document.getElementById('simple-map'), mapOptions)
+
+            let markerOptions = {
+                position: new google.maps.LatLng(Lat, Lng)
+            }
+
+            let marker = new google.maps.Marker(markerOptions)
+
+            marker.setMap(map)
+            map.addListener("click", (clickEvent) => {
+                marker.setPosition(clickEvent.latLng)
+                document.getElementById('lc_lat').value = parseFloat(clickEvent.latLng.lat())
+                document.getElementById('lc_lng').value = parseFloat(clickEvent.latLng.lng())
+            });
+        }
+    </script>
     <!--app JS-->
 {% endblock js %}

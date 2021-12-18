@@ -17,6 +17,7 @@ function initMap() {
     marker.setMap(map)
     map.addListener("click", (clickEvent) => {
         marker.setPosition(clickEvent.latLng)
-        document.getElementById('location_inp').value = clickEvent.latLng.lat() + "," + clickEvent.latLng.lng()
+        document.getElementById('lc_lat').value = parseFloat(clickEvent.latLng.lat())
+        document.getElementById('lc_lng').value = parseFloat(clickEvent.latLng.lng())
     });
 }

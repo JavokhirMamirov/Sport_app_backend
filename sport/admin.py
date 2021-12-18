@@ -26,7 +26,8 @@ class SportObjectAdmin(admin.ModelAdmin):
         "lighting",
         "tribunes",
         "parking",
-        "location",
+        "lat",
+        'lng',
         "type"
     ]
 

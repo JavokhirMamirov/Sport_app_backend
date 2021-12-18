@@ -38,7 +38,8 @@ class SportObject(models.Model):
     lighting = models.BooleanField(default=False, verbose_name="Yoritish chiroqlari") #ok
     tribunes = models.BooleanField(default=False, verbose_name="O'rindiqlar") #ok
     parking = models.BooleanField(default=False, verbose_name="Parkovka") #ok
-    location = PlainLocationField(based_fields=['city'], zoom=7) #ok
+    lat = models.FloatField(null=True, blank=True)
+    lng = models.FloatField(null=True, blank=True)
     type = models.ForeignKey(ObjectType, on_delete=models.CASCADE, null=True, blank=True) #ok
     description = models.TextField(null=True, blank=True) #ok
     is_active = models.BooleanField(default=True)
