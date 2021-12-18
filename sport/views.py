@@ -5,10 +5,12 @@ from django.forms.widgets import Select
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from .forms import *
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.paginator import Paginator
+
+
 # Create your views here.
 
 
@@ -21,7 +23,7 @@ def ObjectsView(request):
     category = Category.objects.all()
     req = request.GET.get('category')
     search = request.GET.get('q')
-    
+
     if req != '' and req is not None:
         obj = obj.filter(category__id=req)
     elif search is not None and search != "":
@@ -31,9 +33,9 @@ def ObjectsView(request):
     pages = p.get_page(page)
     num_of_obj = 'a' * pages.paginator.num_pages
     context = {
-        'pages':pages,
-        'num_of_obj':num_of_obj,
-        'category':category
+        'pages': pages,
+        'num_of_obj': num_of_obj,
+        'category': category
     }
     return render(request, 'objects.html', context)
 
@@ -67,7 +69,7 @@ def AddObjectCategory(request):
 def ObjectDetailView(request, pk):
     object = SportObject.objects.get(id=pk)
     context = {
-        'object':object,
+        'object': object,
     }
     return render(request, 'object_detail.html', context)
 
@@ -86,7 +88,7 @@ def UpdateObjectView(request, pk):
     context = {
         'form': form,
         'categories': categories,
-        'types':types
+        'types': types
     }
     return render(request, 'update-object.html', context)
 
@@ -168,7 +170,7 @@ def CreateObject(request):
             else:
                 is_active = False
 
-            #create image
+            # create image
             obj = SportObject.objects.create(
                 name=name, address=address, phone=phone, date_start=date_start,
                 date_end=date_end, work_date=work_date, area=area,
@@ -203,7 +205,6 @@ def CreateObject(request):
         return redirect('add-sport-object')
 
 
-
 def UpdateObject(request, id):
     if request.method == "POST":
         object = SportObject.objects.get(id=id)
@@ -218,73 +219,110 @@ def UpdateObject(request, id):
             category = request.POST.getlist('category')
             invent_date = request.POST['invent_date']
             type = request.POST['type']
-            print(type)
             date_start = request.POST['date_start']
             date_end = request.POST['date_end']
-            shower = request.POST['shower']
-            changing_room = request.POST['changing_room']
-            lighting = request.POST['lighting']
-            tribunes = request.POST['tribunes']
-            parking = request.POST['parking']
-            is_active = request.POST['is_active']
-            if shower == "on":
+            shower = request.POST.get('shower')
+            changing_room = request.POST.get('changing_room')
+            lighting = request.POST.get('lighting')
+            tribunes = request.POST.get('tribunes')
+            parking = request.POST.get('parking')
+            is_active = request.POST.get('is_active')
+            print(shower)
+            if shower is not None:
                 shower = True
             else:
                 shower = False
 
-            if changing_room == "on":
+            if changing_room is not None:
                 changing_room = True
             else:
                 changing_room = False
 
-            if lighting == "on":
+            if lighting is not None:
                 lighting = True
             else:
                 lighting = False
 
-            if parking == "on":
+            if parking is not None:
                 parking = True
             else:
                 parking = False
 
-            if tribunes == "on":
+            if tribunes is not None:
                 tribunes = True
             else:
                 tribunes = False
 
-            if is_active == "on":
+            if is_active is not None:
                 is_active = True
             else:
                 is_active = False
-            object.name=name
-            object.address=address
-            object.phone=phone
-            object.date_start=date_start
-            object.date_end=date_end
-            object.work_date=work_date 
-            object.area=area
-            object.invent_date=invent_date 
-            object.shower=shower
-            object.lighting=lighting
-            object.tribunes=tribunes 
-            object.parking=parking
-            object.location=location
-            object.type_id=type
-            print(object.type_id)
-            object.description=description 
-            object.is_active=is_active
-            object.changing_room=changing_room
-            object.save()
+            object.name = name
+            object.address = address
+            object.phone = phone
+            object.date_start = date_start
+            object.date_end = date_end
+            object.work_date = work_date
+            object.area = area
+            object.invent_date = invent_date
+            object.shower = shower
+            object.lighting = lighting
+            object.tribunes = tribunes
+            object.parking = parking
+            object.location = location
+            object.type_id = type
+            object.description = description
+            object.is_active = is_active
+            object.changing_room = changing_room
+
             for cat in category:
+                object.category.clear()
                 try:
                     ct = Category.objects.get(id=cat)
                     object.category.add(ct)
-                    object.save()
-                    print(object.type_id)
-                    return redirect('sport-object')
+
                 except:
                     messages.error(request, "Obyekt yangilashda xatolik1!")
-                    return redirect('sport-object')
+                    # return redirect('sport-object')
+            object.save()
+            return redirect('sport-object-detail', pk=object.id)
+
         except:
             messages.error(request, "Obyekt yangilashda xatolik2!")
-            return redirect('sport-object')
+            return redirect('sport-object-detail', pk=id)
+
+
+def add_image(request):
+
+    try:
+        object_id = request.POST.get('object_id')
+        img = request.FILES.get('img')
+        image = Images.objects.create(image=img)
+        obj = SportObject.objects.get(id=object_id)
+        obj.images.add(image)
+        obj.save()
+        context = {
+            "success":True
+        }
+    except:
+        context = {
+            "success":False
+        }
+    return JsonResponse(context)
+
+def delete_image(request):
+    try:
+        object_id = request.GET.get('object_id')
+        image_id = request.GET.get('image_id')
+        obj = SportObject.objects.get(id=object_id)
+        image = Images.objects.get(id=image_id)
+        obj.images.remove(image)
+        obj.save()
+        context = {
+            "success":True
+        }
+    except:
+        context = {
+            "success":False
+        }
+    return JsonResponse(context)

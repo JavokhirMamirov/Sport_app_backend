@@ -55,9 +55,9 @@
                                         <div class="modal-header">
                                             <h5 class="modal-title">Kategoriya qo`shing</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close" ></button>
+                                                    aria-label="Close"></button>
                                         </div>
-                                        <input type="text" class="form-control"  placeholder="..."
+                                        <input type="text" class="form-control" placeholder="..."
                                                name="name">
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
@@ -87,7 +87,7 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                         </div>
-                                        <input type="text" class="form-control"  placeholder="..."
+                                        <input type="text" class="form-control" placeholder="..."
                                                name="name">
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
@@ -114,22 +114,53 @@
                             <div class="mb-3">
                                 <label for="inputProductTitle" class="form-label">Nomi</label>
                                 <input type="text" class="form-control" id="inputProductTitle" placeholder="nomi"
-                                       name="name" required value="{{form.name}}">
+                                       name="name" required value="{{ form.name }}">
                             </div>
-                                <div class="mb-3">
-                                <label for="inputProductDescription" class="form-label" >Ta`rifi</label>
+                            <div class="mb-3">
+                                <label for="inputProductDescription" class="form-label">Ta`rifi</label>
                                 <textarea class="form-control" id="inputProductDescription" rows="3"
-                                          name="description">{{form.description}}</textarea>
+                                          name="description">{{ form.description }}</textarea>
                             </div>
                             <div class="mb-3">
                                 <label for="inputProductDescription" class="form-label">Rasmlari</label>
-                                <input id="image-uploadify" type="file" name="images"
-                                       accept="image/*" multiple value="{{form.images.url}}" >
+                                <input type="file" name="images" id="image_input"
+                                       accept="image/*" style="display: none">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <button type="button"
+                                                style="height: 100px; width: 120px; font-size: 16px"
+                                                onclick="open_image_input()"
+                                                class="btn btn-success"><i class="bx bx-image-add" style="font-size: 32px"></i> </button>
+                                    </div>
+                                    <div class="col-md-2" style="display: none" id="new_image_col">
+                                        <div style="display: flex">
+                                        <img src="" id="image_new" width="120" height="100">
+                                            <div>
+                                                <button class="btn btn-info" type="button" onclick="add_image({{ form.id }})"
+                                                        style="width: 28px; height: 28px; font-size: 12px; margin: 1px; padding: 2px">
+                                                    <i class="bx bx-check"></i></button>
+                                                <button class="btn btn-danger" type="button" onclick="clear_new_image()"
+                                                        style="width: 28px; height: 28px; font-size: 12px; margin: 1px; padding: 2px">
+                                                    <i class="bx bx-trash"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% for img in form.images.all %}
+                                        <div class="col-md-2">
+                                            <div style="display: flex">
+                                                <img src="{{ img.image.url }}" width="120" height="100">
+                                                <button class="btn btn-danger"  type="button" onclick="delete_image({{ img.id }},{{ form.id }})"
+                                                        style="width: 28px; height: 28px; font-size: 12px; margin: 1px; padding: 2px">
+                                                    <i class="bx bx-trash"></i></button>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
                             </div>
                             <div class="mb-3">
                                 <label for="inputProductTitle" class="form-label">Lakatsiya</label>
                                 <input type="text" class="form-control" id="location_inp" name="location"
-                                       placeholder="nomi" value="{{form.location}}" required>
+                                       placeholder="nomi" value="{{ form.location }}" required>
                             </div>
                             <div class="mb-3">
                                 <div class="card">
@@ -145,19 +176,21 @@
                             <div class="row g-3">
                                 <div class="col-12">
                                     <label for="inputProductTags" class="form-label">Manzili</label>
-                                    <input type="text" class="form-control" name="address"  value="{{form.address}}">
+                                    <input type="text" class="form-control" name="address" value="{{ form.address }}">
                                 </div>
                                 <div class="col-12">
                                     <label for="inputProductTags" class="form-label">Tel raqam</label>
-                                    <input  value="{{form.phone}}" type="text" class="form-control"  name="phone" />
+                                    <input value="{{ form.phone }}" type="text" class="form-control" name="phone"/>
                                 </div>
                                 <div class="col-12">
                                     <label for="inputProductTags" class="form-label">Ish kunlari</label>
-                                    <input type="text" class="form-control"  name="work_date" required value="{{form.work_date}}">
+                                    <input type="text" class="form-control" name="work_date" required
+                                           value="{{ form.work_date }}">
                                 </div>
                                 <div class="col-12">
                                     <label for="inputProductTags" class="form-label">Obyekt hajmi</label>
-                                    <input type="text" class="form-control" id="inputProductTags" name="area" required value="{{form.area}}" >
+                                    <input type="text" class="form-control" id="inputProductTags" name="area" required
+                                           value="{{ form.area }}">
                                 </div>
                                 <div class="col-12">
                                     <label class="form-label">Kategoriyasi</label>
@@ -170,52 +203,61 @@
                                 </div>
                                 <div class="col-12">
                                     <label for="inputProductTags" class="form-label">Ta`mirlangan vaqti </label>
-                                    <input type="date" class="form-control" id="category_select" value="{{form.invent_date|date:'Y-m-d'}}"
-                                          name="invent_date" required >
+                                    <input type="date" class="form-control" id="category_select"
+                                           value="{{ form.invent_date|date:'Y-m-d' }}"
+                                           name="invent_date" required>
                                 </div>
                                 <div class="col-12">
                                     <label for="inputProductType" class="form-label">Foydalanuvchilar turi</label>
                                     <select class="form-select" id="inputProductType" name="type" required>
-                                        <option selected>{{ form.type.name }}</option>
                                         {% for type in types %}
-                                            <option value="{{ type.id }}">{{ type.name }}</option>                                            
+                                            {% if type.id == form.type.id %}
+                                                <option value="{{ type.id }}" selected>{{ type.name }}</option>
+                                            {% else %}
+                                                <option value="{{ type.id }}">{{ type.name }}</option>
+                                            {% endif %}
                                         {% endfor %}
                                     </select>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="inputPrice" class="form-label">Ochilish vaqti</label>
-                                    <input type="time" class="form-control" id="inputPrice" name="date_start" value="{{form.date_start|time:'H:i'}}">
+                                    <input type="time" class="form-control" id="inputPrice" name="date_start"
+                                           value="{{ form.date_start|time:'H:i' }}">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="inputCompareatprice" class="form-label">Yopilish vaqti</label>
-                                    <input type="time" class="form-control" id="inputCompareatprice" name="date_end" value="{{form.date_end|time:'H:i'}}">
+                                    <input type="time" class="form-control" id="inputCompareatprice" name="date_end"
+                                           value="{{ form.date_end|time:'H:i' }}">
                                 </div>
                                 <div class="col-6">
                                     <div class="form-check mb-3">
                                         {% if form.shower == True %}
-                                        <input type="checkbox" class="form-check-input" name="shower" value="{{form.shower}}" checked>
+                                            <input type="checkbox" class="form-check-input" name="shower" checked>
                                         {% else %}
-                                        <input type="checkbox" class="form-check-input" name="shower" value="{{form.shower}}">
+                                            <input type="checkbox" class="form-check-input" name="shower">
                                         {% endif %}
-                                        <label class="form-check-label" for="validationFormCheck1" >Yuvinish xonasi</label>
+                                        <label class="form-check-label" for="validationFormCheck1">Yuvinish
+                                            xonasi</label>
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="form-check mb-3">
                                         {% if form.changing_room == True %}
-                                        <input type="checkbox" class="form-check-input" name="changing_room"value="{{form.changing_room}}" checked>
+                                            <input type="checkbox" class="form-check-input" name="changing_room"
+                                                   checked>
                                         {% else %}
-                                        <input type="checkbox" class="form-check-input" name="changing_room"value="{{form.changing_room}}">
+                                            <input type="checkbox" class="form-check-input" name="changing_room">
                                         {% endif %}
-                                        <label class="form-check-label" for="validationFormCheck1">Kiyinish xonasi</label>
+                                        <label class="form-check-label" for="validationFormCheck1">Kiyinish
+                                            xonasi</label>
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="form-check mb-3">
                                         {% if form.lighting == True %}
-                                        <input type="checkbox" class="form-check-input" name="lighting"checked value="{{form.lighting}}">
+                                            <input type="checkbox" class="form-check-input" name="lighting" checked>
                                         {% else %}
-                                        <input type="checkbox" class="form-check-input" name="lighting"value="{{form.lighting}}">
+                                            <input type="checkbox" class="form-check-input" name="lighting">
                                         {% endif %}
                                         <label class="form-check-label" for="validationFormCheck1">Yoruqlik</label>
                                     </div>
@@ -223,9 +265,9 @@
                                 <div class="col-6">
                                     <div class="form-check mb-3">
                                         {% if form.tribunes == True %}
-                                        <input type="checkbox" class="form-check-input" name="tribunes" checked value="{{form.tribunes}}">
+                                            <input type="checkbox" class="form-check-input" name="tribunes" checked>
                                         {% else %}
-                                        <input type="checkbox" class="form-check-input" name="tribunes"value="{{form.tribunes}}">
+                                            <input type="checkbox" class="form-check-input" name="tribunes">
                                         {% endif %}
                                         <label class="form-check-label" for="validationFormCheck1">O`rindiqlar</label>
                                     </div>
@@ -233,9 +275,9 @@
                                 <div class="col-6">
                                     <div class="form-check mb-3">
                                         {% if form.parking == True %}
-                                        <input type="checkbox" class="form-check-input" name="parking" checked value="{{form.parking}}">
+                                            <input type="checkbox" class="form-check-input" name="parking" checked>
                                         {% else %}
-                                        <input type="checkbox" class="form-check-input" name="parking" value="{{form.parking}}">
+                                            <input type="checkbox" class="form-check-input" name="parking">
                                         {% endif %}
                                         <label class="form-check-label" for="validationFormCheck1">Avto turargox</label>
                                     </div>
@@ -243,9 +285,9 @@
                                 <div class="col-6">
                                     <div class="form-check mb-3">
                                         {% if form.is_active == True %}
-                                        <input type="checkbox" class="form-check-input" name="is_active" checked value="{{form.is_active}}">
+                                            <input type="checkbox" class="form-check-input" name="is_active" checked>
                                         {% else %}
-                                        <input type="checkbox" class="form-check-input" name="is_active" value="{{form.is_active}}">
+                                            <input type="checkbox" class="form-check-input" name="is_active">
                                         {% endif %}
                                         <label class="form-check-label" for="validationFormCheck1">Faolligi</label>
                                     </div>
@@ -267,15 +309,15 @@
     </div>
 {% endblock content %}
 {% block js %}
-    <script src="{% static 'assets/plugins/Drag-And-Drop/dist/imageuploadify.min.js' %}"></script>
+    {#    <script src="{% static 'assets/plugins/Drag-And-Drop/dist/imageuploadify.min.js' %}"></script>#}
     <script src="{% static 'assets/plugins/select2/js/select2.min.js' %}"></script>
     <script src="{% static 'assets/plugins/notifications/js/lobibox.min.js' %}"></script>
     <script src="{% static 'assets/plugins/notifications/js/notifications.min.js' %}"></script>
-    {%for cat in form.category.all%}
-    <script type="text/javascript">
-        $("#category_select option[value='" + "{{cat.id}}" + "']").prop("selected", true); 
-    </script>
-    {%endfor%}
+    {% for cat in form.category.all %}
+        <script type="text/javascript">
+            $("#category_select option[value='" + "{{cat.id}}" + "']").prop("selected", true);
+        </script>
+    {% endfor %}
     {% if messages %}
         {% for message in messages %}
             {% if message.tags == "error" %}
@@ -308,10 +350,57 @@
             {% endif %}
         {% endfor %}
     {% endif %}
-        <script>
-        $(document).ready(function () {
-            $('#image-uploadify').imageuploadify();
-        })
+    <script>
+    function delete_image(id,object_id){
+        $.ajax({
+           type:'get',
+           url:"{% url 'delete_image' %}",
+            header:'X-Frame-Options',
+           data:{object_id:object_id,image_id:id},
+           success:function (context){
+               if (context['success'] === true){
+                   document.location.reload();
+               }
+           }
+        });
+    }
+    function add_image(object_id){
+        var csrftoken = $("[name=csrfmiddlewaretoken]").val();
+        var img = document.getElementById('image_input');
+        var data = new FormData();
+        data.append("object_id",object_id)
+        data.append("img", img.files[0])
+        $.ajax({
+           type:'post',
+           url:"{% url 'add_image' %}",
+           headers:{
+                "X-CSRFToken": csrftoken,
+            },
+            processData: false,
+            contentType: false,
+           data:data,
+           success:function (context){
+               if (context['success'] === true){
+                   document.location.reload();
+               }
+           }
+        });
+    }
+    </script>
+    <script>
+        document.getElementById('image_input').onchange = function () {
+              var src = URL.createObjectURL(this.files[0])
+              document.getElementById('image_new').src = src
+            document.getElementById('new_image_col').style.display='block';
+            }
+
+        function clear_new_image(){
+            document.getElementById('image_new').src = ""
+            document.getElementById('new_image_col').style.display='none';
+        }
+        function open_image_input (){
+            $("#image_input").click()
+        }
 
         $('.multiple-select').select2({
             theme: 'bootstrap4',

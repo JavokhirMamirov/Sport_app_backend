@@ -112,7 +112,7 @@
                         <h6 class="col-sm-2"><i class='bx bx-x-circle' style="color: red;" ></i></h6>
                         {% endif %}
                         <h6 class="col-sm-5">Ta`mirlangan vaqti</h6>
-                        <h6 class="col-sm-2">{{object.invent_date   }}</i></h6>
+                        <h6 class="col-sm-2">{{object.invent_date}}</i></h6>
                     </dl> <br>
                 </div>
             </div>
@@ -137,5 +137,27 @@
 {% block js %}
 <!-- google maps api -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKXKdHQdtqgPVl2HI2RnUa_1bjCxRCQo4&callback=initMap" async defer></script>
-<script src="{% static 'assets/plugins/gmaps/map-custom-script.js' %}"></script>
+    <script>
+    function initMap() {
+        let local = "{{ object.location }}"
+        local = local.split(",")
+        let Lat = parseFloat(local[0])
+        let Lng = parseFloat(local[1])
+        let mapOptions = {
+            center: {lat: Lat, lng: Lng},
+            zoom: 6
+        }
+
+        let map = new google.maps.Map(document.getElementById('simple-map'), mapOptions)
+
+        let markerOptions = {
+            position: new google.maps.LatLng(Lat, Lng)
+        }
+
+        let marker = new google.maps.Marker(markerOptions)
+
+        marker.setMap(map)
+    }
+    </script>
+
 {% endblock js %}
