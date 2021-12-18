@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'sport.apps.SportConfig',
+    'forusers.apps.ForusersConfig',
     'rest_framework',
     'django_filters',
 ]
