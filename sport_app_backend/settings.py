@@ -37,8 +37,17 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'sport.apps.SportConfig',
     'location_field.apps.DefaultConfig',
-    'rest_framework'
+    'rest_framework',
+    'django_filters',
 ]
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+    'DEFAULT_PAGINATION_CLASS': 'sport.api.pagination.CustomPagination',
+    'PAGE_SIZE': 1,
+}
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

@@ -326,3 +326,9 @@ def delete_image(request):
             "success":False
         }
     return JsonResponse(context)
+
+def notf(request):
+    return  render(request, 'errors/404.html')
+
+def server(request):
+    return  render(request, 'errors/500.html')
