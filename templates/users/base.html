@@ -9,7 +9,9 @@
 		<meta name="author" content="Coffeecream Themes, info@coffeecream.eu">
 		<title>For users</title>
 		<link rel="shortcut icon" href="{% static 'users/images/favicon.png' %}">
+		{% block css %}
 
+		{% endblock css %}
 		<!-- Main Stylesheet -->
 		<link href="{% static 'users/css/style.css' %}" rel="stylesheet">
 		<!-- HTML5 shiv and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -163,6 +165,8 @@
 		<!-- jQuery Settings -->
 		<script src="{% static 'users/js/settings.js' %}"></script>
 
+		{% block js %}
 
+		{% endblock js %}
 	</body>
 </html>
