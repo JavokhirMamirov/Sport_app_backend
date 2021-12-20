@@ -506,3 +506,6 @@
 	})
 
 })(jQuery);
+
+
+// Rating Initialization

@@ -31,7 +31,7 @@ def ObjectsView(request):
     search = request.GET.get('q')
 
     if req != '' and req is not None:
-        obj = obj.filter(category_id=req)
+        obj = obj.filter(category__in=[req])
     elif search is not None and search != "":
         obj = obj.filter(name__icontains=search)
     context = {
@@ -61,7 +61,7 @@ def AddTypeUsers(request):
 
 def AddObjectCategory(request):
     if request.method == 'POST':
-        form = CategoryForm(request.POST)
+        form = CategoryForm(request.POST, request.FILES)
         if form.is_valid:
             form.save()
             return redirect('add-sport-object')

@@ -2,101 +2,169 @@
 {% load static %}
 {% block css %}
 
+<style>
+	.checked {
+		color: orange;
+	}
+</style>
 {% endblock css %}
+
 {% block content %}
 
-		<!-- ============ TITLE START ============ -->
+<!-- ============ TITLE START ============ -->
 
-		<section id="title">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-12 text-center">
-						<h1>Senior Back End Developer</h1>
-						<h4>
-							<span><i class="fa fa-map-marker"></i>Chicago</span>
-							<span><i class="fa fa-clock-o"></i>Full time</span>
-							<span><i class="fa fa-dollar"></i>50,000-75,000</span>
-						</h4>
-					</div>
-				</div>
+<section id="title">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12 text-center" style="margin-top: 30px;">
+				<h1>{{object.name}}</h1>
+				<h4 style="margin-top: 14px;">
+					<span style="font-size: 20px;margin-top: 0px;"><i class="fa fa-map-marker"></i>{{object.address}}</span>
+					<span style="font-size: 20px;margin-top: 0px;"><i class="fa fa-clock-o"></i>{{object.date_start}} / {{object.date_end}}</span>
+					<span id="rateMe1" style="font-size: 20px;margin-top: 0px;">{{object.phone}}</span>
+				</h4>
 			</div>
-		</section>
+		</div>
+	</div>
+</section>
 
-		<!-- ============ TITLE END ============ -->
+<!-- ============ TITLE END ============ -->
 
-		<!-- ============ CONTENT START ============ -->
+<!-- ============ CONTENT START ============ -->
 
-		<section id="jobs">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-8">
-						<article>
-							<h2>Job Details</h2>
-							<p>Maecenas mollis dictum lectus quis scelerisque. Nulla at rutrum ipsum. Praesent augue quam, facilisis vitae felis vel, convallis convallis nisi. Donec maximus accumsan purus vel tempus. Aenean pretium luctus velit id fermentum. Aenean non velit non nulla interdum venenatis. Integer in libero sagittis, consequat est quis, commodo odio. Aliquam eu vulputate neque. Nunc et massa leo. Vestibulum a pretium dolor. Proin et fermentum sapien. Cras malesuada neque ac purus fermentum, a placerat quam malesuada. Quisque sollicitudin tellus a ex eleifend mattis. In vitae ipsum in mauris vestibulum imperdiet.</p>
-							<p>Maecenas mollis dictum lectus quis scelerisque. Nulla at rutrum ipsum. Praesent augue quam, facilisis vitae felis vel, convallis convallis nisi. Donec maximus accumsan purus vel tempus. Aenean pretium luctus velit id fermentum. Aenean non velit non nulla interdum venenatis. Integer in libero sagittis, consequat est quis, commodo odio. Aliquam eu vulputate neque. Nunc et massa leo. Vestibulum a pretium dolor. Proin et fermentum sapien. Cras malesuada neque ac purus fermentum, a placerat quam malesuada. Quisque sollicitudin tellus a ex eleifend mattis. In vitae ipsum in mauris vestibulum imperdiet.</p>
-							<h3>Requirements</h3>
-							<ul>
-								<li>Aliquam rhoncus justo eget tellus scelerisque, at mollis mi aliquam.</li>
-								<li>Quisque pretium convallis pulvinar.</li>
-								<li>Nulla rutrum nisi mi, iaculis commodo nibh lobortis sed.</li>
-								<li>Sed pulvinar, nunc vitae molestie dapibus, lacus dolor dignissim sapien.</li>
-								<li>Pellentesque ipsum ex, imperdiet quis consequat sed, consectetur ut ante.</li>
-								<li>Aliquam libero felis, mollis vitae elementum vel, bibendum eu tortor.</li>
-								<li>Morbi rhoncus luctus interdum.</li>
-							</ul>
-							<h3>Benefits</h3>
-							<ul>
-								<li>Aliquam rhoncus justo eget tellus scelerisque, at mollis mi aliquam.</li>
-								<li>Quisque pretium convallis pulvinar.</li>
-								<li>Nulla rutrum nisi mi, iaculis commodo nibh lobortis sed.</li>
-								<li>Sed pulvinar, nunc vitae molestie dapibus, lacus dolor dignissim sapien.</li>
-								<li>Pellentesque ipsum ex, imperdiet quis consequat sed, consectetur ut ante.</li>
-								<li>Aliquam libero felis, mollis vitae elementum vel, bibendum eu tortor.</li>
-								<li>Morbi rhoncus luctus interdum.</li>
-							</ul>
-							<h3>How to apply</h3>
-							<p>Vivamus pulvinar <a href="mailto:hr@netvibes.com">hr@netvibes.com</a> lobortis placerat. Cras non est nibh. In a quam id justo aliquam elementum. In cursus urna ac sem tincidunt aliquet. Vivamus a aliquet purus, luctus tincidunt orci.</p>
-							<p>
-								<a href="job-details.html#" class="btn btn-primary btn-lg">Apply Here</a>
-								&nbsp;
-								<a href="job-details.html#" class="btn btn-default btn-lg">Apply via LinkedIn</a>
-							</p>
-						</article>
-					</div>
-					<div class="col-sm-4" id="sidebar">
-						<div class="sidebar-widget" id="share">
-							<h2>Share this job</h2>
-							<ul>
-								<li><a href="https://www.facebook.com/sharer/sharer.php?u=http://www.coffeecreamthemes.com/themes/jobseek/site/job-details.html"><i class="fa fa-facebook"></i></a></li>
-								<li><a href="https://twitter.com/home?status=http://www.coffeecreamthemes.com/themes/jobseek/site/job-details.html"><i class="fa fa-twitter"></i></a></li>
-								<li><a href="https://plus.google.com/share?url=http://www.coffeecreamthemes.com/themes/jobseek/site/job-details.html"><i class="fa fa-google-plus"></i></a></li>
-								<li><a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://www.coffeecreamthemes.com/themes/jobseek/site/job-details.html&amp;title=Jobseek%20-%20Job%20Board%20Responsive%20HTML%20Template&amp;summary=&amp;source="><i class="fa fa-linkedin"></i></a></li>
-							</ul>
-						</div>
-						<hr>
-						<div class="sidebar-widget" id="company">
-							<h2>About this company</h2>
-							<p><img src="images/client-logo.gif" alt="" class="img-responsive"></p>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tristique euismod lorem, a consequat orci consequat a. Donec ullamcorper tincidunt nunc, ut aliquam est pellentesque porta. In neque erat, malesuada sit amet orci ac, laoreet laoreet mauris.</p>
-							<p><a href="company.html" class="btn btn-primary">Read more</a></p>
-						</div>
-						<hr>
-						<div class="sidebar-widget" id="company-jobs">
-							<h2>More jobs from this company</h2>
-							<ul>
-								<li><a href="job-details.html#">Senior Web Designer</a></li>
-								<li><a href="job-details.html#">Junior System Administrator</a></li>
-								<li><a href="job-details.html#">Key Account Manager</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
+<section id="jobs">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-8">
+				<article>
+					<!-- <h2>Job Details</h2> -->
+					<img style="width: 95%;height: auto;"
+						src="https://impulse-fitness.com.ua/image/catalog/Photo/newImpulseMax-photo16.jpg" alt="">
+					<h3>Description </h3>
+					<ul style="margin-left: -60px;">
+						<p style="padding:30px;">{{object.description}}</p>
+					</ul>
+
+				</article>
 			</div>
-		</section>
+			<div class="col-sm-4" id="sidebar">
+				<div class="sidebar-widget" id="share">
+					<div class="sidebar-widget" id="company" style="display: flex;justify-content: center;">
+						<div>
+							<h2>Items that Available</h2>
+							<div style="display: flex;width: 300px;justify-content: space-between;">
+								<span>Dush </span>
+								<p class="fa fa-star fa-check-square-o"
+									style="margin-left: 14px;font-size: 20px;display:block;color:orange;"></p>
+							</div>
+							<div style="display: flex;width: 300px;justify-content: space-between;">
+								<span>Kiyinish xonasi </span>
+								<p class="fa fa-star fa-times"
+									style="margin-left: 14px;font-size: 20px;display:block;color: red;"></p>
+							</div>
+							<div style="display: flex;width: 300px;justify-content: space-between;">
+								<span>Avtoturargoh</span>
+								<p class="fa fa-star fa-check-square-o"
+									style="margin-left: 14px;font-size: 20px;display:block;color:orange;"></p>
+							</div>
+							<div style="display: flex;width: 300px;justify-content: space-between;">
+								<span>O'rindiqlar</span>
+								<p class="fa fa-star fa-check-square-o"
+									style="margin-left: 14px;font-size: 20px;display:block;color:orange;"></p>
+							</div>
+							<div style="display: flex;width: 300px;justify-content: space-between;">
+								<span>Yoritish chiroqlari</span>
+								<p class="fa fa-star fa-check-square-o"
+									style="margin-left: 14px;font-size: 20px;display:block;color:orange;"></p>
+							</div>
+						</div>
+	
+					
+					</div>
+					
+					<div style="display: flex;justify-content: center;">
+						<div>
+							<h2>Fitnes Club Infos</h2>
+							<ul style="width: 250px;display: flex;align-items: center;margin-bottom: 24px;">
+								{% for c in object.category.all %}
+								<span class="btn btn-primary btn-primary"style="margin-right: 10px;width:auto;height:35px;">{{c}}</span>
+								{% endfor %}
+							</ul>
+							<ul style="width: 160px;">
+								<span class="fa fa-star fa-2x checked" style="color:orange"></span>
+								<span class="fa fa-star  fa-2x  checked" style="color:orange"></span>
+								<span class="fa fa-star  fa-2x checked" style="color:orange"></span>
+								<span class="fa fa-star fa-2x "></span>
+								<span class="fa fa-star fa-2x "></span>
+							</ul>
+							<ul style="width: 250px;display: flex;align-items: center;margin-top: 15px;">
+								<span class="fa" style="font-size: 20px;">143 reviews </span>
+								<span class="fa " style="margin-left: 14px;font-size: 20px;">127
+									orders</span>
+							</ul>
+						</div>
+					</div>
 
-		<!-- ============ CONTENT END ============ -->
+					<div style="display: flex;justify-content: center;">
+						<div>
+							<ul style="width: 250px;display: flex;align-items: center;margin-top: 15px;">
+								<span class="fa" style="font-size: 20px;"><i class="fa fa-thumb-tack" aria-hidden="true"
+										style="margin-right: 20px;"></i>{{object.type.name}} uchun</span>
+							</ul>
+							<ul style="width: 250px;display: flex;align-items: center;margin-top: 15px;">
+								<span class="fa" style="font-size: 20px;"><i class="fa fa-calendar" aria-hidden="true"
+										style="margin-right: 20px;"></i>{{object.work_date}}</span>
+							</ul>
+							<ul style="width: 250px;display: flex;align-items: center;margin-top: 15px;">
+								<span class="fa" style="font-size: 20px;"><i class="fa fa-building" aria-hidden="true"
+										style="margin-right: 20px;"></i>{{object.area}}</span>
+							</ul>
+							<ul style="width: 250px;display: flex;align-items: center;margin-top: 15px;">
+								<span class="fa" style="font-size: 20px;"><i class="fa fa-area-chart" aria-hidden="true"
+										style="margin-right: 20px;"></i>{{object.invent_date}}</span>
+							</ul>
+						</div>
+					</div>
 
-        {% endblock content %}
-        {% block js %}
-        
-        {% endblock js %}
+
+				</div>
+				<hr>
+				
+
+			</div>
+		</div>
+	</div>
+</section>
+<div>
+	<div id="simple-map" style="width:100%;height:450px;margin-top: -50px;"></div>
+</div>
+<!-- <footer style="width: 100%;height: 400px;background-color: orange;">
+	footer here ...
+</footer> -->
+
+<!-- ============ CONTENT END ============ -->
+
+{% endblock content %}
+{% block js %}
+
+    <script>
+    function initMap() {
+        let Lat = parseFloat('{{ object.lat }}')
+        let Lng = parseFloat('{{ object.lng }}')
+        let mapOptions = {
+            center: {lat: Lat, lng: Lng},
+            zoom: 6
+        }
+
+        let map = new google.maps.Map(document.getElementById('simple-map'), mapOptions)
+
+        let markerOptions = {
+            position: new google.maps.LatLng(Lat, Lng)
+        }
+
+        let marker = new google.maps.Marker(markerOptions)
+
+        marker.setMap(map)
+    }
+    </script>
+{% endblock js %}

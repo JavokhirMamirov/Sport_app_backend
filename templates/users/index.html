@@ -10,48 +10,48 @@
 
 				<div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="-25" data-slice2-rotation="-25" data-slice1-scale="2" data-slice2-scale="2">
 					<div class="sl-slide-inner">
-						<div class="bg-img bg-img-1"></div>
+						<div class="bg-img bg-img-1" style="background-image: url(/static/users/images/1.jpg);"></div>
 						<div class="tint"></div>
 						<div class="slide-content">
-							<h2>Looking for a job?</h2>
-							<h3>There’s no better place to start</h3>
-							<p><a href="jobs.html" class="btn btn-lg btn-default">Find a job</a></p>
+							<h2>Sport obyekt <br> qidiryapsizmi?</h2>
+							<h3>Siz uchun yaxshiroq joy yo'q</h3>
+							<p><a href="#" class="btn btn-lg btn-default">Sport obyekt topish</a></p>
 						</div>
 					</div>
 				</div>
 
 				<div class="sl-slide" data-orientation="vertical" data-slice1-rotation="10" data-slice2-rotation="-15" data-slice1-scale="1.5" data-slice2-scale="1.5">
 					<div class="sl-slide-inner">
-						<div class="bg-img bg-img-2"></div>
+						<div class="bg-img bg-img-2" style="background-image: url(/static/users/images/2.jpg);"></div>
 						<div class="tint"></div>
 						<div class="slide-content">
-							<h2>Need an employee?</h2>
-							<h3>We've got perfect candidates</h3>
-							<p><a href="candidates.html" class="btn btn-lg btn-default">Post a job</a></p>
+							<h2>Murabbiy kerami?</h2>
+							<h3>Malakaliy murabbiylarni topishingiz mumkun</h3>
+							<p><a href="candidates.html" class="btn btn-lg btn-default">Sport obyekt topish</a></p>
 						</div>
 					</div>
 				</div>
 
 				<div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="3" data-slice2-rotation="3" data-slice1-scale="2" data-slice2-scale="1">
 					<div class="sl-slide-inner">
-						<div class="bg-img bg-img-3"></div>
+						<div class="bg-img bg-img-3" style="background-image: url(/static/users/images/3.jpg);" ></div>
 						<div class="tint"></div>
 						<div class="slide-content">
 							<h2>Evolving your career?</h2>
 							<h3>Find new opportunities here</h3>
-							<p><a href="jobs.html" class="btn btn-lg btn-default">Find a job</a></p>
+							<p><a href="jobs.html" class="btn btn-lg btn-default">Sport obyekt topish</a></p>
 						</div>
 					</div>
 				</div>
 
 				<div class="sl-slide" data-orientation="vertical" data-slice1-rotation="-5" data-slice2-rotation="25" data-slice1-scale="2" data-slice2-scale="1">
 					<div class="sl-slide-inner">
-						<div class="bg-img bg-img-4"></div>
+						<div class="bg-img bg-img-4" style="background-image: url(/static/users/images/4.jpg);" ></div>
 						<div class="tint"></div>
 						<div class="slide-content">
 							<h2>Extending your team?</h2>
 							<h3>Find a perfect match</h3>
-							<p><a href="candidates.html" class="btn btn-lg btn-default">Find a cadidate</a></p>
+							<p><a href="candidates.html" class="btn btn-lg btn-default">Sport obyekt topish</a></p>
 						</div>
 					</div>
 				</div>
@@ -80,244 +80,52 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-8">
-						<h2>Recent Jobs</h2>
+						<h2>Sport Obyektlari</h2>
 
 						<div class="jobs">
-
+							{% for object in objects %}
 							<!-- Job offer 1 -->
-							<a href="index.html#" class="featured applied">
+							<a href="{% url 'sport-object-detail' object.id %}" class="featured applied">
 								<div class="row">
-									<div class="col-md-1 hidden-sm hidden-xs">
-										<img src="{% static 'users/images/logo-amazon.jpg' %}" alt="" class="img-responsive" />
+									<div class="col-md-2 hidden-sm hidden-xs">
+										<img src="{{ object.images.all.first.image.url }}" alt="" class="img-responsive" />
 									</div>
-									<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12 job-title">
-										<h5>Web Designer</h5>
-										<p><strong>Amazon Inc.</strong> Company slogan goes here</p>
+									<div class="col-lg-4 col-md-4 col-sm-6 col-xs-11 job-title">
+										<h5>{{object.name}}</h5>
+										<p><strong>{{object.name}}. haqida </strong> {{object.description| truncatewords:5}}</p>
 									</div>
 									<div class="col-lg-4 col-md-4 col-sm-5 col-xs-12 job-location">
-										<p><strong>New York City, NY, USA</strong></p>
-										<p class="hidden-xs">126.3 miles away</p>
+										<p><strong>{{object.address}}</strong></p>
+										<p class="badge full-time"style="background-color:#14b1bb;">{{object.work_date}}</p>
 									</div>
 									<div class="col-lg-2 col-md-2 hidden-sm hidden-xs job-type text-center">
-										<p class="job-salary"><strong>$128,000</strong></p>
-										<p class="badge full-time">Full time</p>
+										<p class="badge full-time">{{object.date_start}}</p>
+										<p class="badge full-time" style="background-color: red;">{{object.date_end}}</p>
 									</div>
 								</div>
 							</a>
-
-							<!-- Job offer 2 -->
-							<a href="index.html#" class="featured">
-								<div class="row">
-									<div class="col-md-1 hidden-sm hidden-xs">
-										<img src="{% static 'users/images/logo-ebay.jpg' %}" alt="" class="img-responsive" />
-									</div>
-									<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12 job-title">
-										<h5>Fron End Developer</h5>
-										<p><strong>Ebay Inc.</strong> Company slogan goes here</p>
-									</div>
-									<div class="col-lg-4 col-md-4 col-sm-5 col-xs-12 job-location">
-										<p><strong>Chicago, IL, USA</strong></p>
-										<p class="hidden-xs">792.1 miles away</p>
-									</div>
-									<div class="col-lg-2 col-md-2 hidden-sm hidden-xs job-type text-center">
-										<p class="job-salary"><strong>$142,000</strong></p>
-										<p class="badge part-time">Part time</p>
-									</div>
-								</div>
-							</a>
-
-							<!-- Job offer 3 -->
-							<a href="index.html#" class="applied">
-								<div class="row">
-									<div class="col-md-1 hidden-sm hidden-xs">
-										<img src="{% static 'users/images/logo-google.jpg' %}" alt="" class="img-responsive" />
-									</div>
-									<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12 job-title">
-										<h5>Back End Developer</h5>
-										<p><strong>Google</strong> Company slogan goes here</p>
-									</div>
-									<div class="col-lg-4 col-md-4 col-sm-5 col-xs-12 job-location">
-										<p><strong>San Diego, CA, USA</strong></p>
-										<p class="hidden-xs">875.3 miles away</p>
-									</div>
-									<div class="col-lg-2 col-md-2 hidden-sm hidden-xs job-type text-center">
-										<p class="job-salary"><strong>$220,000</strong></p>
-										<p class="badge freelance">Freelance</p>
-									</div>
-								</div>
-							</a>
-
-							<!-- Job offer 4 -->
-							<a href="index.html#" class="applied">
-								<div class="row">
-									<div class="col-md-1 hidden-sm hidden-xs">
-										<img src="{% static 'users/images/logo-dropbox.jpg' %}" alt="" class="img-responsive" />
-									</div>
-									<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12 job-title">
-										<h5>Project Manager</h5>
-										<p><strong>Dropbox Inc.</strong> Company slogan goes here</p>
-									</div>
-									<div class="col-lg-4 col-md-4 col-sm-5 col-xs-12 job-location">
-										<p><strong>Los Angeles, CA, USA</strong></p>
-										<p class="hidden-xs">943.4 miles away</p>
-									</div>
-									<div class="col-lg-2 col-md-2 hidden-sm hidden-xs job-type text-center">
-										<p class="job-salary"><strong>$95,000</strong></p>
-										<p class="badge temporary">Temporary</p>
-									</div>
-								</div>
-							</a>
-
-							<!-- Job offer 5 -->
-							<a href="index.html#">
-								<div class="row">
-									<div class="col-md-1 hidden-sm hidden-xs">
-										<img src="{% static 'users/images/logo-dell.jpg' %}" alt="" class="img-responsive" />
-									</div>
-									<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12 job-title">
-										<h5>Office Assistant</h5>
-										<p><strong>Dell Inc.</strong> Company slogan goes here</p>
-									</div>
-									<div class="col-lg-4 col-md-4 col-sm-5 col-xs-12 job-location">
-										<p><strong>Seattle, WA, USA</strong></p>
-										<p class="hidden-xs">1168.7 miles away</p>
-									</div>
-									<div class="col-lg-2 col-md-2 hidden-sm hidden-xs job-type text-center">
-										<p class="job-salary"><strong>$36,000</strong></p>
-										<p class="badge internship">Internship</p>
-									</div>
-								</div>
-							</a>
-
-							<!-- Job offer 6 -->
-							<a href="index.html#" class="hidden-job">
-								<div class="row">
-									<div class="col-md-1 hidden-sm hidden-xs">
-										<img src="{% static 'users/images/logo-amazon.jpg' %}" alt="" class="img-responsive" />
-									</div>
-									<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12 job-title">
-										<h5>Web Designer</h5>
-										<p><strong>Amazon Inc.</strong> Company slogan goes here</p>
-									</div>
-									<div class="col-lg-4 col-md-4 col-sm-5 col-xs-12 job-location">
-										<p><strong>New York City, NY, USA</strong></p>
-										<p class="hidden-xs">126.3 miles away</p>
-									</div>
-									<div class="col-lg-2 col-md-2 hidden-sm hidden-xs job-type text-center">
-										<p class="job-salary"><strong>$128,000</strong></p>
-										<p class="badge full-time">Full time</p>
-									</div>
-								</div>
-							</a>
-
-							<!-- Job offer 7 -->
-							<a href="index.html#" class="hidden-job">
-								<div class="row">
-									<div class="col-md-1 hidden-sm hidden-xs">
-										<img src="{% static 'users/images/logo-ebay.jpg' %}" alt="" class="img-responsive" />
-									</div>
-									<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12 job-title">
-										<h5>Fron End Developer</h5>
-										<p><strong>Ebay Inc.</strong> Company slogan goes here</p>
-									</div>
-									<div class="col-lg-4 col-md-4 col-sm-5 col-xs-12 job-location">
-										<p><strong>Chicago, IL, USA</strong></p>
-										<p class="hidden-xs">792.1 miles away</p>
-									</div>
-									<div class="col-lg-2 col-md-2 hidden-sm hidden-xs job-type text-center">
-										<p class="job-salary"><strong>$142,000</strong></p>
-										<p class="badge part-time">Part time</p>
-									</div>
-								</div>
-							</a>
-
-							<!-- Job offer 8 -->
-							<a href="index.html#" class="hidden-job">
-								<div class="row">
-									<div class="col-md-1 hidden-sm hidden-xs">
-										<img src="{% static 'users/images/logo-google.jpg' %}" alt="" class="img-responsive" />
-									</div>
-									<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12 job-title">
-										<h5>Back End Developer</h5>
-										<p><strong>Google</strong> Company slogan goes here</p>
-									</div>
-									<div class="col-lg-4 col-md-4 col-sm-5 col-xs-12 job-location">
-										<p><strong>San Diego, CA, USA</strong></p>
-										<p class="hidden-xs">875.3 miles away</p>
-									</div>
-									<div class="col-lg-2 col-md-2 hidden-sm hidden-xs job-type text-center">
-										<p class="job-salary"><strong>$220,000</strong></p>
-										<p class="badge freelance">Freelance</p>
-									</div>
-								</div>
-							</a>
-
-							<!-- Job offer 9 -->
-							<a href="index.html#" class="hidden-job">
-								<div class="row">
-									<div class="col-md-1 hidden-sm hidden-xs">
-										<img src="{% static 'users/images/logo-dropbox.jpg' %}" alt="" class="img-responsive" />
-									</div>
-									<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12 job-title">
-										<h5>Project Manager</h5>
-										<p><strong>Dropbox Inc.</strong> Company slogan goes here</p>
-									</div>
-									<div class="col-lg-4 col-md-4 col-sm-5 col-xs-12 job-location">
-										<p><strong>Los Angeles, CA, USA</strong></p>
-										<p class="hidden-xs">943.4 miles away</p>
-									</div>
-									<div class="col-lg-2 col-md-2 hidden-sm hidden-xs job-type text-center">
-										<p class="job-salary"><strong>$95,000</strong></p>
-										<p class="badge temporary">Temporary</p>
-									</div>
-								</div>
-							</a>
-
-							<!-- Job offer 10 -->
-							<a href="index.html#" class="hidden-job">
-								<div class="row">
-									<div class="col-md-1 hidden-sm hidden-xs">
-										<img src="{% static 'users/images/logo-dell.jpg' %}" alt="" class="img-responsive" />
-									</div>
-									<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12 job-title">
-										<h5>Office Assistant</h5>
-										<p><strong>Dell Inc.</strong> Company slogan goes here</p>
-									</div>
-									<div class="col-lg-4 col-md-4 col-sm-5 col-xs-12 job-location">
-										<p><strong>Seattle, WA, USA</strong></p>
-										<p class="hidden-xs">1168.7 miles away</p>
-									</div>
-									<div class="col-lg-2 col-md-2 hidden-sm hidden-xs job-type text-center">
-										<p class="job-salary"><strong>$36,000</strong></p>
-										<p class="badge internship">Internship</p>
-									</div>
-								</div>
-							</a>
-
+							{% endfor %}
 						</div>
 
 						<a class="btn btn-primary" id="more-jobs">
-							<span class="more">Show More Jobs <i class="fa fa-arrow-down"></i></span>
-							<span class="less">Show Less Jobs <i class="fa fa-arrow-up"></i></span>
+							<span>Barchasi <i class="fa fa-arrow-right"></i></span>
 						</a>
 
 					</div>
 					<div class="col-sm-4">
-						<h2>Featured Jobs</h2>
-						<a href="index.html#">
-							<img src="{% static 'users/images/featured-job.jpg' %}" alt="Featured Job" class="img-responsive" />
+						<h2>Eng yaxshi klub</h2>
+						<a href="{% url 'sport-object-detail' object.id %}">
+							<img src="{{ object.images.all.first.image.url }}" alt="Featured Job" class="img-responsive" />
 							<div class="featured-job">
-								<img src="images/job1.jpg" alt="" class="img-circle" />
 								<div class="title">
-									<h5>Web Designer</h5>
-									<p>Amazon</p>
+									<h5>{{object.name}}</h5>
+									<h5>{{object.phone}}</h5>
 								</div>
 								<div class="data">
-									<span class="city"><i class="fa fa-map-marker"></i>New York City</span>
-									<span class="type full-time"><i class="fa fa-clock-o"></i>Full Time</span>
-									<span class="sallary"><i class="fa fa-dollar"></i>45,000</span>
+									<span class="city"><i class="fa fa-map-marker"></i>{{object.address}}</span> <br>
+									<span class="type full-time"><i class="fa fa-clock-o"></i>{{object.date_start}} - {{object.date_end}} </span>
 								</div>
-								<div class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tristique euismod lorem, a consequat orci consequat a. Donec ullamcorper tincidunt nunc, ut aliquam est pellentesque porta. In neque erat, malesuada sit amet orci ac, laoreet laoreet mauris.</div>
+								<div class="description">{{object.description| truncatewords:30}}</div>
 							</div>
 						</a>
 					</div>
@@ -333,80 +141,13 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-12">
-						<h2>Featured Companies</h2>
+						<h2>Sport Turlari</h2>
 						<ul id="featured-companies" class="row">
+							{% for category in categories %}
 							<li class="col-sm-4 col-md-3">
-								<a href="company.html">
-									<img src="{% static 'users/images/logo01.jpg' %}" alt="" />
-									<span class="badge">12</span>
-								</a>
+									<img src="{{category.img.url}}" style="object-fit: cover; width: 100%;  height: 150px; object-position: 50% 50%; padding-bottom: 50px;" alt="" />
 							</li>
-							<li class="col-sm-4 col-md-3">
-								<a href="company.html">
-									<img src="{% static 'users/images/logo02.jpg' %}" alt="" />
-									<span class="badge">4</span>
-								</a>
-							</li>
-							<li class="col-sm-4 col-md-3">
-								<a href="company.html">
-									<img src="images/logo03.jpg" alt="" />
-									<span class="badge">8</span>
-								</a>
-							</li>
-							<li class="col-sm-4 col-md-3">
-								<a href="company.html">
-									<img src="{% static 'users/images/logo04.jpg' %}" alt="" />
-									<span class="badge">9</span>
-								</a>
-							</li>
-							<li class="col-sm-4 col-md-3">
-								<a href="company.html">
-									<img src="{% static 'users/images/logo05.jpg' %}" alt="" />
-									<span class="badge">13</span>
-								</a>
-							</li>
-							<li class="col-sm-4 col-md-3">
-								<a href="company.html">
-									<img src="{% static 'users/images/logo06.jpg' %}" alt="" />
-									<span class="badge">6</span>
-								</a>
-							</li>
-							<li class="col-sm-4 col-md-3">
-								<a href="company.html">
-									<img src="{% static 'users/images/logo07.jpg' %}" alt="" />
-									<span class="badge">7</span>
-								</a>
-							</li>
-							<li class="col-sm-4 col-md-3">
-								<a href="company.html">
-									<img src="{% static 'users/images/logo08.jpg' %}" alt="" />
-									<span class="badge">15</span>
-								</a>
-							</li>
-							<li class="col-sm-4 col-md-3">
-								<a href="company.html">
-									<img src="{% static 'users/images/logo09.jpg' %}" alt="" />
-									<span class="badge">6</span>
-								</a>
-							</li>
-							<li class="col-sm-4 col-md-3">
-								<a href="company.html">
-									<img src="i{% static 'users/mages/logo10.jpg' %}" alt="" />
-									<span class="badge">11</span>
-								</a>
-							</li>
-							<li class="col-sm-4 col-md-3">
-								<a href="company.html">
-									<img src="{% static 'users/images/logo11.jpg' %}" alt="" />
-									<span class="badge">14</span>
-								</a>
-							</li>
-							<li class="col-sm-4 col-md-3">
-								<a href="company.html">
-									<img src="{% static 'users/images/logo12.jpg' %}" alt="" />
-									<span class="badge">3</span>
-								</a>
-							</li>
+						{% endfor %}
 						</ul>
 					</div>
 				</div>
@@ -422,36 +163,35 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-12">
-						<h1>Jobseek Stats</h1>
-						<h4>How many people we’ve helped</h4>
+						<h1>Statistik ma`lumotlar</h1>
 					</div>
 				</div>
 				<div class="row" id="counter">
 
 					<div class="counter">
-						<div class="number">4,329</div>
-						<div class="description">Members</div>
+						<div class="number">414</div>
+						<div class="description">Foydalanuvchi</div>
 					</div>
 
 					<div class="counter">
-						<div class="number">894</div>
-						<div class="description">Jobs</div>
+						<div class="number">{{obyekt_soni}}</div>
+						<div class="description">Obyektlar </div>
 					</div>
 
 					<div class="counter">
-						<div class="number">1,482</div>
-						<div class="description">Resumes</div>
+						<div class="number">{{categoriyalar_soni}}</div>
+						<div class="description">Categoriyalar</div>
 					</div>
 
 					<div class="counter">
 						<div class="number">83</div>
-						<div class="description">Companies</div>
+						<div class="description">Kompaniyalar</div>
 					</div>
 
 				</div>
 				<div class="row">
 					<div class="col-sm-12">
-						<p><a class="link-register btn btn-primary">Join Us</a></p>
+						<p><a class="link-register btn btn-primary">Ro`yxatdan o`tish</a></p>
 					</div>
 				</div>
 			</div>
@@ -465,7 +205,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-12">
-						<h2>How does it work</h2>
+						<h2>Bu qanday ishlaydi?</h2>
 					</div>
 				</div>
 				<div class="row">
@@ -476,7 +216,7 @@
 					</div>
 					<div class="col-sm-6">
 						<div class="video-wrapper">
-							<iframe src="https://player.vimeo.com/video/121698707" allowfullscreen></iframe>
+							<iframe src="https://youtu.be/2vPieWNUXy0" allowfullscreen></iframe>
 						</div>
 					</div>
 				</div>
@@ -508,141 +248,5 @@
 		</section>
 
 		<!-- ============ MOBILE APP END ============ -->
-
-		<!-- ============ TESTIMONIALS START ============ -->
-
-		<section id="testimonials" class="parallax text-center">
-			<div class="tint"></div>
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-12">
-						<h1>Testimonials</h1>
-						<h4>Kind words from happy members</h4>
-						<div class="owl-carousel">
-
-							<!-- Testimonial 1 -->
-							<div>
-								<div class="col-sm-3 col-md-2">
-									<img src="{% static 'users/images/testimonial1.jpg" class="img-circle img-responsive" alt="testimonial" />
-								</div>
-								<div class="col-sm-9 col-md-10">
-									<blockquote>
-										<p>Thanks for the great service. Jobseek has completely surpassed our expectations.
-										Jobseek is the most valuable business resource we have ever purchased.</p>
-										<footer>
-											Anthony Walsh
-											<cite title="Brand Manager in Ebay Inc.">Brand Manager in Ebay Inc.</cite>
-										</footer>
-									</blockquote>
-								</div>
-							</div>
-
-							<!-- Testimonial 2 -->
-							<div>
-								<div class="col-sm-3 col-md-2">
-									<img src="{% static 'users/images/testimonial2.jpg' %}" class="img-circle img-responsive" alt="testimonial" />
-								</div>
-								<div class="col-sm-9 col-md-10">
-									<blockquote>
-										<p>I didn't even need training. I couldn't have asked for more than this.
-										It really saves me time and effort. Jobseek is exactly what our business has been lacking.
-										I would be lost without Jobseek.</p>
-										<footer>
-											Becky Daniels
-											<cite title="HR Manager in Apple Inc.">HR Manager in Apple Inc.</cite>
-										</footer>
-									</blockquote>
-								</div>
-							</div>
-
-							<!-- Testimonial 3 -->
-							<div>
-								<div class="col-sm-3 col-md-2">
-									<img src="{% static 'users/images/testimonial3.jpg" class="img-circle img-responsive" alt="testimonial" />
-								</div>
-								<div class="col-sm-9 col-md-10">
-									<blockquote>
-										<p>I just can't get enough of Jobseek. I want to get a T-Shirt with Jobseek on it so I can show it off to everyone. This is simply unbelievable!</p>
-										<footer>
-											Erick Olson
-											<cite title="Key Account Manager in Twitter Inc.">Key Account Manager in Twitter Inc.</cite>
-										</footer>
-									</blockquote>
-								</div>
-							</div>
-
-							<!-- Testimonial 4 -->
-							<div>
-								<div class="col-sm-3 col-md-2">
-									<img src="{% static 'users/images/testimonial4.jpg" class="img-circle img-responsive" alt="testimonial" />
-								</div>
-								<div class="col-sm-9 col-md-10">
-									<blockquote>
-										<p>Jobseek is worth much more than I paid. I'm good to go. I couldn't have asked for more than this. Keep up the excellent work.</p>
-										<footer>
-											Nadine Boyd
-											<cite title="CEO in Company Name">CEO in Company Name</cite>
-										</footer>
-									</blockquote>
-								</div>
-							</div>
-
-						</div>
-						<p><a href="testimonials.html" class="btn btn-primary">Read All</a></p>
-					</div>
-				</div>
-			</div>
-		</section>
-
-		<!-- ============ TESTIMONIALS END ============ -->
-
-		<!-- ============ CLIENTS START ============ -->
-
-		<section id="clients">
-			<div class="container">
-				<div class="row text-center">
-					<div class="col-sm-12">
-						<h1>Happy Clients</h1>
-						<h4>Some of the many companies we’ve helped</h4>
-						<div class="owl-carousel">
-
-							<!-- Logo 1 -->
-							<div>
-								<a href="company.html"><img src="{ static 'users/images/client-logo1.gif' %}" alt="" /></a>
-							</div>
-
-							<!-- Logo 2 -->
-							<div>
-								<a href="company.html"><img src="{ static 'users/images/client-logo2.gif' %}" alt="" /></a>
-							</div>
-
-							<!-- Logo 3 -->
-							<div>
-								<a href="company.html"><img src="{ static 'users/images/client-logo3.gif' %}" alt="" /></a>
-							</div>
-
-							<!-- Logo 4 -->
-							<div>
-								<a href="company.html"><img src="{ static 'users/images/client-logo4.gif' %}" alt="" /></a>
-							</div>
-
-							<!-- Logo 5 -->
-							<div>
-								<a href="company.html"><img src="{ static 'users/images/client-logo5.gif' %}" alt="" /></a>
-							</div>
-
-							<!-- Logo 6 -->
-							<div>
-								<a href="company.html"><img src="{ static 'users/images/client-logo6.gif' %}" alt="" /></a>
-							</div>
-
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-
-		<!-- ============ CLIENTS END ============ -->
-
 
 {% endblock content %}

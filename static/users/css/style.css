@@ -550,19 +550,19 @@ header {
 	}
 
 	.bg-img-1 {
-		background-image: url(../images/slider1.jpg);
+		background-image: url(../images/bullet.png);
 	}
 
 	.bg-img-2 {
-		background-image: url(../images/slider2.jpg);
+		background-image: url(../images/bullet.png);
 	}
 
 	.bg-img-3 {
-		background-image: url(../images/slider3.jpg);
+		background-image: url(../images/bullet.png);
 	}
 
 	.bg-img-4 {
-		background-image: url(../images/slider4.jpg);
+		background-image: url(../images/bullet.png);
 	}
 
 	.sl-slider-wrapper .tint {
