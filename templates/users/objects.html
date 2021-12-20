@@ -29,7 +29,7 @@
 
 						<div class="jobs">
 							{% for object in objects %}
-							<a href="{% url 'sport-object-detail' object.id %}" class="featured applied">
+							<a href="{% url 'detail_url' object.id %}" class="featured applied">
 								<div class="row">
 									<div class="col-md-2 hidden-sm hidden-xs">
 										<img src="{{ object.images.all.first.image.url }}" alt="" class="img-responsive" />
