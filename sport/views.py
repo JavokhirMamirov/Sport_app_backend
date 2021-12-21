@@ -20,7 +20,17 @@ def PagenatorPage(List, num, request):
 
 @login_required(login_url='index_url')
 def HomeView(request):
-    return render(request, 'index.html')
+    category = Category.objects.all().count()
+    object = SportObject.objects.all().count()
+    active = SportObject.objects.filter(is_active=True).count()
+    false = SportObject.objects.filter(is_active=False).count()
+    context = {
+        'category':category,
+        'object':object,
+        'active':active,
+        'false':false
+    }
+    return render(request, 'index.html', context)
 
 @login_required(login_url='index_url')
 def ObjectsView(request):
