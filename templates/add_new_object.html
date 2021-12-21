@@ -46,7 +46,7 @@
                                 data-bs-target="#exampleVerticallycenteredModal">Kategoriya qo`shish
                         </button>
                         <!-- Modal -->
-                        <form method="post" action="{% url 'add-category-url' %}">
+                        <form method="post" action="{% url 'add-category-url' %}" enctype="multipart/form-data">
                             {% csrf_token %}
                             <div class="modal fade" id="exampleVerticallycenteredModal" tabindex="-1"
                                  aria-hidden="true">

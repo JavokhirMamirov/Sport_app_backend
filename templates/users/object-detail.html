@@ -7,16 +7,34 @@
 
 <!-- ============ TITLE START ============ -->
 
+
+
 <section id="title">
 	<div class="container">
-		<div class="row">
-			<div class="col-sm-12 text-center" style="margin-top: 30px;">
-				<h1>{{object.name}}</h1>
-				<h4 style="margin-top: 14px;">
-					<span style="font-size: 20px;margin-top: 0px;"><i class="fa fa-map-marker"></i>{{object.address}}</span>
-					<span style="font-size: 20px;margin-top: 0px;"><i class="fa fa-clock-o"></i>{{object.date_start}} / {{object.date_end}}</span>
-					<span style="font-size: 20px;margin-top: 0px;"><i class="fa fa-phone"></i>{{object.phone}} </span>
-				</h4>
+		<div style="display: flex;justify-content: space-between;width: 100%;border-bottom:2px solid rgb(13, 169, 148);align-items: center;padding-bottom: 14px;"> 
+			<div style="display: flex;width: auto;justify-content: space-between;align-items: center;">
+				<div>
+					<button  id="btnhover" style="border: none;outline: none;width: 40px;height: 40px;background-color: white;border-radius: 50%;font-size: 20px;" ><a href="{% url 'objects_url' %}" class="fa  fa-arrow-left"></a></button>
+				</div>
+				<div style="font-family:Arial, Helvetica, sans-serif;font-size: 25px;font-weight: bolder;color: black;margin-left: 70px;">
+					{{object.name}}
+				</div>
+			</div>
+			<div>
+				<ul style="width: 180px;margin-bottom: -7px;">
+					<span class="fa fa-star fa-2x checked" style="color:orange"></span>
+					<span class="fa fa-star  fa-2x  checked" style="color:orange"></span>
+					<span class="fa fa-star  fa-2x checked" style="color:orange"></span>
+					<span class="fa fa-star fa-2x "></span>
+					<span class="fa fa-star fa-2x "></span>
+				</ul>
+			</div>
+		</div>
+		<div style="margin-top: 50px;">
+			<div class="mediadivfor" style="margin-top: 14px;display: flex;justify-content: space-between;">
+				<span style="margin-top: 0px;text-transform: capitalize;font-weight: 100;"><i class="fa fa-map-marker" style="padding-right: 15px;"></i>{{object.address}}</span>
+				<span style="margin-top: 0px;text-transform: capitalize;font-weight: 100;"><i class="fa fa-clock-o" style="padding-right: 15px;"></i>{{object.date_start}} / {{object.date_end}}</span>
+				<span style="margin-top: 0px;text-transform: capitalize;font-weight: 100;"><i class="fa fa-phone" style="padding-right: 15px;"></i>{{object.phone}} </span>
 			</div>
 		</div>
 	</div>
@@ -26,7 +44,7 @@
 
 <!-- ============ CONTENT START ============ -->
 
-<section id="jobs">
+<section id="jobs" style="margin-top:-50px">
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-8">
@@ -36,11 +54,8 @@
 						src="https://impulse-fitness.com.ua/image/catalog/Photo/newImpulseMax-photo16.jpg" alt=""> -->
 						<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
 							<div class="carousel-inner">
-							  <div class="carousel-item active">
-								<img src="{{object.images.all.first.image.url}}" class="d-block w-100" alt="...">
-							  </div>
-							  {% for img in object.imgages.all %}
-							  <div class="carousel-item">
+							  {% for img in object.images.all %}
+							  <div {% if img == object.images.first %} class="carousel-item active" {%else%}class="carousel-item" {%endif%}>
 								<img src="{{ img.image.url }}" class="d-block w-100" alt="...">
 							  </div>
 							  {% endfor %}
@@ -54,7 +69,7 @@
 							  <span class="visually-hidden">Next</span>
 							</button>
 						  </div>
-					<h3>Description </h3>
+					<h3>Batafsil Malumot </h3>
 					<ul style="margin-left: -60px;">
 						<p style="padding:30px;">{{object.description}}</p>
 					</ul>
@@ -62,60 +77,59 @@
 				</article>
 			</div>
 			<div class="col-sm-4" id="sidebar">
-				<div class="sidebar-widget" id="share">
+				<div class="sidebar-widget" id="share" style="overflow: auto;">
 					<div class="sidebar-widget" id="company" style="display: flex;justify-content: center;">
 						<div>
-							<h2>Items that Available</h2>
+							<h2>Mavjud Qulayliklar</h2>
 							<div style="display: flex;width: 300px;justify-content: space-between;">
-								<!-- <i class="fa fa-check-circle" aria-hidden="true"></i> -->
-								<span>Faolligi </span>
+								<span style="font-size: larger;"><i class="fa fa-check-circle" aria-hidden="true" style="padding-right: 15px;"></i> Faolligi </span>
 								{% if object.is_active == True %}
-								<p class="fa fa-star fa-check-square-o" style="margin-left: 14px;font-size: 20px;display:block;color:orange;"></p>
+								<p class="fa fa-star fa-check-square-o" style="margin-left: 14px;font-size: 20px;display:block;color:green;"></p>
 								{% else %}
 								<p class="fa fa-star fa-times" 	style="margin-left: 14px;font-size: 20px;display:block;color: red;"></p>
 								{% endif %}
 							</div>
 							<div style="display: flex;width: 300px;justify-content: space-between;">
 								<!-- <i class="fa fa-shower" aria-hidden="true"></i> -->
-								<span>Dush </span>
+								<span style="font-size: larger;"><i class="fa fa-shower" aria-hidden="true" style="padding-right: 15px;"></i> Dush </span>
 								{% if object.shower == True %}
-								<p class="fa fa-star fa-check-square-o" style="margin-left: 14px;font-size: 20px;display:block;color:orange;"></p>
+								<p class="fa fa-star fa-check-square-o" style="margin-left: 14px;font-size: 20px;display:block;color:green;"></p>
 								{% else %}
 								<p class="fa fa-star fa-times" 	style="margin-left: 14px;font-size: 20px;display:block;color: red;"></p>
 								{% endif %}
 							</div>
 							<div style="display: flex;width: 300px;justify-content: space-between;">
-								<!-- <i class="fa-thin fa-clothes-hanger"></i> -->
-								<span>Kiyinish xonasi </span>
+							
+								<span style="font-size: larger;">	<i class="fa fa-tags" aria-hidden="true" style="padding-right: 15px;"></i> Kiyinish xonasi </span>
 								{% if object.changing_room == True %}
-								<p class="fa fa-star fa-check-square-o" style="margin-left: 14px;font-size: 20px;display:block;color:orange;"></p>
+								<p class="fa fa-star fa-check-square-o" style="margin-left: 14px;font-size: 20px;display:block;color:green;"></p>
 								{% else %}
 								<p class="fa fa-star fa-times" style="margin-left: 14px;font-size: 20px;display:block;color: red;"></p>
 									{% endif %}
 							</div>
 							<div style="display: flex;width: 300px;justify-content: space-between;">
-								<!-- <i class="fas fa-parking-circle"></i> -->
-								<span>Avtoturargoh</span>
+								
+								<span style="font-size: larger;"><i class="fa fa-car" aria-hidden="true" style="padding-right: 15px;"></i> Avtoturargoh</span>
 								{% if object.parking == True %}
-								<p class="fa fa-star fa-check-square-o" style="margin-left: 14px;font-size: 20px;display:block;color:orange;"></p>
+								<p class="fa fa-star fa-check-square-o" style="margin-left: 14px;font-size: 20px;display:block;color:green;"></p>
 								{% else %}
 								<p class="fa fa-star fa-times"
 								style="margin-left: 14px;font-size: 20px;display:block;color: red;"></p>
 								{% endif %}
 							</div>
 							<div style="display: flex;width: 300px;justify-content: space-between;">
-								<span>O'rindiqlar</span>
+								<span style="font-size: larger;"><i class="fa fa-table" aria-hidden="true" style="padding-right: 15px;"></i> O'rindiqlar</span>
 								{% if object.tribunes == True %}
-								<p class="fa fa-star fa-check-square-o" style="margin-left: 14px;font-size: 20px;display:block;color:orange;"></p>
+								<p class="fa fa-star fa-check-square-o" style="margin-left: 14px;font-size: 20px;display:block;color:green;"></p>
 								{% else %}
 								<p class="fa fa-star fa-times"
 								style="margin-left: 14px;font-size: 20px;display:block;color: red;"></p>
 								{% endif %}
 							</div>
 							<div style="display: flex;width: 300px;justify-content: space-between;">
-								<span>Yoritish chiroqlari</span>
+								<span style="font-size: larger;"><i class="fa fa-lightbulb-o" aria-hidden="true" style="padding-right: 15px;"></i> Yoritish chiroqlari</span>
 								{% if object.lighting == True %}
-								<p class="fa fa-star fa-check-square-o" style="margin-left: 14px;font-size: 20px;display:block;color:orange;"></p>
+								<p class="fa fa-star fa-check-square-o" style="margin-left: 14px;font-size: 20px;display:block;color:green;"></p>
 									{% else %}
 								<p class="fa fa-star fa-times"
 								style="margin-left: 14px;font-size: 20px;display:block;color: red;"></p>
@@ -128,19 +142,19 @@
 					
 					<div style="display: flex;justify-content: center;">
 						<div>
-							<h2>Fitnes Club Infos</h2>
+							<h2>Asosiy malumot</h2>
 							<ul style="width: 250px;display: flex;align-items: center;margin-bottom: 24px;">
 								{% for c in object.category.all %}
 								<span class="btn btn-primary btn-primary"style="margin-right: 10px;width:auto;height:35px;">{{c}}</span>
 								{% endfor %}
 							</ul>
-							<ul style="width: 160px;">
+							<!-- <ul style="width: 160px;">
 								<span class="fa fa-star fa-2x checked" style="color:orange"></span>
 								<span class="fa fa-star  fa-2x  checked" style="color:orange"></span>
 								<span class="fa fa-star  fa-2x checked" style="color:orange"></span>
 								<span class="fa fa-star fa-2x "></span>
 								<span class="fa fa-star fa-2x "></span>
-							</ul>
+							</ul> -->
 							<ul style="width: 250px;display: flex;align-items: center;margin-top: 15px;">
 								<span class="fa" style="font-size: 20px;">143 reviews </span>
 								<span class="fa " style="margin-left: 14px;font-size: 20px;">127
@@ -195,6 +209,10 @@
     function initMap() {
         let Lat = parseFloat('{{ object.lat }}')
         let Lng = parseFloat('{{ object.lng }}')
+
+		console.log("LAT",Lat);
+		console.log("Lng",Lng);
+
         let mapOptions = {
             center: {lat: Lat, lng: Lng},
             zoom: 6
@@ -210,6 +228,7 @@
 
         marker.setMap(map)
     }
+	initMap()
     </script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>

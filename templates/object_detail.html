@@ -20,7 +20,26 @@
                 </ol>
                 <a href="{% url 'update-object' object.id %}" type="button" class="btn btn-success px-3" style="margin-left: 500px; font-size: large;">Tahrirlash <i class="bx bx-pencil" style="padding-left: 7px;"></i></a>
                 <form action="{% url 'delete-object'%}" method="get" >
-                    <button type="submit" class="btn btn-danger px-3" style="margin-left: 100px; font-size: large;" name="object_id" value="{{object.id}}">O`chirish<i class="bx bx-trash" style="margin-left: 7px;" ></i></button>
+                    <!-- <button type="submit" class="btn btn-danger px-3" style="margin-left: 100px; font-size: large;" name="object_id" value="{{object.id}}">O`chirish<i class="bx bx-trash" style="margin-left: 7px;" ></i></button> -->
+                    <div class="col">
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-danger px-3" style="margin-left: 100px; font-size: large;" data-bs-toggle="modal" data-bs-target="#exampleSmallModal">O`chirish<i class="bx bx-trash" style="margin-left: 7px;"></i></button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleSmallModal" tabindex="-1" style="display: none;" aria-hidden="true">
+                            <div class="modal-dialog modal-sm">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; text-align: center;">Obyektni o`chirmoqchimisiz?</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-footer" style="justify-content: center;">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Qaytish</button>
+                                        <button type="submit" class="btn btn-danger" name="object_id" value="{{object.id}}">O`chirish</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </form>
             </nav>
         </div>
@@ -36,7 +55,7 @@
                     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             {% for img in object.images.all %}
-                            <div class="carousel-item active">
+                            <div {% if img == object.images.first %} class="carousel-item active" {%else%}class="carousel-item" {%endif%}>
                                 <img src="{{ img.image.url }}" class="d-block w-100" alt="img">
                             </div>
                             {% endfor %}
@@ -65,6 +84,12 @@
                         <div>142 reviews</div>
                         <div class="text-success"><i class='bx bxs-cart-alt align-middle'></i> 134 orders</div>
                     </div>
+                    {% for c in object.category.all %}
+                    <div class="btn btn-primary px-3 radius-30" style="margin-bottom: 10px;" >{{c}}</div>
+                    {% endfor %}
+                    <div class="mb-3">
+                        <span class="price h4"><i class='bx bx-notepad'></i>{{object.type.name}} uchun</span>
+                    </div>
                     <div class="mb-3">
                         <span class="price h4"><i class='bx bx-building'></i>{{object.address}}</span>
                     </div>
@@ -72,7 +97,7 @@
                         <span class="price h4"><i class='bx bx-phone'></i> {{object.phone}}</span>
                     </div>
                     <div class="mb-3">
-                        <span class="price h4"><i class='bx bxs-time'></i> {{object.date_start}}-</span><span class="price h4">{{object.date_end}}</span>
+                        <span class="price h4"><i class='bx bx-time-five'></i> {{object.date_start}}-</span><span class="price h4">{{object.date_end}}</span>
                     </div>
                     <div class="mb-3">
                         <span class="price h4"><i class='bx bx-calendar'></i>{{object.work_date}}</span>

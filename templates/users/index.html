@@ -2,251 +2,275 @@
 {% block content %}
 {% load static %}
 
-		<!-- ============ SLIDES START ============ -->
+<!-- ============ SLIDES START ============ -->
 
-		<div id="slider" class="sl-slider-wrapper">
+<div id="slider" class="sl-slider-wrapper">
 
-			<div class="sl-slider">
+	<div class="sl-slider">
 
-				<div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="-25" data-slice2-rotation="-25" data-slice1-scale="2" data-slice2-scale="2">
-					<div class="sl-slide-inner">
-						<div class="bg-img bg-img-1" style="background-image: url(/static/users/images/1.jpg);"></div>
-						<div class="tint"></div>
-						<div class="slide-content">
-							<h2>Sport obyekt <br> qidiryapsizmi?</h2>
-							<h3>Siz uchun yaxshiroq joy yo'q</h3>
-							<p><a href="#" class="btn btn-lg btn-default">Sport obyekt topish</a></p>
-						</div>
-					</div>
+		<div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="-25" data-slice2-rotation="-25"
+			data-slice1-scale="2" data-slice2-scale="2">
+			<div class="sl-slide-inner">
+				<div class="bg-img bg-img-1" style="background-image: url(/static/users/images/1.jpg);"></div>
+				<div class="tint"></div>
+				<div class="slide-content">
+					<h2>Sport obyekt <br> qidiryapsizmi?</h2>
+					<h3>Siz uchun yaxshiroq joy yo'q</h3>
+					<p><a href="{% url 'objects_url' %}" class="btn btn-lg btn-default">Sport obyekt topish</a></p>
 				</div>
-
-				<div class="sl-slide" data-orientation="vertical" data-slice1-rotation="10" data-slice2-rotation="-15" data-slice1-scale="1.5" data-slice2-scale="1.5">
-					<div class="sl-slide-inner">
-						<div class="bg-img bg-img-2" style="background-image: url(/static/users/images/2.jpg);"></div>
-						<div class="tint"></div>
-						<div class="slide-content">
-							<h2>Murabbiy kerami?</h2>
-							<h3>Malakaliy murabbiylarni topishingiz mumkun</h3>
-							<p><a href="candidates.html" class="btn btn-lg btn-default">Sport obyekt topish</a></p>
-						</div>
-					</div>
-				</div>
-
-				<div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="3" data-slice2-rotation="3" data-slice1-scale="2" data-slice2-scale="1">
-					<div class="sl-slide-inner">
-						<div class="bg-img bg-img-3" style="background-image: url(/static/users/images/3.jpg);" ></div>
-						<div class="tint"></div>
-						<div class="slide-content">
-							<h2>Evolving your career?</h2>
-							<h3>Find new opportunities here</h3>
-							<p><a href="jobs.html" class="btn btn-lg btn-default">Sport obyekt topish</a></p>
-						</div>
-					</div>
-				</div>
-
-				<div class="sl-slide" data-orientation="vertical" data-slice1-rotation="-5" data-slice2-rotation="25" data-slice1-scale="2" data-slice2-scale="1">
-					<div class="sl-slide-inner">
-						<div class="bg-img bg-img-4" style="background-image: url(/static/users/images/4.jpg);" ></div>
-						<div class="tint"></div>
-						<div class="slide-content">
-							<h2>Extending your team?</h2>
-							<h3>Find a perfect match</h3>
-							<p><a href="candidates.html" class="btn btn-lg btn-default">Sport obyekt topish</a></p>
-						</div>
-					</div>
-				</div>
-
 			</div>
-
-			<nav id="nav-arrows" class="nav-arrows">
-				<span class="nav-arrow-prev">Previous</span>
-				<span class="nav-arrow-next">Next</span>
-			</nav>
-
-			<nav id="nav-dots" class="nav-dots">
-				<span class="nav-dot-current"></span>
-				<span></span>
-				<span></span>
-				<span></span>
-			</nav>
-
 		</div>
 
-		<!-- ============ SLIDES END ============ -->
+		<div class="sl-slide" data-orientation="vertical" data-slice1-rotation="10" data-slice2-rotation="-15"
+			data-slice1-scale="1.5" data-slice2-scale="1.5">
+			<div class="sl-slide-inner">
+				<div class="bg-img bg-img-2" style="background-image: url(/static/users/images/2.jpg);"></div>
+				<div class="tint"></div>
+				<div class="slide-content">
+					<h2>Murabbiy kerami?</h2>
+					<h3>Malakaliy murabbiylarni topishingiz mumkun</h3>
+					<p><a href="{% url 'objects_url' %}" class="btn btn-lg btn-default">Sport obyekt topish</a></p>
+				</div>
+			</div>
+		</div>
 
-		<!-- ============ JOBS START ============ -->
+		<div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="3" data-slice2-rotation="3"
+			data-slice1-scale="2" data-slice2-scale="1">
+			<div class="sl-slide-inner">
+				<div class="bg-img bg-img-3" style="background-image: url(/static/users/images/3.jpg);"></div>
+				<div class="tint"></div>
+				<div class="slide-content">
+					<h2>Evolving your career?</h2>
+					<h3>Find new opportunities here</h3>
+					<p><a href="{% url 'objects_url' %}" class="btn btn-lg btn-default">Sport obyekt topish</a></p>
+				</div>
+			</div>
+		</div>
 
-		<section id="jobs">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-8">
-						<h2>Sport Obyektlari</h2>
+		<div class="sl-slide" data-orientation="vertical" data-slice1-rotation="-5" data-slice2-rotation="25"
+			data-slice1-scale="2" data-slice2-scale="1">
+			<div class="sl-slide-inner">
+				<div class="bg-img bg-img-4" style="background-image: url(/static/users/images/4.jpg);"></div>
+				<div class="tint"></div>
+				<div class="slide-content">
+					<h2>Extending your team?</h2>
+					<h3>Find a perfect match</h3>
+					<p><a href="{% url 'objects_url' %}" class="btn btn-lg btn-default">Sport obyekt topish</a></p>
+				</div>
+			</div>
+		</div>
 
-						<div class="jobs">
-							{% for object in objects %}
-							<!-- Job offer 1 -->
-							<a href="{% url 'sport-object-detail' object.id %}" class="featured applied">
-								<div class="row">
-									<div class="col-md-2 hidden-sm hidden-xs">
-										<img src="{{ object.images.all.first.image.url }}" alt="" class="img-responsive" />
-									</div>
-									<div class="col-lg-4 col-md-4 col-sm-6 col-xs-11 job-title">
-										<h5>{{object.name}}</h5>
-										<p><strong>{{object.name}}. haqida </strong> {{object.description| truncatewords:5}}</p>
-									</div>
-									<div class="col-lg-4 col-md-4 col-sm-5 col-xs-12 job-location">
-										<p><strong>{{object.address}}</strong></p>
-										<p class="badge full-time"style="background-color:#14b1bb;">{{object.work_date}}</p>
-									</div>
-									<div class="col-lg-2 col-md-2 hidden-sm hidden-xs job-type text-center">
-										<p class="badge full-time">{{object.date_start}}</p>
-										<p class="badge full-time" style="background-color: red;">{{object.date_end}}</p>
-									</div>
-								</div>
-							</a>
-							{% endfor %}
-						</div>
+	</div>
 
-						<a class="btn btn-primary" id="more-jobs">
-							<span>Barchasi <i class="fa fa-arrow-right"></i></span>
-						</a>
+	<nav id="nav-arrows" class="nav-arrows">
+		<span class="nav-arrow-prev">Previous</span>
+		<span class="nav-arrow-next">Next</span>
+	</nav>
 
-					</div>
-					<div class="col-sm-4">
-						<h2>Eng yaxshi klub</h2>
-						<a href="{% url 'sport-object-detail' object.id %}">
-							<img src="{{ object.images.all.first.image.url }}" alt="Featured Job" class="img-responsive" />
-							<div class="featured-job">
-								<div class="title">
-									<h5>{{object.name}}</h5>
-									<h5>{{object.phone}}</h5>
-								</div>
-								<div class="data">
-									<span class="city"><i class="fa fa-map-marker"></i>{{object.address}}</span> <br>
-									<span class="type full-time"><i class="fa fa-clock-o"></i>{{object.date_start}} - {{object.date_end}} </span>
-								</div>
-								<div class="description">{{object.description| truncatewords:30}}</div>
+	<nav id="nav-dots" class="nav-dots">
+		<span class="nav-dot-current"></span>
+		<span></span>
+		<span></span>
+		<span></span>
+	</nav>
+
+</div>
+
+<!-- ============ SLIDES END ============ -->
+
+<!-- ============ JOBS START ============ -->
+
+<section id="jobs">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-8">
+				<h2>Sport Obyektlari</h2>
+
+				<div class="jobs">
+					{% for object in objects %}
+					<!-- Job offer 1 -->
+					<a href="{% url 'detail_url' object.id %}" class="featured applied">
+						<div class="row">
+							<div class="col-md-2 hidden-sm hidden-xs">
+								<img src="{{ object.images.all.first.image.url }}" alt="" class="img-responsive" />
 							</div>
-						</a>
-					</div>
-				</div>
-			</div>
-		</section>
-
-		<!-- ============ JOBS END ============ -->
-
-		<!-- ============ COMPANIES START ============ -->
-
-		<section id="companies" class="color1">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-12">
-						<h2>Sport Turlari</h2>
-						<ul id="featured-companies" class="row">
-							{% for category in categories %}
-							<li class="col-sm-4 col-md-3">
-									<img src="{{category.img.url}}" style="object-fit: cover; width: 100%;  height: 150px; object-position: 50% 50%; padding-bottom: 50px;" alt="" />
-							</li>
-						{% endfor %}
-						</ul>
-					</div>
-				</div>
-			</div>
-		</section>
-
-		<!-- ============ COMPANIES END ============ -->
-
-		<!-- ============ STATS START ============ -->
-
-		<section id="stats" class="parallax text-center">
-			<div class="tint"></div>
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-12">
-						<h1>Statistik ma`lumotlar</h1>
-					</div>
-				</div>
-				<div class="row" id="counter">
-
-					<div class="counter">
-						<div class="number">414</div>
-						<div class="description">Foydalanuvchi</div>
-					</div>
-
-					<div class="counter">
-						<div class="number">{{obyekt_soni}}</div>
-						<div class="description">Obyektlar </div>
-					</div>
-
-					<div class="counter">
-						<div class="number">{{categoriyalar_soni}}</div>
-						<div class="description">Categoriyalar</div>
-					</div>
-
-					<div class="counter">
-						<div class="number">83</div>
-						<div class="description">Kompaniyalar</div>
-					</div>
-
-				</div>
-				<div class="row">
-					<div class="col-sm-12">
-						<p><a class="link-register btn btn-primary">Ro`yxatdan o`tish</a></p>
-					</div>
-				</div>
-			</div>
-		</section>
-
-		<!-- ============ STATS END ============ -->
-
-		<!-- ============ HOW DOES IT WORK START ============ -->
-
-		<section id="how">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-12">
-						<h2>Bu qanday ishlaydi?</h2>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-6">
-						<p>Curabitur et lorem a massa tempus aliquam. Aenean aliquam volutpat gravida. Pellentesque in neque nec tortor sagittis tempor quis in lectus. Vestibulum vehicula aliquet elit ut porta. Sed ipsum felis, interdum blandit purus sed, volutpat ultricies sem. Maecenas feugiat, lectus vitae luctus feugiat, nulla nisl dignissim velit, nec malesuada ligula orci et metus. In vulputate laoreet luctus.</p>
-						<p>Sed hendrerit ligula tortor, eget iaculis velit vestibulum a. Phasellus convallis nisl pretium nisi porttitor, eu scelerisque mauris consectetur. Fusce pretium, dui placerat laoreet consectetur, nibh diam accumsan enim, sed fringilla turpis quam quis ex. Mauris a rhoncus tortor, a cursus urna. Sed et condimentum quam. Nunc dictum erat ut ante aliquam porttitor. Donec diam eros, bibendum et scelerisque egestas, aliquet ut nulla.</p>
-						<p><a href="about.html" class="btn btn-primary">Learn More</a></p>
-					</div>
-					<div class="col-sm-6">
-						<div class="video-wrapper">
-							<iframe src="https://youtu.be/2vPieWNUXy0" allowfullscreen></iframe>
+							<div class="col-lg-4 col-md-4 col-sm-6 col-xs-11 job-title">
+								<h5>{{object.name}}</h5>
+								<p><strong>{{object.name}}. haqida </strong> {{object.description| truncatewords:5}}</p>
+							</div>
+							<div class="col-lg-4 col-md-4 col-sm-5 col-xs-12 job-location">
+								<p><strong>{{object.address}}</strong></p>
+								<p class="badge full-time" style="background-color:#14b1bb;">{{object.work_date}}</p>
+							</div>
+							<div class="col-lg-2 col-md-2 hidden-sm hidden-xs job-type text-center">
+								<p class="badge full-time">{{object.date_start}}</p> <br>
+								<p class="badge full-time" style="background-color: red;">{{object.date_end}}</p>
+							</div>
 						</div>
+					</a>
+					{% endfor %}
+				</div>
+
+				<a class="btn btn-primary" id="more-jobs" href="{% url 'objects_url' %}">
+					<span>Barchasi <i class="fa fa-arrow-right"></i></span>
+				</a>
+
+			</div>
+			<div class="col-sm-4">
+				<h2>Eng yaxshi klub</h2>
+				<a href="{% url 'sport-object-detail' object.id %}">
+					<img src="{{ object.images.all.first.image.url }}" alt="Featured Job" class="img-responsive" />
+					<div class="featured-job">
+						<div class="title">
+							<h5>{{object.name}}</h5>
+							<h5>{{object.phone}}</h5>
+						</div>
+						<div class="data">
+							<span class="city"><i class="fa fa-map-marker"></i>{{object.address}}</span> <br>
+							<span class="type full-time"><i class="fa fa-clock-o"></i>{{object.date_start}} -
+								{{object.date_end}} </span>
+						</div>
+						<div class="description">{{object.description| truncatewords:30}}</div>
 					</div>
+				</a>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- ============ JOBS END ============ -->
+
+<!-- ============ COMPANIES START ============ -->
+
+<section id="companies" class="color1">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<h2>Sport Turlari</h2>
+				<ul id="featured-companies" class="row">
+					{% for category in categories %}
+					<li class="col-sm-4 col-md-3" style="padding-right: 20px;height: 235px;">
+						<div style="object-fit: cover; width: 280px;  height: 200px;overflow: hidden;">
+							<img id="categoryimg" src="{{category.img.url}}"
+								style="object-fit: cover; width: 100%;  height: 110%;" alt="" />
+						</div>
+						<div style="height: 30px;">
+							<p style="margin-top:10px">
+								<b style="text-transform: uppercase;font-weight: bold;font-size: 17px;margin-top: 20px;text-shadow: 1px 0px 2px #909090;">{{category.name }}</b>
+							</p>
+						</div>
+
+					</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- ============ COMPANIES END ============ -->
+
+<!-- ============ STATS START ============ -->
+
+<section id="stats" class="parallax text-center">
+	<div class="tint"></div>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<h1>Statistik ma`lumotlar</h1>
+			</div>
+		</div>
+		<div class="row" id="counter">
+
+			<div class="counter">
+				<div class="number">414</div>
+				<div class="description">Foydalanuvchi</div>
+			</div>
+
+			<div class="counter">
+				<div class="number">{{obyekt_soni}}</div>
+				<div class="description">Obyektlar </div>
+			</div>
+
+			<div class="counter">
+				<div class="number">{{categoriyalar_soni}}</div>
+				<div class="description">Categoriyalar</div>
+			</div>
+
+			<div class="counter">
+				<div class="number">83</div>
+				<div class="description">Kompaniyalar</div>
+			</div>
+
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<p><a href="#" class="link-register btn btn-primary">Ro`yxatdan o`tish</a></p>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- ============ STATS END ============ -->
+
+<!-- ============ HOW DOES IT WORK START ============ -->
+
+<section id="how">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<h2>Bu qanday ishlaydi?</h2>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6">
+				<p>Curabitur et lorem a massa tempus aliquam. Aenean aliquam volutpat gravida. Pellentesque in neque nec
+					tortor sagittis tempor quis in lectus. Vestibulum vehicula aliquet elit ut porta. Sed ipsum felis,
+					interdum blandit purus sed, volutpat ultricies sem. Maecenas feugiat, lectus vitae luctus feugiat,
+					nulla nisl dignissim velit, nec malesuada ligula orci et metus. In vulputate laoreet luctus.</p>
+				<p>Sed hendrerit ligula tortor, eget iaculis velit vestibulum a. Phasellus convallis nisl pretium nisi
+					porttitor, eu scelerisque mauris consectetur. Fusce pretium, dui placerat laoreet consectetur, nibh
+					diam accumsan enim, sed fringilla turpis quam quis ex. Mauris a rhoncus tortor, a cursus urna. Sed
+					et condimentum quam. Nunc dictum erat ut ante aliquam porttitor. Donec diam eros, bibendum et
+					scelerisque egestas, aliquet ut nulla.</p>
+				<p><a href="about.html" class="btn btn-primary">Learn More</a></p>
+			</div>
+			<div class="col-sm-6">
+				<div class="video-wrapper">
+					<iframe src="https://player.vimeo.com/external/142790258.mobile.mp4?s=3bc836612b5426e2ebd5fa8621e9f14b934eef89&profile_id=116" allowfullscreen></iframe>
 				</div>
 			</div>
-		</section>
+		</div>
+	</div>
+</section>
 
-		<!-- ============ HOW DOES IT WORK END ============ -->
+<!-- ============ HOW DOES IT WORK END ============ -->
 
-		<!-- ============ MOBILE APP START ============ -->
+<!-- ============ MOBILE APP START ============ -->
 
-		<section id="app" class="color2">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-5">
-						<div id="phone"></div>
-					</div>
-					<div class="col-sm-offset-1 col-sm-6">
-						<p>&nbsp;</p>
-						<h2>Get Jobseek app</h2>
-						<p>Curabitur et lorem a massa tempus aliquam. Aenean aliquam volutpat gravida. Pellentesque in neque nec tortor sagittis tempor quis in lectus. Vestibulum vehicula aliquet elit ut porta. Sed ipsum felis, interdum blandit purus sed, volutpat ultricies sem. Maecenas feugiat, lectus vitae luctus feugiat, nulla nisl dignissim velit, nec malesuada ligula orci et metus. In vulputate laoreet luctus.</p>
-						<p>
-							<a href="index.html#" class="btn btn-default"><i class="fa fa-apple"></i> IOS</a>
-							<a href="index.html#" class="btn btn-default"><i class="fa fa-android"></i> Android</a>
-						</p>
-						<p>&nbsp;</p>
-					</div>
-				</div>
+<section id="app" class="color2">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-5">
+				<div id="phone"></div>
 			</div>
-		</section>
+			<div class="col-sm-offset-1 col-sm-6">
+				<p>&nbsp;</p>
+				<h2>Get Jobseek app</h2>
+				<p>Curabitur et lorem a massa tempus aliquam. Aenean aliquam volutpat gravida. Pellentesque in neque nec
+					tortor sagittis tempor quis in lectus. Vestibulum vehicula aliquet elit ut porta. Sed ipsum felis,
+					interdum blandit purus sed, volutpat ultricies sem. Maecenas feugiat, lectus vitae luctus feugiat,
+					nulla nisl dignissim velit, nec malesuada ligula orci et metus. In vulputate laoreet luctus.</p>
+				<p>
+					<a href="index.html#" class="btn btn-default"><i class="fa fa-apple"></i> IOS</a>
+					<a href="index.html#" class="btn btn-default"><i class="fa fa-android"></i> Android</a>
+				</p>
+				<p>&nbsp;</p>
+			</div>
+		</div>
+	</div>
+</section>
 
-		<!-- ============ MOBILE APP END ============ -->
+<!-- ============ MOBILE APP END ============ -->
 
 {% endblock content %}

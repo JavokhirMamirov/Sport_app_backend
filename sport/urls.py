@@ -1,9 +1,8 @@
-from django.contrib.auth import logout
 from django.urls import path,include
 
 from sport.views import HomeView, ObjectsView, AddNewObjectView, ObjectDetailView, UpdateObjectView, login_view, \
     AddTypeUsers, \
-    AddObjectCategory, CreateObject, DeleteObjectView, UpdateObject, add_image, delete_image, notf, server
+    AddObjectCategory, CreateObject, DeleteObjectView, UpdateObject, add_image, delete_image, notf, server,user_logout
 
 urlpatterns = [
     path('', HomeView, name="home"),
@@ -13,7 +12,7 @@ urlpatterns = [
     path('add-sport-object/', AddNewObjectView, name="add-sport-object"),
     path('sport-object-detail/<int:pk>/', ObjectDetailView, name="sport-object-detail"),
     path('login/', login_view, name="login"),
-    path('logout/', logout, name="logout"),
+    path('logout/', user_logout, name="logout"),
     ## action
     path('add-type-users', AddTypeUsers, name='add-type-url'),
     path('add-category-users', AddObjectCategory, name='add-category-url'),
@@ -24,5 +23,5 @@ urlpatterns = [
     path('delete-image', delete_image, name='delete_image'),
     # error
     path('404', notf),
-    path('500', server)
+    path('500', server),
 ]
