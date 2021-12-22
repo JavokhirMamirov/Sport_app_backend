@@ -24,8 +24,25 @@ def HomeView(request):
     object = SportObject.objects.all().count()
     active = SportObject.objects.filter(is_active=True).count()
     false = SportObject.objects.filter(is_active=False).count()
+    alert = ['primary', 'success', 'danger',"info","warning"]
+    cats = Category.objects.all()
+    cat_list = []
+    k = 0
+    for cat in cats:
+        obj_count = SportObject.objects.filter(category__in=[cat]).count()
+        dt = {
+            "id":cat.id,
+            "name":cat.name,
+            "obj_count":obj_count,
+            "color":alert[k]
+        }
+        k += 1
+        if k == 5:
+            k = 0
+        cat_list.append(dt) 
     context = {
         'category':category,
+        'cat_lists':cat_list,
         'object':object,
         'active':active,
         'false':false

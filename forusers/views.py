@@ -42,7 +42,7 @@ def ListObjects(request):
     elif search is not None and search != "":
         objects = objects.filter(name__icontains=search)
     context = {
-        'objects':PagenatorPage(objects, 10, request),
+        'objects':PagenatorPage(objects, 5, request),
         'category':category
     }
     return  render(request, 'users/objects.html', context)

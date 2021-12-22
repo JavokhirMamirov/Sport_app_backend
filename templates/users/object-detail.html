@@ -55,7 +55,7 @@
 						<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
 							<div class="carousel-inner">
 							  {% for img in object.images.all %}
-							  <div {% if img == object.images.first %} class="carousel-item active" {%else%}class="carousel-item" {%endif%}>
+							  <div {% if img == object.images.first %} class="carousel-item active" {%else%} class="carousel-item" {%endif%}>
 								<img src="{{ img.image.url }}" class="d-block w-100" alt="...">
 							  </div>
 							  {% endfor %}
@@ -204,6 +204,11 @@
 
 {% endblock content %}
 {% block js %}
+	<!-- map -->
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKXKdHQdtqgPVl2HI2RnUa_1bjCxRCQo4&callback=initMap"
+        async defer></script>
+	
 
     <script>
     function initMap() {
