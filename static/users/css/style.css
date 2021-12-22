@@ -1282,7 +1282,7 @@ label {
 }
 
 #stats {
-    background-image: url(../images/stats.jpg);
+    background-image: url(../images/back.jpg);
 }
 
 #testimonials {
@@ -1298,7 +1298,7 @@ label {
 }
 
 #phone {
-    background-image: url(../images/phone.png);
+    background-image: url(../images/logo/555.png);
     background-repeat: no-repeat;
     background-size: cover;
     min-height: 500px;

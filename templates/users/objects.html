@@ -6,118 +6,133 @@
 {% block content %}
 
 
-		<!-- ============ TITLE START ============ -->
+<!-- ============ TITLE START ============ -->
 
-		<section id="title">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-12 text-center">
-						<h1>Sport Obyekt topish</h1>
-					</div>
-				</div>
+<section id="title">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12 text-center">
+				<h1>Sport Obyekt topish</h1>
 			</div>
-		</section>
+		</div>
+	</div>
+</section>
 
-		<!-- ============ TITLE END ============ -->
+<!-- ============ TITLE END ============ -->
 
-		<!-- ============ JOBS START ============ -->
+<!-- ============ JOBS START ============ -->
 
-		<section id="jobs">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-8">
+<section id="jobs">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-8">
 
-						<div class="jobs">
-							{% for object in objects %}
-							<a href="{% url 'detail_url' object.id %}" class="featured applied">
-								<div class="row">
-									<div class="col-md-2 hidden-sm hidden-xs">
-										<img src="{{ object.images.all.first.image.url }}" alt="" class="img-responsive" />
-									</div>
-									<div class="col-lg-4 col-md-4 col-sm-6 col-xs-11 job-title">
-										<h5>{{object.name}}</h5>
-										<p><strong>{{object.name}}. haqida </strong> {{object.description| truncatewords:5}}</p>
-									</div>
-									<div class="col-lg-4 col-md-4 col-sm-5 col-xs-12 job-location">
-										<p><strong>{{object.address}}</strong></p>
-										<p class="badge full-time"style="background-color:#14b1bb;">{{object.work_date}}</p>
-									</div>
-									<div class="col-lg-2 col-md-2 hidden-sm hidden-xs job-type text-center">
-										<p class="badge full-time">{{object.date_start}}</p> <br>
-										<p class="badge full-time" style="background-color: red;">{{object.date_end}}</p>
-									</div>
-								</div>
-							</a>
-							{% endfor %}
+				<div class="jobs">
+					{% for object in objects %}
+					<a href="{% url 'detail_url' object.id %}" class="featured applied">
+						<div class="row">
+							<div class="col-md-2 hidden-sm hidden-xs">
+								<img src="{{ object.images.all.first.image.url }}" alt="" class="img-responsive" />
+							</div>
+							<div class="col-lg-4 col-md-4 col-sm-6 col-xs-11 job-title">
+								<h5>{{object.name}}</h5>
+								<p><strong>{{object.name}}. haqida </strong> {{object.description| truncatewords:5}}</p>
+							</div>
+							<div class="col-lg-4 col-md-4 col-sm-5 col-xs-12 job-location">
+								<p><strong>{{object.address}}</strong></p>
+								<p class="badge full-time" style="background-color:#14b1bb;">{{object.work_date}}</p>
+							</div>
+							<div class="col-lg-2 col-md-2 hidden-sm hidden-xs job-type text-center">
+								<p class="badge full-time">{{object.date_start}}</p> <br>
+								<p class="badge full-time" style="background-color: red;">{{object.date_end}}</p>
+							</div>
 						</div>
+					</a>
+					{% endfor %}
+				</div>
 
-						{% if objects.paginator.num_pages > 1 %}
-						<nav>
-							<ul class="pagination">
-								{% if objects.has_previous %}
-								<li class="disabled"><a href="?page={{objects.previous_page_number }}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
-								{% endif %}
-								{% for num in objects.paginator.page_range %}
-                      			{% if num == objects.number %}
-								<li class="active"><a href="#">{{ num }} <span class="sr-only">(current)</span></a></li>
-								{% elif num > objects.number|add:'-3' and num < objects.number|add:'3' %}
-								<li><a href="?page={{ num }}">{{ num }}</a></li>
-								{% endif %}
-								{% endfor %}
-								{% if objects.has_next %}
-								<li><a href="?page={{ objects.next_page_number }}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
-								{% endif %}
-							</ul>
-						</nav>
+				{% if objects.paginator.num_pages > 1 %}
+				<nav>
+					<ul class="pagination">
+						{% if objects.has_previous %}
+						<li class="disabled"><a href="?page={{objects.previous_page_number }}"
+								aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
 						{% endif %}
-					</div>
-					<div class="col-sm-4" id="sidebar">
+						{% for num in objects.paginator.page_range %}
+						{% if num == objects.number %}
+						<li class="active"><a href="#">{{ num }} <span class="sr-only">(current)</span></a></li>
+						{% elif num > objects.number|add:'-3' and num < objects.number|add:'3' %} <li><a
+								href="?page={{ num }}">{{ num }}</a></li>
+							{% endif %}
+							{% endfor %}
+							{% if objects.has_next %}
+							<li><a href="?page={{ objects.next_page_number }}" aria-label="Next"><span
+										aria-hidden="true">&raquo;</span></a></li>
+							{% endif %}
+					</ul>
+				</nav>
+				{% endif %}
+			</div>
+			<div class="col-sm-4" id="sidebar">
 
-					
-						<!-- Find a Job Start -->
-						<div class="sidebar-widget" id="jobsearch">
-							<h2>Sport Turini izlash</h2>
+
+				<!-- Find a Job Start -->
+				<div class="sidebar-widget" id="jobsearch">
+					<h2>Sport Turini izlash</h2>
+					<div class="row">
+						<form method="get">
+							<div class="col-xs-12">
+								<div class="form-group" id="job-search-group">
+									<label for="job-search" class="sr-only"></label>
+									<input type="text" class="form-control" id="job-search"
+										placeholder="Sport turi qidiring..." name="q">
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="row">
+						<!-- <div class="col-xs-12"> -->
+						<form method="get">
+							<div class="col-xs-12">
+								<h5>Sport Turi bo`yicha filterlash</h5>
+								<div>
+									{% for c in category %}
+									<div class="checkbox"
+										style="display: inline-block; margin: 10px;width: 38%;">
+										<label style='display: flex;align-items: center;'>
+											<input type="checkbox" name="category" value="{{c.id}}" onclick="onlyOne(this)">  <span>{{c}}</span>
+										</label>
+									</div>
+									{% endfor %}
+								</div>
+							</div>
 							<div class="row">
-									<form method="get">
-									<div class="col-xs-12">
-										<div class="form-group" id="job-search-group">
-											<label for="job-search" class="sr-only"></label>
-											<input type="text" class="form-control" id="job-search" placeholder="Sport turi qidiring..." name="q" > 
-										</div>
-									</div>
-								</form>
+								<div class="col-xs-12">
+									<button class="btn btn-primary" style="margin-top:17px; margin-left: 20px;" 
+										type="submit">Filterlash</button>
 								</div>
-								<div class="row">
-									<div class="col-xs-12">
-										<form method="get" >
-										<select type="text" class="form-control" id="job-search" aria-label="Default select example" name="category">
-                                            <option selected="">Sport Turi</option>
-                                            {% for c in category %}
-                                            <option value="{{c.id}}">{{c}}</option>
-                                            {% endfor %}
-                                        </select>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-xs-12">
-										<!-- <a class="btn btn-primary">Filterlash</a> -->
-										<button class="btn btn-primary" style="margin-top:17px;" type="submit">Filterlash</button>
-									</div>
-								</div>
-							</form>
-						</div>
-						<!-- Find a Job End -->
-
+							</div>
+						</form>
 					</div>
+					<!-- Find a Job End -->
+
 				</div>
 			</div>
-		</section>
+		</div>
+</section>
 
-		<!-- ============ JOBS END ============ -->
+<!-- ============ JOBS END ============ -->
 
 
 
 {% endblock content %}
 {% block js %}
-
+<script>
+	function onlyOne(checkbox) {
+    var checkboxes = document.getElementsByName('category')
+    checkboxes.forEach((item) => {
+        if (item !== checkbox) item.checked = false
+    })
+}
+</script>
 {% endblock js %}

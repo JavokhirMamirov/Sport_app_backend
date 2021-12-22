@@ -36,22 +36,7 @@
         
             <div class="fm-container" style="margin-top: -35px;">
                 <!-- Menu -->
-                <div class="menu" >
-                    <div class="button-close text-right">
-                        <a class="fm-button"><i class="fa fa-close fa-2x"></i></a>
-                    </div>
-                    <ul class="nav" style="margin-top: -60px;">
-                        <li class="#"><a href="{% url 'index_url' %}">Asosiy</a></li>
-                        <li><a href="{% url 'objects_url' %}">Sport turlari</a></li>
-                        {% if user.is_authenticated %}
-                        <li><a href="{% url 'logout' %}" class="link-login">Chiqish</a></li>
-                        {% else %}
-                        <li><a href="{% url 'login' %}" class="link-login">Kirish</a></li>
-                        <li><a class="link-register">Ro`yxatdan o`tish</a></li>
-                        {% endif %}
-                    </ul>
-                </div>
-                <!-- end Menu -->
+               
             </div>
         
             <!-- ============ NAVBAR END ============ -->
@@ -67,9 +52,6 @@
                                     style="height: 50px;width: 100px" />
                             </a>
                         </div>
-                    </div>
-                    <div id="menu-open" class="pull-right">
-                        <a class="fm-button"><i class="fa fa-bars fa-lg"></i></a>
                     </div>
                 </div>
             </header>
