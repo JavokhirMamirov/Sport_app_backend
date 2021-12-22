@@ -88,7 +88,6 @@
 
 				<div class="jobs">
 					{% for object in objects %}
-					<!-- Job offer 1 -->
 					<a href="{% url 'detail_url' object.id %}" class="featured applied">
 						<div class="row">
 							<div class="col-md-2 hidden-sm hidden-xs">
@@ -118,6 +117,7 @@
 			</div>
 			<div class="col-sm-4">
 				<h2>Eng yaxshi klub</h2>
+                {% if object is not None %}
 				<a href="{% url 'detail_url' object.id %}">
 					<img src="{{ object.images.all.first.image.url }}" alt="Featured Job" class="img-responsive" />
 					<div class="featured-job">
@@ -133,6 +133,7 @@
 						<div class="description">{{object.description| truncatewords:30}}</div>
 					</div>
 				</a>
+                {% endif %}
 			</div>
 		</div>
 	</div>
@@ -151,7 +152,7 @@
 					{% for category in categories %}
 					<li class="col-sm-4 col-md-3" style="padding-right: 20px;height: 235px;">
 						<div style="object-fit: cover; width: 280px;  height: 200px;overflow: hidden;">
-							<img id="categoryimg" src="{{category.img.url}}"
+							<img id="categoryimg" src="{{category.img.url}}
 								style="object-fit: cover; width: 100%;  height: 110%;" alt="" />
 						</div>
 						<div style="height: 30px;">

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="2b374153-96da-466b-bc72-b8b2f0bdb2b6" name="sport_app">
+        <fileTransfer accessType="SFTP" host="185.183.242.206" port="22" sshConfigId="f238da94-f597-43ed-89e1-3d3cb569bfd7" sshConfig="root@185.183.242.206:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

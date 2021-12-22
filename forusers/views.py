@@ -2,6 +2,7 @@ from django.shortcuts import render
 from sport.models import *
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
+
 def PagenatorPage(List, num, request):
     paginator = Paginator(List, num)
     pages = request.GET.get('page')
@@ -16,7 +17,7 @@ def PagenatorPage(List, num, request):
 
 
 def Index(request):
-    objects = SportObject.objects.filter(is_active=True) [:5]
+    objects = SportObject.objects.filter(is_active=True)[:5]
     object = SportObject.objects.filter(is_active=True).first()
     categories = Category.objects.all()
     obyekt_soni = SportObject.objects.all().count()
@@ -25,10 +26,10 @@ def Index(request):
         'objects': objects,
         'categories': categories,
         'object': object,
-        'obyekt_soni':obyekt_soni,
-        'categoriyalar_soni':categoriyalar_soni
+        'obyekt_soni': obyekt_soni,
+        'categoriyalar_soni': categoriyalar_soni
     }
-    return  render(request, 'users/index.html', context)
+    return render(request, 'users/index.html', context)
 
 
 def ListObjects(request):
@@ -42,12 +43,12 @@ def ListObjects(request):
     elif search is not None and search != "":
         objects = objects.filter(name__icontains=search)
     context = {
-        'objects':PagenatorPage(objects, 5, request),
-        'category':category
+        'objects': PagenatorPage(objects, 5, request),
+        'category': category
     }
-    return  render(request, 'users/objects.html', context)
+    return render(request, 'users/objects.html', context)
 
 
 def ObjectDetail(request, pk):
     object = SportObject.objects.get(id=pk)
-    return render(request, 'users/object-detail.html', {'object':object})
+    return render(request, 'users/object-detail.html', {'object': object})

@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-uftvbcqmx#hlmz(&-bio^pumdv2yte7i3ekzfp$inr(*fsl@ag
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
@@ -83,12 +83,24 @@ WSGI_APPLICATION = 'sport_app_backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'sport_app',
+#         'USER': 'digitalcity',
+#         'PASSWORD': 'd1g1talC1ty',
+#         'HOST': 'localhost',
+#         'PORT': '',
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -125,7 +137,8 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 MEDIA_URL = '/media/'
-STATICFILES_DIRS = [BASE_DIR/'static']
+# STATICFILES_DIRS = [BASE_DIR/'static']
+STATIC_ROOT = BASE_DIR/ 'static'
 
 MEDIA_ROOT = BASE_DIR / 'media'
 
