@@ -20,6 +20,47 @@ a {
 	text-decoration: none
 }
 
+#dismedia{
+	width: 70%;
+	display: flex;
+}
+#onelinem{
+	display: inline-block;
+	width: 120px;
+}
+@media screen and (max-width:1400px) {
+	#mediaid{
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+	#h1media{
+		text-align: center;
+	}
+	#thingsid{
+		display: flex;
+		justify-content: space-evenly;
+		align-items: center;
+	}
+	#pid{
+		text-align: center;
+	}
+	#yozuvid{
+		font-size: 10	px;
+	}
+	#dismedia{
+		display: flex;
+		flex-direction: column;
+	width: 100%;
+
+
+	}
+	#onelinem{
+		width: 100%;display: flex;justify-content: space-between;align-items: center;
+	}
+	
+}
+
 .wrapper {
 	width: 100%;
 	position: relative

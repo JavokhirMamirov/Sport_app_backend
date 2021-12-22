@@ -10,20 +10,21 @@
 {% block content %}
     <!--breadcrumb-->
     <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-        <div class="breadcrumb-title pe-3">Sport App</div>  
-        <div class="ps-3">
-            <nav aria-label="breadcrumb" style="display: flex;">
-                <ol class="breadcrumb mb-0 p-0">
+        <div class="breadcrumb-title pe-3" style="width: 130px;">Sport App</div>  
+        <div class="ps-3" style="width: 100%;">
+            <nav aria-label="breadcrumb" style="display: flex;justify-content: space-between;width: 100%;">
+                <ol class="breadcrumb mb-0 p-0" style="display: flex;justify-content: center;align-items: center;width: 230px;">
                     <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt" style="padding-top: 7px;"></i></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page"style="padding-top: 7px;" >Sport turi</li>
+                    <li class="breadcrumb-item active" aria-current="page"style="padding-top: 7px;width:190px" >Sport turi</li>
                 </ol>
-                <a href="{% url 'update-object' object.id %}" type="button" class="btn btn-success px-3" style="margin-left: 500px; font-size: large;">Tahrirlash <i class="bx bx-pencil" style="padding-left: 7px;"></i></a>
+                
                 <form action="{% url 'delete-object'%}" method="get" >
                     <!-- <button type="submit" class="btn btn-danger px-3" style="margin-left: 100px; font-size: large;" name="object_id" value="{{object.id}}">O`chirish<i class="bx bx-trash" style="margin-left: 7px;" ></i></button> -->
-                    <div class="col">
+                    <div class="col" style="display: flex;justify-content: flex-end;">
                         <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-danger px-3" style="margin-left: 100px; font-size: large;" data-bs-toggle="modal" data-bs-target="#exampleSmallModal">O`chirish<i class="bx bx-trash" style="margin-left: 7px;"></i></button>
+                        <a href="{% url 'update-object' object.id %}" type="button" class="btn btn-success px-3" style=" font-size: large;height: 42px;display: flex;align-items: center;justify-content: space-around;"><span>Tahrirlash</span> <i class="bx bx-pencil" style="padding-left: 7px;"></i></a>
+                        <button type="button" class="btn btn-danger px-3" style="margin-left: 100px; font-size: large;height: 42px;display: flex;align-items: center;justify-content: space-around;" data-bs-toggle="modal" data-bs-target="#exampleSmallModal"><span>O`chirish</span> <i class="bx bx-trash" style="margin-left: 7px;"></i></button>
                         <!-- Modal -->
                         <div class="modal fade" id="exampleSmallModal" tabindex="-1" style="display: none;" aria-hidden="true">
                             <div class="modal-dialog modal-sm">
@@ -48,15 +49,15 @@
     <!--end breadcrumb-->
 
     <div class="card">
-        <div class="row g-0">
+        <div class="row g-0" id="mediaid">
             <div class="col-md-6 ">
             <div class="card">
                 <div class="card-body">
                     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-inner">
+                        <div class="carousel-inner" >
                             {% for img in object.images.all %}
                             <div {% if img == object.images.first %} class="carousel-item active" {%else%}class="carousel-item" {%endif%}>
-                                <img src="{{ img.image.url }}" class="d-block w-100" alt="img">
+                                <img src="{{ img.image.url }}" id='mediaimgid' class="d-block w-100" alt="img">
                             </div>
                             {% endfor %}
                         </div>
@@ -72,72 +73,86 @@
             </div>
             <div class="col-md-6" style="padding: 1% ;">
                 <div class="card-body">
-                    <h1 class="card-title">{{object.name}}</h1>
-                    <div class="d-flex gap-3 py-3">
-                        <div class="cursor-pointer">
+                    <h1 class="card-title" id="h1media">{{object.name}}</h1>
+                    <div class="d-flex gap-3 py-3" id="thingsid">
+                        <div class="cursor-pointer" style="font-size: 20px;">
                             <i class='bx bxs-star text-warning'></i>
                             <i class='bx bxs-star text-warning'></i>
                             <i class='bx bxs-star text-warning'></i>
                             <i class='bx bxs-star text-warning'></i>
                             <i class='bx bxs-star text-secondary'></i>
                         </div>
-                        <div>142 reviews</div>
-                        <div class="text-success"><i class='bx bxs-cart-alt align-middle'></i> 134 orders</div>
+                        
                     </div>
                     {% for c in object.category.all %}
-                    <div class="btn btn-primary px-3 radius-30" style="margin-bottom: 10px;" >{{c}}</div>
+                    <div id="thingsid">
+                        <div class="btn btn-primary px-3 radius-30" style="margin-bottom: 10px;" id="pid">{{c}}</div>
+                    </div>
                     {% endfor %}
-                    <div class="mb-3">
-                        <span class="price h4"><i class='bx bx-notepad'></i>{{object.type.name}} uchun</span>
+                    <div class="mb-3" >
+                        <span id="yozuvid" class="price h5"><i class='bx bx-notepad' style="margin-right:20px ;"></i>{{object.type.name}} uchun</span>
                     </div>
-                    <div class="mb-3">
-                        <span class="price h4"><i class='bx bx-building'></i>{{object.address}}</span>
+                    <div class="mb-3" >
+                        <span id="yozuvid" class="price h5"><i class='bx bx-building' style="margin-right:20px ;"></i>{{object.address}}</span>
                     </div>
-                    <div class="mb-3">
-                        <span class="price h4"><i class='bx bx-phone'></i> {{object.phone}}</span>
+                    <div class="mb-3" >
+                        <span id="yozuvid" class="price h5"><i class='bx bx-phone' style="margin-right:15px ;"></i> {{object.phone}}</span>
                     </div>
-                    <div class="mb-3">
-                        <span class="price h4"><i class='bx bx-time-five'></i> {{object.date_start}}-</span><span class="price h4">{{object.date_end}}</span>
+                    <div class="mb-3" >
+                        <span id="yozuvid" class="price h5"><i class='bx bx-time-five' style="margin-right:20px ;"></i> {{object.date_start}}-</span><span class="price h4">{{object.date_end}}</span>
                     </div>
-                    <div class="mb-3">
-                        <span class="price h4"><i class='bx bx-calendar'></i>{{object.work_date}}</span>
+                    <div class="mb-3" >
+                        <span id="yozuvid" class="price h5"><i class='bx bx-calendar' style="margin-right:20px ;"></i>{{object.work_date}}</span>
                     </div>
-                    <div class="mb-3">
-                        <span class="price h4"><i class='bx bx-building'></i>{{object.area}}</span>
-                    </div> <br>
-                    <dl class="row">
-                        <h6 class="col-sm-3" >Yuvinish xonasi</h6>
+                    <div class="mb-3" >
+                        <span id="yozuvid" class="price h5"><i class='bx bx-building' style="margin-right:20px ;"></i>{{object.area}}</span>
+                    </div>  
+                    <div class="mb-3" >
+                        <span id="yozuvid" class="price h5"><i class='bx bx-building' style="margin-right:20px ;"></i>{{object.invent_date}}</span>
+                    </div>
+                    
+                    <br>
+                    <dl class="row" id='dismedia' >
+                        <div style="width: 100%;display: flex;justify-content: space-between;align-items: center;">
+                            <h6 style="width: 100%;" >Yuvinish xonasi</h6>
                         {% if object.shower == True%}
-                        <h6 class="col-sm-2"><i class='bx bxs-check-circle' style="color:green;" ></i></h6>
+                        <h6 ><i class='bx bxs-check-circle' style="color:green;" ></i></h6>
                         {% else %}
-                        <h6 class="col-sm-2"><i class='bx bx-x-circle' style="color: red;" ></i></h6>
+                        <h6 ><i class='bx bx-x-circle' style="color: red; " ></i></h6>
                         {% endif %}
-                        <h6 class="col-sm-5">Kiyim almashtirish xonasi</h6>
+                        </div>
+                        <div style="width: 100%;display: flex;justify-content: space-between;align-items: center;">
+                            <h6 class="col-sm-5">Kiyim almashtirish xonasi</h6>
                         {% if object.changing_room == True %}
-                        <h6 class="col-sm-2"><i class='bx bxs-check-circle' style="color:green;" ></i></h6>
+                        <h6 ><i class='bx bxs-check-circle' style="color:green;" ></i></h6>
                         {% else %}
-                        <h6 class="col-sm-2"><i class='bx bx-x-circle' style="color: red;" ></i></h6>
+                        <h6 ><i class='bx bx-x-circle' style="color: red;" ></i></h6>
                         {% endif %}
-                        <h6 class="col-sm-3">Yoritish chiroqlari</h6>
+                        </div>
+                       <div style="width: 100%;display: flex;justify-content: space-between;align-items: center;">
+                        <h6 style="width: 100%;">Yoritish chiroqlari</h6>
                         {% if object.lighting == True %}
-                        <h6 class="col-sm-2"><i class='bx bxs-check-circle'  style="color:green;"></i></h6>
+                        <h6 ><i class='bx bxs-check-circle'  style="color:green;"></i></h6>
                         {% else %}
-                        <h6 class="col-sm-2"><i class='bx bx-x-circle' style="color: red;" ></i></h6>
+                        <h6 ><i class='bx bx-x-circle' style="color: red;" ></i></h6>
                         {% endif %}
-                        <h6 class="col-sm-5">O'rindiqlar</h6>
+                       </div>
+                       <div style="width: 100%;display: flex;justify-content: space-between;align-items: center;">
+                        <h6 class="col-sm-">O'rindiqlar</h6>
                         {% if object.tribunes == True %}
-                        <h6 class="col-sm-2"><i class='bx bxs-check-circle'  style="color:green;"></i></h6>
+                        <h6 ><i class='bx bxs-check-circle'  style="color:green;"></i></h6>
                         {% else %}
-                        <h6 class="col-sm-2"><i class='bx bx-x-circle' style="color: red;" ></i></h6>
+                        <h6 ><i class='bx bx-x-circle' style="color: red;" ></i></h6>
                         {% endif %}
-                        <h6 class="col-sm-3">Parkovka</h6>
+                       </div>
+                       <div style="width: 100%;display: flex;justify-content: space-between;align-items: center;">
+                        <h6 style="width: 100%;">Parkovka</h6>
                         {% if object.parking == True %}
-                        <h6 class="col-sm-2"><i class='bx bxs-check-circle'  style="color:green;"></i></h6>
+                        <h6 ><i class='bx bxs-check-circle'  style="color:green;"></i></h6>
                         {% else %}
-                        <h6 class="col-sm-2"><i class='bx bx-x-circle' style="color: red;" ></i></h6>
+                        <h6 ><i class='bx bx-x-circle' style="color: red;" ></i></h6>
                         {% endif %}
-                        <h6 class="col-sm-5">Ta`mirlangan vaqti</h6>
-                        <h6 class="col-sm-2">{{object.invent_date}}</i></h6>
+                       </div>
                     </dl> <br>
                 </div>
             </div>

@@ -46,19 +46,23 @@
                                 data-bs-target="#exampleVerticallycenteredModal">Kategoriya qo`shish
                         </button>
                         <!-- Modal -->
-                        <form method="post" action="{% url 'update-object-post' form.pk %}">
+                        <form method="post" action="{% url 'add-category-url' %}" enctype="multipart/form-data">
                             {% csrf_token %}
                             <div class="modal fade" id="exampleVerticallycenteredModal" tabindex="-1"
                                  aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title">Kategoriya qo`shing</h5>
+                                            <h5 class="modal-title">Kategoriya qo`shish</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
+                                                    aria-label="Close" ></button>
                                         </div>
-                                        <input type="text" class="form-control" placeholder="..."
+                                        <input type="text" class="form-control" id="inputProductTags" placeholder="nomi..."
                                                name="name">
+                                        <div class="mb-3">
+                                            <label for="formFile" class="form-label">Rasmini joylang</label>
+                                            <input class="form-control" type="file" id="formFile" name="img"> 
+                                        </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">Qaytish
@@ -83,11 +87,11 @@
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title">Foydalanuvchilar turini qo`shing</h5>
+                                            <h5 class="modal-title">Foydalanuvchilar turini qo`shish</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                         </div>
-                                        <input type="text" class="form-control" placeholder="..."
+                                        <input type="text" class="form-control" placeholder="nomi"
                                                name="name">
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"

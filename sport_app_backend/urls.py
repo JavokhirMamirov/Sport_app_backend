@@ -22,5 +22,5 @@ from sport_app_backend import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('forusers.urls')),
-    path('users/', include('sport.urls'))
+    path('superuser/', include('sport.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
