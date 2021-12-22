@@ -18,7 +18,7 @@ def PagenatorPage(List, num, request):
         list = paginator.page(paginator.num_pages)
     return list
 
-@login_required(login_url='index_url')
+@login_required(login_url='login')
 def HomeView(request):
     category = Category.objects.all().count()
     object = SportObject.objects.all().count()
@@ -49,7 +49,7 @@ def HomeView(request):
     }
     return render(request, 'index.html', context)
 
-@login_required(login_url='index_url')
+@login_required(login_url='login')
 def ObjectsView(request):
     obj = SportObject.objects.all()
     category = Category.objects.all()
@@ -66,7 +66,7 @@ def ObjectsView(request):
     }
     return render(request, 'objects.html', context)
 
-@login_required(login_url='index_url')
+@login_required(login_url='login')
 def AddNewObjectView(request):
     categories = Category.objects.all()
     types = ObjectType.objects.all()
@@ -76,7 +76,7 @@ def AddNewObjectView(request):
     }
     return render(request, 'add_new_object.html', context)
 
-@login_required(login_url='index_url')
+@login_required(login_url='login')
 def AddTypeUsers(request):
     if request.method == 'POST':
         form = ObjectTypeForm(request.POST)
@@ -84,7 +84,7 @@ def AddTypeUsers(request):
             form.save()
             return redirect('add-sport-object')
 
-@login_required(login_url='index_url')
+@login_required(login_url='login')
 def AddObjectCategory(request):
     if request.method == 'POST':
         form = CategoryForm(request.POST, request.FILES)
@@ -92,7 +92,7 @@ def AddObjectCategory(request):
             form.save()
             return redirect('add-sport-object')
 
-@login_required(login_url='index_url')
+@login_required(login_url='login')
 def ObjectDetailView(request, pk):
     object = SportObject.objects.get(id=pk)
     context = {
@@ -100,14 +100,14 @@ def ObjectDetailView(request, pk):
     }
     return render(request, 'object_detail.html', context)
 
-@login_required(login_url='index_url')
+@login_required(login_url='login')
 def DeleteObjectView(request):
     object = request.GET.get('object_id')
     delete_object = SportObject.objects.get(id=object)
     delete_object.delete()
     return redirect('sport-object')
 
-@login_required(login_url='index_url')
+@login_required(login_url='login')
 def UpdateObjectView(request, pk):
     form = SportObject.objects.get(id=pk)
     categories = Category.objects.all()
@@ -144,7 +144,7 @@ def user_logout(request):
     logout(request)
     return redirect("index_url")
 
-@login_required(login_url='index_url')
+@login_required(login_url='login')
 def CreateObject(request):
     if request.method == "POST":
         try:
@@ -232,7 +232,7 @@ def CreateObject(request):
     else:
         return redirect('add-sport-object')
 
-@login_required(login_url='index_url')
+@login_required(login_url='login')
 def UpdateObject(request, id):
     if request.method == "POST":
         object = SportObject.objects.get(id=id)
@@ -319,7 +319,7 @@ def UpdateObject(request, id):
             messages.error(request, "Obyekt yangilashda xatolik2!")
             return redirect('sport-object-detail', pk=id)
 
-@login_required(login_url='index_url')
+@login_required(login_url='login')
 def add_image(request):
     try:
         object_id = request.POST.get('object_id')
@@ -337,7 +337,7 @@ def add_image(request):
         }
     return JsonResponse(context)
 
-@login_required(login_url='index_url')
+@login_required(login_url='login')
 def delete_image(request):
     try:
         object_id = request.GET.get('object_id')
