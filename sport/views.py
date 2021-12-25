@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
+
+from sport.models import Orders
 from .forms import *
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse, JsonResponse, request
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -24,6 +26,9 @@ def HomeView(request):
     object = SportObject.objects.all().count()
     active = SportObject.objects.filter(is_active=True).count()
     false = SportObject.objects.filter(is_active=False).count()
+    new = Orders.objects.filter(is_active='new').count()
+    accepted = Orders.objects.filter(is_active='accepted').count()
+    not_accepted = Orders.objects.filter(is_active='not_accepted').count()
     alert = ['primary', 'success', 'danger',"info","warning"]
     cats = Category.objects.all()
     cat_list = []
@@ -45,7 +50,10 @@ def HomeView(request):
         'cat_lists':cat_list,
         'object':object,
         'active':active,
-        'false':false
+        'false':false,
+        'new':new,
+        'accepted':accepted,
+        'not_accepted':not_accepted        
     }
     return render(request, 'index.html', context)
 
@@ -361,3 +369,30 @@ def notf(request):
 
 def server(request):
     return render(request, 'errors/500.html')
+
+def order_new(request):
+    count = Orders.objects.filter(is_active='new').count()
+    object = Orders.objects.filter(is_active='new')
+    context = {
+        'count':count,
+        'object':object
+    }
+    return render(request, 'order-new.html', context)
+
+def order_accepted(request):
+    count = Orders.objects.filter(is_active='accepted').count()
+    object = Orders.objects.filter(is_active='accepted')
+    context = {
+        'count':count,
+        'object':object
+    }
+    return render(request, 'order-accepted.html', context)
+
+def order_not_accepted(request):
+    count = Orders.objects.filter(is_active='not_accepted').count()
+    object = Orders.objects.filter(is_active='not_accepted')
+    context = {
+        'count':count,
+        'object':object
+    }
+    return render(request, 'order-not_accepted.html', context)

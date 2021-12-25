@@ -51,3 +51,20 @@ class SportObject(models.Model):
     class Meta:
         verbose_name = "Sport obyekti"
         verbose_name_plural = "Sport obyektlari"
+
+
+class Orders(models.Model):
+    CHOICE = (
+    ('new','new'),
+    ('accepted','accepted'),
+    ('not_accepted','not_accepted'),
+    )
+    full_name = models.CharField(max_length=255, verbose_name='to`liq ism')
+    object_name = models.CharField(max_length=255, verbose_name='obyekt nomi')
+    address = models.CharField(max_length=255)
+    phone = models.CharField(max_length=255, verbose_name="Telefon raqami") 
+    email = models.EmailField()
+    is_active = models.CharField(max_length=255, choices=CHOICE, default='new')
+
+    def __str__(self):
+        return self.object_name

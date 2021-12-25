@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django import forms
+from django.http.response import HttpResponse
+from django.shortcuts import redirect, render
 from sport.models import *
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-
+from .forms import OrderForm
 
 def PagenatorPage(List, num, request):
     paginator = Paginator(List, num)
@@ -52,3 +54,25 @@ def ListObjects(request):
 def ObjectDetail(request, pk):
     object = SportObject.objects.get(id=pk)
     return render(request, 'users/object-detail.html', {'object': object})
+
+
+def OrderSave(request):
+    if request.method == 'POST':
+        full_name = request.POST['full_name']
+        object_name = request.POST['object_name']
+        address = request.POST['address']
+        phone = request.POST['phone']
+        email = request.POST['email']
+        try:
+            Orders.objects.create(
+            full_name=full_name, 
+            object_name=object_name,
+            address=address,
+            phone=phone,
+            email=email
+            )
+            return redirect('objects_url')
+        except:
+            return HttpResponse(False)
+    else:
+        return redirect('index_url')

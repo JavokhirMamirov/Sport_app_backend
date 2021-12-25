@@ -75,4 +75,54 @@
 					</div>
 					{%endfor%}
 				</div>
+				<div class="row row-cols-1 row-cols-md-2 row-cols-xl-3">
+					<div class="col">
+						<a href="{% url 'order-new-url' %}">
+						<div class="card radius-10 bg-info bg-gradient">
+							<div class="card-body">
+								<div class="d-flex align-items-center">
+									<div>
+										<p class="mb-0 text-white">Yangi buyurtmalar</p>
+										<h4 class="my-1 text-white">{{new}}</h4>
+									</div>
+									<div class="widgets-icons bg-white text-dark ms-auto"><i class="fadeIn animated bx bx-news"></i>
+									</div>
+								</div>
+							</div>
+						</div>
+						</a>
+					</div>
+					<div class="col">
+						<a href="{% url 'order-accepted-url' %}">
+						<div class="card radius-10 bg-success bg-gradient">
+							<div class="card-body">
+								<div class="d-flex align-items-center">
+									<div>
+										<p class="mb-0 text-white">Qabul qilingan buyurtmalar</p>
+										<h4 class="my-1 text-white">{{accepted}}</h4>
+									</div>
+									<div class="widgets-icons bg-white text-dark ms-auto"><i class="fadeIn animated bx bx-news"></i>
+									</div>
+								</div>
+							</div>
+						</div>
+					</a>
+					</div>
+					<div class="col">
+						<a href="{% url 'order-not-accepted-url' %}">
+						<div class="card radius-10 bg-danger bg-gradient">
+							<div class="card-body">
+								<div class="d-flex align-items-center">
+									<div>
+										<p class="mb-0 text-white">Qabul qilinmagan buyurtmalar</p>
+										<h4 class="my-1 text-white">{{not_accepted}}</h4>
+									</div>
+									<div class="widgets-icons bg-white text-dark ms-auto"><i class="fadeIn animated bx bx-news"></i>
+									</div>
+								</div>
+							</div>
+						</div>
+					</a>
+					</div>
+				</div>
 {% endblock content %}

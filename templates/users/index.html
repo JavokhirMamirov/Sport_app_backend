@@ -13,14 +13,37 @@
 			<div class="sl-slide-inner">
 				<div class="bg-img bg-img-1" style="background-image: url(/static/users/images/slider/BB21vBWGPxNXD5ysaZpFo8Y77zxEftNf.png);"></div>
 				<div class="tint"></div>
-				<div class="slide-content">
-					<h2>Sport obyekt <br> qidiryapsizmi?</h2>
-					<h3>Siz uchun yaxshiroq joy yo'q</h3>
-					<p><a href="{% url 'objects_url' %}" class="btn btn-lg btn-default">Sport obyekt topish</a></p>
+				<div class="slide-content" style="display: flex;">
+					<div id="slider1">
+						<h2>Sport obyekt <br> qidiryapsizmi?</h2>
+						<h3>Siz uchun yaxshiroq joy yo'q</h3>
+							<form action="" method="post">
+								<label for="job-search" class="sr-only"></label>
+									<input type="text" class="form-control" id="job-search" placeholder="Sport turi qidiring..." name="q" style="width: 250px; text-align: center; margin-left: 30%;background-color:rgba(0,0.2, 0, 0.7);">
+							</form>
+						
+					</div>
+					<div id="slider2">
+						<form action="{% url 'order_save_url' %}" method="post">
+							{% csrf_token %}
+							<h3 id="sliderh3">Sport Obyekt qo`shish uchun <br> buyurtma qoldiring</h3>
+							<label for="job-search" class="sr-only"></label>
+								<input type="text" class="form-control" id="job-search" placeholder="To`liq ismingiz" name="full_name">
+							<label for="job-search" class="sr-only"></label>
+								<input type="text" class="form-control" id="job-search" placeholder="Sport obyekti nomi" name="object_name">
+							<label for="job-search" class="sr-only"></label>
+								<input type="text" class="form-control" id="job-search" placeholder="Manzili" name="address">
+							<label for="job-search" class="sr-only"></label>
+								<input type="text" class="form-control" id="job-search" placeholder="telefon raqam" name="phone">
+							<label for="job-search" class="sr-only"></label>
+								<input type="email" class="form-control" id="job-search" placeholder="email pochta" name="email">
+							<button type="submit" class="btn btn-primary" >So'rov yuborish</button>
+						</form>  <br>
+					</div>
 				</div>
 			</div>
 		</div>
-
+<!-- 
 		<div class="sl-slide" data-orientation="vertical" data-slice1-rotation="10" data-slice2-rotation="-15"
 			data-slice1-scale="1.5" data-slice2-scale="1.5">
 			<div class="sl-slide-inner">
@@ -59,20 +82,8 @@
 				</div>
 			</div>
 		</div>
-
+ -->
 	</div>
-
-	<nav id="nav-arrows" class="nav-arrows">
-		<span class="nav-arrow-prev">Previous</span>
-		<span class="nav-arrow-next">Next</span>
-	</nav>
-
-	<nav id="nav-dots" class="nav-dots">
-		<span class="nav-dot-current"></span>
-		<span></span>
-		<span></span>
-		<span></span>
-	</nav>
 
 </div>
 
