@@ -3,7 +3,7 @@ from django.urls import path,include
 from sport.views import HomeView, ObjectsView, AddNewObjectView, ObjectDetailView, UpdateObjectView, login_view, \
     AddTypeUsers, \
     AddObjectCategory, CreateObject, DeleteObjectView, UpdateObject, add_image, delete_image, notf, server,user_logout, \
-    order_new, order_accepted, order_not_accepted
+    order_new, order_accepted, order_not_accepted, delete_order, change_order
 
 urlpatterns = [
     path('', HomeView, name="home"),
@@ -26,7 +26,9 @@ urlpatterns = [
     path('404', notf),
     path('500', server),
     # order
-    path('order-new', order_new, name='order-new-url'),
-    path('order-accepted', order_accepted, name='order-accepted-url'),
-    path('order-not-accepted', order_not_accepted, name='order-not-accepted-url')
+    path('order-new/', order_new, name='order-new-url'),
+    path('order-accepted/', order_accepted, name='order-accepted-url'),
+    path('order-not-accepted/', order_not_accepted, name='order-not-accepted-url'),
+    path('delete-order/', delete_order, name='delete-order-url'),
+    path('change-order/<int:pk>/', change_order, name='change-order-url'),
 ]

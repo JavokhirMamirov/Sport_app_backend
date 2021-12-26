@@ -1,3 +1,4 @@
+from django.http.response import HttpResponseBadRequest
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 
@@ -379,6 +380,7 @@ def order_new(request):
     }
     return render(request, 'order-new.html', context)
 
+
 def order_accepted(request):
     count = Orders.objects.filter(is_active='accepted').count()
     object = Orders.objects.filter(is_active='accepted')
@@ -388,6 +390,7 @@ def order_accepted(request):
     }
     return render(request, 'order-accepted.html', context)
 
+
 def order_not_accepted(request):
     count = Orders.objects.filter(is_active='not_accepted').count()
     object = Orders.objects.filter(is_active='not_accepted')
@@ -396,3 +399,26 @@ def order_not_accepted(request):
         'object':object
     }
     return render(request, 'order-not_accepted.html', context)
+
+def delete_order(request):
+    try:
+        order = request.GET.get('object_id')
+        delete_order = Orders.objects.get(id=order)
+        delete_order.delete()
+        return redirect('home')
+    except:
+        return HttpResponse(False)
+
+def change_order(request, pk):
+    order = Orders.objects.get(id=pk)
+    # try:
+    accapted = request.POST.get('order_status')
+    print(accapted)
+    print(True)
+    order.is_active = accapted
+    print(order.is_active)
+    print(True)
+    order.save()
+    print(True)
+    # except:
+    #     return HttpResponseBadRequest(False)
