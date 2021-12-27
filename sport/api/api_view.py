@@ -1,10 +1,11 @@
 from rest_framework.decorators import api_view
+from rest_framework.exceptions import server_error
 from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import OrderingFilter,SearchFilter
 from rest_framework.pagination import PageNumberPagination
-from sport.api.serializers import CategorySerializer, ObjectSerializer
-from sport.models import Category, SportObject
+from sport.api.serializers import CategorySerializer, ObjectSerializer, OrdersSerializer
+from sport.models import Category, Orders, SportObject
 from rest_framework import generics
 
 @api_view(['GET'])
@@ -49,3 +50,6 @@ class ProductList(generics.ListAPIView):
     filterset_fields = ['category']
     search_fields = ('name', 'address',)
 
+class OrderCreate(generics.CreateAPIView):
+    queryset = Orders.objects.all()
+    serializer_class = OrdersSerializer
