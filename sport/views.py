@@ -419,3 +419,4 @@ def change_order(request, pk):
         order.is_active = 'accepted'
     order.save()   
     return redirect('home')
+    
