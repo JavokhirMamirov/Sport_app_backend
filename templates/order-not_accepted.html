@@ -41,9 +41,9 @@
                     <td>
                         <div class="col">
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-success px-2"  data-bs-toggle="modal" data-bs-target="#exampleSmallModal"><i class="lni lni-arrow-top-right" style="margin-left: 5px;" ></i></button>
+                            <button type="button" class="btn btn-success px-2"  data-bs-toggle="modal" data-bs-target="#exampleSmallModal2"><i class="lni lni-arrow-top-right" style="margin-left: 5px;" ></i></button>
                             <!-- Modal -->
-                            <div class="modal fade2" id="exampleSmallModal" tabindex="-1" aria-hidden="true" style="display: none;">
+                            <div class="modal fade2" id="exampleSmallModal2" tabindex="-1" aria-hidden="true" style="display: none;">
                                 <div class="modal-dialog modal-sm">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -52,18 +52,21 @@
                                         </div>
                                         <form method="post" action="{% url 'change-order-url' ob.id %}" >
                                             {% csrf_token %}
-                                        <div class="modal-body">
-                                            <select class="form-select form-select-sm mb-3" aria-label=".form-select-sm example">
-                                                <option selected="" value="accepted" name='order_status'>Qabul qilish</option>
-                                                {% for status in ob.is_active_choice %}
-                                                <option value="not_accepted" name='order_status'>{{status}}</option>
-                                                {% endfor %}
-                                                <option value="not_accepted" name='order_status'>Rad etish</option>
-                                            </select>
+                                        <div class="col-12">
+                                            <div class="form-check">
+                                                <label class="form-check-label" for="gridCheck">Qabul qilish</label>
+                                                <input class="form-check-input" type="checkbox" id="gridCheck" name="QABUL">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-check">
+                                                <label class="form-check-label" for="gridCheck">Rad etish</label>
+                                                <input class="form-check-input" type="checkbox" id="gridCheck" name="RAD" >
+                                            </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Yopish</button>
+                                            <button type="submit" class="btn btn-primary">Saqlash</button>
                                         </div>
                                         </form>
                                     </div>
@@ -72,11 +75,11 @@
                         </div>
                     </td>
                     <td>
-                        <!-- <form action="{% url 'delete-order-url' %}" method="get"> -->
+                        <form action="{% url 'delete-order-url' %}" method="get">
                         <!-- Button trigger modal -->
-                        <!-- <button type="button" class="btn btn-danger px-2"  data-bs-toggle="modal" data-bs-target="#exampleSmallModal"><i class="bx bx-trash" style="margin-left: 5px;"></i></button> -->
+                        <button type="button" class="btn btn-danger px-2"  data-bs-toggle="modal" data-bs-target="#exampleSmallModal"><i class="bx bx-trash" style="margin-left: 5px;"></i></button>
                         <!-- Modal -->
-                        <!-- <div class="modal fade" id="exampleSmallModal" tabindex="-1" style="display: none;" aria-hidden="true">
+                        <div class="modal fade" id="exampleSmallModal" tabindex="-1" style="display: none;" aria-hidden="true">
                             <div class="modal-dialog modal-sm">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -90,7 +93,7 @@
                                 </div>
                             </div>
                         </div>
-                        </form> -->
+                        </form>
                     </td>
                 </tr>
                 {% endfor %}
@@ -98,5 +101,19 @@
         </table>
     </div>
 </div>
-
 {% endblock content %}
+
+{% block js %}
+<script>
+    $(document).ready(function () {
+        $('.form-check-input').on('change', function () {
+            $('.form-check-input').not(this).prop('checked', false);
+            $('#result').html($(this).data("id"));
+            if ($(this).is(":checked"))
+                $('#result').html($(this).data("id"));
+            else
+                $('#result').html('Empty...!');
+        });
+    });
+</script>
+{% endblock js %}

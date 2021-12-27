@@ -38,13 +38,101 @@
                     <td>{{ob.address}}</td>
                     <td>{{ob.phone}}</td>
                     <td>{{ob.email}}</td>
-                    <td>..</td>
-                    <td>..</td>
+                    <td>
+                        <div class="col">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-success px-2" data-bs-toggle="modal"
+                                data-bs-target="#exampleSmallModal2"><i class="lni lni-arrow-top-right"
+                                    style="margin-left: 5px;"></i></button>
+                            <!-- Modal -->
+                            <div class="modal fade2" id="exampleSmallModal2" tabindex="-1" aria-hidden="true"
+                                style="display: none;">
+                                <div class="modal-dialog modal-sm">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title"
+                                                style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; text-align: center;">
+                                                Buyurtmani xolatini o`zgartirish</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <form method="post" action="{% url 'change-order-url' ob.id %}"
+                                            style="margin:20px;">
+                                            {% csrf_token %}
+                                            <div class="col-12" style="display: flex;align-items:center">
+                                                <div class="form-check" style="font-size: 18px;">
+                                                    <label class="form-check-label" for="gridCheck">Qabul qilish</label>
+                                                    <input class="form-check-input" type="checkbox" id="gridCheck"
+                                                        name="QABUL">
+                                                </div>
+                                            </div>
+                                            <div class="col-8"
+                                                style="padding-bottom: 20px;display: flex;align-items:center">
+                                                <div class="form-check" style="font-size: 18px;">
+                                                    <label class="form-check-label" for="gridCheck">Rad etish</label>
+                                                    <input class="form-check-input" type="checkbox" id="gridCheck"
+                                                        name="RAD">
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Yopish</button>
+                                                <button type="submit" class="btn btn-primary">Saqlash</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <form action="{% url 'delete-order-url' %}" method="get">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-danger px-2" data-bs-toggle="modal"
+                                data-bs-target="#exampleSmallModal"><i class="bx bx-trash"
+                                    style="margin-left: 5px;"></i></button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleSmallModal" tabindex="-1" style="display: none;"
+                                aria-hidden="true">
+                                <div class="modal-dialog modal-sm">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title"
+                                                style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; text-align: center;">
+                                                Buyurtmani o`chirmoqchimisiz?</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-footer" style="justify-content: center;">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Qaytish</button>
+                                            <button type="submit" class="btn btn-danger" name="object_id"
+                                                value="{{ob.id}}">O`chirish</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
 </div>
-
 {% endblock content %}
+
+{% block js %}
+<script>
+    $(document).ready(function () {
+        $('.form-check-input').on('change', function () {
+            $('.form-check-input').not(this).prop('checked', false);
+            $('#result').html($(this).data("id"));
+            if ($(this).is(":checked"))
+                $('#result').html($(this).data("id"));
+            else
+                $('#result').html('Empty...!');
+        });
+    });
+</script>
+{% endblock js %}

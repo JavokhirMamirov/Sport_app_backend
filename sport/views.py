@@ -411,14 +411,11 @@ def delete_order(request):
 
 def change_order(request, pk):
     order = Orders.objects.get(id=pk)
-    # try:
-    accapted = request.POST.get('order_status')
-    print(accapted)
-    print(True)
-    order.is_active = accapted
-    print(order.is_active)
-    print(True)
-    order.save()
-    print(True)
-    # except:
-    #     return HttpResponseBadRequest(False)
+    rad = request.POST.get('RAD')
+    qabul = request.POST.get('QABUL')
+    if rad is not None:
+        order.is_active = 'not_accepted'
+    elif qabul is not None:
+        order.is_active = 'accepted'
+    order.save()   
+    return redirect('home')
