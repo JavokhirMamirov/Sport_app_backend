@@ -44,6 +44,7 @@
                     <div class="menu-title">Dashboard</div>
                 </a>
             </li>
+            {% if user.is_superuser %}
             <li>
                 <a href="{% url 'sport-object' %}">
                     <div class="parent-icon"><i class="bx bx-building"></i>
@@ -51,6 +52,7 @@
                     <div class="menu-title">Sprot obyektlari</div>
                 </a>
             </li>
+            {% endif %}
             {#				<li>#}
             {#					<a href="https://themeforest.net/user/codervent" target="_blank">#}
             {#						<div class="parent-icon"><i class="bx bx-support"></i>#}
@@ -148,5 +150,4 @@
 <script src="{% static 'assets/js/app.js' %}"></script>
 
 </body>
-
 </html>
