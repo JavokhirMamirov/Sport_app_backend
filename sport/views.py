@@ -1,3 +1,4 @@
+from tkinter.messagebox import NO
 from django.http.response import HttpResponseBadRequest
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
@@ -12,7 +13,6 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 def PagenatorPage(List, num, request):
     paginator = Paginator(List, num)
     pages = request.GET.get('page')
-
     try:
         list = paginator.page(pages)
     except PageNotAnInteger:
@@ -65,11 +65,17 @@ def HomeView(request):
             user = request.user
             object.user.add(user) 
             object.save()
-            objectss = SportObject.objects.filter(user=request.user)
+            objectss = SportObject.objects.filter(follower=request.user)
             print(objectss)
-        objects = SportObject.objects.all()
+        else:
+            choised_objects = None            
+            if request.user.is_staff == False:
+                choised_objects = SportObject.objects.filter(follower = request.user)
+                objects = SportObject.objects.all()
+                print(objects)
         context = {
-            'objects': objects
+            'objects': PagenatorPage(objects, 6, request),
+            'choised_objects':choised_objects
         }
         return render (request, 'account/dashboard.html', context)
 

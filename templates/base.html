@@ -44,14 +44,32 @@
                     <div class="menu-title">Dashboard</div>
                 </a>
             </li>
-            {% if user.is_superuser %}
-            <li>
-                <a href="{% url 'sport-object' %}">
-                    <div class="parent-icon"><i class="bx bx-building"></i>
-                    </div>
-                    <div class="menu-title">Sprot obyektlari</div>
-                </a>
-            </li>
+            {% if user.is_authenticated %}
+                {% if user.is_superuser %}
+                <li>
+                    <a href="{% url 'sport-object' %}">
+                        <div class="parent-icon"><i class="bx bx-building"></i>
+                        </div>
+                        <div class="menu-title">Sprot obyektlari</div>
+                    </a>
+                </li>
+                {% else %}
+                    {% if choised_objects %}
+                    <li>
+                        <a href="javascript:;" class="has-arrow">
+                            <div class="parent-icon"><i class="bx bx-category"></i>
+                            </div>
+                            <div class="menu-title">A`zo bo`lgan sport turlari</div>
+                        </a>
+                        <ul>
+                                {% for object in choised_objects %}
+                                <li> <a href="{% url 'detail_url' object.id %}"><i class="bx bx-right-arrow-alt"></i>{{object.name}}</a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    {% endif %}
+                {% endif %}
             {% endif %}
             {#				<li>#}
             {#					<a href="https://themeforest.net/user/codervent" target="_blank">#}
