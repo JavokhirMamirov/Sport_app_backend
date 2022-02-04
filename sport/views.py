@@ -323,7 +323,7 @@ def UpdateObject(request, id):
                     messages.error(request, "Obyekt yangilashda xatolik1!")
             object.save()
             return redirect('sport-object-detail', pk=object.id)
-
+# images
         except:
             messages.error(request, "Obyekt yangilashda xatolik2!")
             return redirect('sport-object-detail', pk=id)
