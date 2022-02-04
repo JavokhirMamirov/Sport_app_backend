@@ -1,7 +1,8 @@
+from tkinter.messagebox import NO
 from django.http.response import HttpResponseBadRequest
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
-
+from django.contrib.auth.models import User
 from sport.models import Orders
 from .forms import *
 from django.http import HttpResponse, JsonResponse, request
@@ -12,7 +13,6 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 def PagenatorPage(List, num, request):
     paginator = Paginator(List, num)
     pages = request.GET.get('page')
-
     try:
         list = paginator.page(pages)
     except PageNotAnInteger:
@@ -23,41 +23,63 @@ def PagenatorPage(List, num, request):
 
 @login_required(login_url='login')
 def HomeView(request):
-    category = Category.objects.all().count()
-    object = SportObject.objects.all().count()
-    active = SportObject.objects.filter(is_active=True).count()
-    false = SportObject.objects.filter(is_active=False).count()
-    new = Orders.objects.filter(is_active='new').count()
-    accepted = Orders.objects.filter(is_active='accepted').count()
-    not_accepted = Orders.objects.filter(is_active='not_accepted').count()
-    alert = ['primary', 'success', 'danger',"info","warning"]
-    cats = Category.objects.all()
-    cat_list = []
-    k = 0
-    for cat in cats:
-        obj_count = SportObject.objects.filter(category__in=[cat]).count()
-        dt = {
-            "id":cat.id,
-            "name":cat.name,
-            "obj_count":obj_count,
-            "color":alert[k]
+    if request.user.is_staff == True:            
+        category = Category.objects.all().count()
+        object = SportObject.objects.all().count()
+        active = SportObject.objects.filter(is_active=True).count()
+        false = SportObject.objects.filter(is_active=False).count()
+        new = Orders.objects.filter(is_active='new').count()
+        accepted = Orders.objects.filter(is_active='accepted').count()
+        not_accepted = Orders.objects.filter(is_active='not_accepted').count()
+        alert = ['primary', 'success', 'danger',"info","warning"]
+        cats = Category.objects.all()
+        cat_list = []
+        k = 0
+        for cat in cats:
+            obj_count = SportObject.objects.filter(category__in=[cat]).count()
+            dt = {
+                "id":cat.id,
+                "name":cat.name,
+                "obj_count":obj_count,
+                "color":alert[k]
+            }
+            k += 1
+            if k == 5:
+                k = 0
+            cat_list.append(dt) 
+        context = {
+            'category':category,
+            'cat_lists':cat_list,
+            'object':object,
+            'active':active,
+            'false':false,
+            'new':new,
+            'accepted':accepted,
+            'not_accepted':not_accepted        
         }
-        k += 1
-        if k == 5:
-            k = 0
-        cat_list.append(dt) 
-    context = {
-        'category':category,
-        'cat_lists':cat_list,
-        'object':object,
-        'active':active,
-        'false':false,
-        'new':new,
-        'accepted':accepted,
-        'not_accepted':not_accepted        
-    }
-    return render(request, 'index.html', context)
+        return render(request, 'index.html', context)
+    else:
+        if request.method == 'POST':
+            user_object = request.POST['chekname']
+            object = SportObject.objects.get(id=user_object)
+            user = request.user
+            object.user.add(user) 
+            object.save()
+            objectss = SportObject.objects.filter(follower=request.user)
+            print(objectss)
+        else:
+            choised_objects = None            
+            if request.user.is_staff == False:
+                choised_objects = SportObject.objects.filter(follower = request.user)
+                objects = SportObject.objects.all()
+                print(objects)
+        context = {
+            'objects': PagenatorPage(objects, 6, request),
+            'choised_objects':choised_objects
+        }
+        return render (request, 'account/dashboard.html', context)
 
+        
 @login_required(login_url='login')
 def ObjectsView(request):
     obj = SportObject.objects.all()
@@ -420,3 +442,23 @@ def change_order(request, pk):
     order.save()   
     return redirect('home')
     
+def user_create(request):
+    if request.method == 'POST':
+        try:
+            first_name = request.POST['first_name']
+            last_name = request.POST['last_name']
+            email = request.POST['email']
+            username = request.POST['username']
+            password = request.POST['password']
+            password2 = request.POST['password2']
+            if password == password2:
+                new_user = User.objects.create_user(username=username, first_name=first_name, last_name=last_name, email=email, password=password)
+                login(request, new_user)
+            else:
+                messages.error(request, 'Parolingizni takrorlashda xatolik ro`y berdi')
+        except:
+            messages.error(request, 'Xatolik ro`y berdi')
+    else:
+        pass
+    return render(request, 'account/signup.html')
+
