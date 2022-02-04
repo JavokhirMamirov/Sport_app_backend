@@ -10,7 +10,7 @@ urlpatterns = [
     path('add-sport-object/', AddNewObjectView, name="add-sport-object"),
     path('sport-object-detail/<int:pk>/', ObjectDetailView, name="sport-object-detail"),
     path('login/', login_view, name="login"),
-    path('sign-up', user_create),
+    path('sign-up', user_create, name='sign-up-url'),
     path('logout/', user_logout, name="logout"),
     ## action
     path('add-type-users', AddTypeUsers, name='add-type-url'),

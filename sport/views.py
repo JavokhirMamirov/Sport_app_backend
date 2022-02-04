@@ -65,17 +65,23 @@ def HomeView(request):
             user = request.user
             object.user.add(user) 
             object.save()
-            objectss = SportObject.objects.filter(follower=request.user)
-            print(objectss)
+            return redirect('home')
         else:
-            choised_objects = None            
+            choised_objects = None
             if request.user.is_staff == False:
                 choised_objects = SportObject.objects.filter(follower = request.user)
-                objects = SportObject.objects.all()
-                print(objects)
+                empty_objects = []
+                sport = SportObject.objects.all()
+                for i in sport:
+                    for f in i.follower.all():
+                        if f.id != request.user.id:
+                            empty_objects.append(i)
+                        else:
+                            pass
         context = {
-            'objects': PagenatorPage(objects, 6, request),
-            'choised_objects':choised_objects
+            'objects': PagenatorPage(empty_objects, 6, request),
+            'choised_objects':choised_objects,
+
         }
         return render (request, 'account/dashboard.html', context)
 

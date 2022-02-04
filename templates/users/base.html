@@ -54,22 +54,30 @@
         
             <header>
                 <div id="header-background"></div>
-                <div class="container">
-                    <div class="pull-left">
-                        <div id="logo">
-                            <a href="{% url 'index_url' %}">
-                                <img id='imgchange' src="/static/users/images/logo/1111.png" style="height: 50px;width: 100px" />
-                            </a>
+                <div class="page-container">
+                    <div class="row">
+                        <div class="col-lg-3 text-center">
+                            <div id="logo">
+                                <a href="{% url 'index_url' %}">
+                                    <img id='imgchange' src="/static/users/images/logo/1111.png" style="height: 50px;width: 100px" />
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3"></div>
+                        <div class="col-lg-3"></div>
+                        <div class="col-lg-3 ">
+                            <div id="menu-open">
+                                {% if user.is_authenticated %}
+                                <a href="{% url 'home' %}" class="nav-a"><strong>Dashboard</strong></a>
+                                <a href="{% url 'objects_url' %}" class="nav-a"><strong>Sport Obyektlari</strong></a>
+                                {% else %}
+                                <a class="nav-a" href="{% url 'login' %}" >Kirish</a>
+                                <a class="nav-a" href="{% url 'sign-up-url' %}">Ro`yxatdan o`tish</a>
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
-                    <div id="menu-open" class="pull-right">
-                        {% if user.is_authenticated %}
-                        <a href="{% url 'home' %}" class="nav-a"><strong>Dashboard</strong></a>
-                        <a href="{% url 'objects_url' %}" class="nav-a"><strong>Sport Obyektlari</strong></a>
-                        {% else %}
-                        <a class="nav-a">Dashboarrd</a>
-                        {% endif %}
-                    </div>
+                    
                 </div>
             </header>
         </div>
