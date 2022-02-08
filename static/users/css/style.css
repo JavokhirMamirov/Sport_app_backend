@@ -2058,9 +2058,9 @@ label {
 }
 #slider2{
    
-    background-color: rgba(54, 54, 54, 0.5);
-    border-radius: 10px;
-    color: white;
+    /* background-color: rgba(54, 54, 54, 0.5); */
+    /* border-radius: 10px; */
+    /* color: white; */
     padding: 5px;
     width: 500px;
     display: flex;
@@ -2074,8 +2074,8 @@ label {
 }
 #slider2 input{
     margin-bottom: 15px;
-    width: 400px;
-    background-color:rgba(0,0.2, 0, 0.7);
+    width: 500px;
+    /* background-color:rgba(0,0.2, 0, 0.7); */
 }
 #sliderh3{
     color: white;
