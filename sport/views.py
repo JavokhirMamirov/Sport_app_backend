@@ -31,7 +31,7 @@ def HomeView(request):
         new = Orders.objects.filter(is_active='new').count()
         accepted = Orders.objects.filter(is_active='accepted').count()
         not_accepted = Orders.objects.filter(is_active='not_accepted').count()
-        alert = ['primary', 'success', 'danger',"info","warning"]
+        alert = ['primary', 'success', 'danger', "info", "warning"]
         cats = Category.objects.all()
         cat_list = []
         k = 0
@@ -67,22 +67,24 @@ def HomeView(request):
             object.save()
             return redirect('home')
         else:
-            choised_objects = None
-            if request.user.is_staff == False:
-                choised_objects = SportObject.objects.filter(follower = request.user)
-                empty_objects = []
-                sport = SportObject.objects.all()
-                for i in sport:
-                    for f in i.follower.all():
-                        if f.id != request.user.id:
-                            empty_objects.append(i)
-                        else:
-                            pass
+            empty_objects = []
+            choised_objects = []
+            for i in SportObject.objects.all():
+                if request.user in i.follower.all():
+                    print(f'{i.name}ga Azo bolgan')
+                    choised_objects.append(i)
+                else:
+                    print(f'{i.name} Azo bolmagan')
+                    empty_objects.append(i)
+                # for f in i.follower.all():
+                #     if f.id != request.user.id:
+                #         empty_objects.append(i)
         context = {
-            'objects': PagenatorPage(empty_objects, 6, request),
+            'objects': empty_objects,
             'choised_objects':choised_objects,
-
         }
+        print(f"EMPTY{empty_objects}")
+        print(f"CHOISED{choised_objects}")
         return render (request, 'account/dashboard.html', context)
 
         
@@ -467,4 +469,3 @@ def user_create(request):
     else:
         pass
     return render(request, 'account/signup.html')
-

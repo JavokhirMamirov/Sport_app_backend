@@ -45,7 +45,7 @@ class SportObject(models.Model):
     type = models.ForeignKey(ObjectType, on_delete=models.CASCADE, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
     is_active = models.BooleanField(default=True)
-    follower = models.ManyToManyField(User, related_name='objects', blank=True)
+    follower = models.ManyToManyField(User, blank=True)
 
     def __str__(self):
         return self.name

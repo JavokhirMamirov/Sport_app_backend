@@ -68,6 +68,32 @@
                                 {% endfor %}
                             </ul>
                         </li>
+
+
+
+                        <li class="">
+                            <a href="javascript:;" class="has-arrow" aria-expanded="false">
+                                <div class="parent-icon"><i class="bx bx-category"></i>
+                                </div>
+                                <div class="menu-title">Application</div>
+                            </a>
+                            <ul class="mm-collapse" style="height: 2px;">
+                                <li> <a href="app-emailbox.html"><i class="bx bx-right-arrow-alt"></i>Email</a>
+                                </li>
+                                <li> <a href="app-chat-box.html"><i class="bx bx-right-arrow-alt"></i>Chat Box</a>
+                                </li>
+                                <li> <a href="app-file-manager.html"><i class="bx bx-right-arrow-alt"></i>File Manager</a>
+                                </li>
+                                <li> <a href="app-contact-list.html"><i class="bx bx-right-arrow-alt"></i>Contatcs</a>
+                                </li>
+                                <li> <a href="app-to-do.html"><i class="bx bx-right-arrow-alt"></i>Todo List</a>
+                                </li>
+                                <li> <a href="app-invoice.html"><i class="bx bx-right-arrow-alt"></i>Invoice</a>
+                                </li>
+                                <li> <a href="app-fullcalender.html"><i class="bx bx-right-arrow-alt"></i>Calendar</a>
+                                </li>
+                            </ul>
+                        </li>
                     {% endif %}
                 {% endif %}
             {% endif %}
@@ -161,6 +187,77 @@
 <script src="{% static 'assets/plugins/simplebar/js/simplebar.min.js' %}"></script>
 <script src="{% static 'assets/plugins/metismenu/js/metisMenu.min.js' %}"></script>
 <script src="{% static 'assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js' %}"></script>
+<script src="{% static 'users/js/modernizr.custom.79639.js' %}"></script>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="{% static 'users/js/jquery-1.11.2.min.js' %}"></script>
+
+
+<!-- Bootstrap Plugins -->
+<script src="{% static 'users/users/js/bootstrap.min.js' %}"></script>
+
+<!-- Retina Plugin -->
+<script src="{% static 'users/js/retina.min.js' %}"></script>
+
+<!-- ScrollReveal Plugin -->
+<script src="{% static 'users/js/scrollReveal.min.js' %}"></script>
+
+<!-- Flex Menu Plugin -->
+<script src="{% static 'users/js/jquery.flexmenu.js' %}"></script>
+
+<!-- Slider Plugin -->
+<script src="{% static 'users/js/jquery.ba-cond.min.js' %}"></script>
+<script src="{% static 'users/js/jquery.slitslider.js' %}"></script>
+
+<!-- Carousel Plugin -->
+<script src="{% static 'users/js/owl.carousel.min.js' %}"></script>
+
+<!-- Parallax Plugin -->
+<script src="{% static 'users/js/parallax.js' %}"></script>
+
+<!-- Counterup Plugin -->
+<script src="{% static 'users/js/jquery.counterup.min.js' %}"></script>
+<script src="{% static 'users/js/waypoints.min.js' %}"></script>
+
+<!-- No UI Slider Plugin -->
+<script src="{% static 'users/js/jquery.nouislider.all.min.js' %}"></script>
+
+<!-- Bootstrap Wysiwyg Plugin -->
+<script src="{% static 'users/js/bootstrap3-wysihtml5.all.min.js' %}"></script>
+
+<!-- Flickr Plugin -->
+<script src="{% static 'users/js/jflickrfeed.min.js' %}"></script>
+
+<!-- Fancybox Plugin -->
+<script src="{% static 'users/js/fancybox.pack.js' %}"></script>
+
+<!-- Magic Form Processing -->
+<script src="{% static 'users/js/magic.js' %}"></script>
+
+<!-- jQuery Settings -->
+<script src="{% static 'users/js/settings.js' %}"></script>
+<!-- Bootstrap JS -->
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<!--plugins-->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/plugins/simplebar/js/simplebar.min.js"></script>
+<script src="assets/plugins/metismenu/js/metisMenu.min.js"></script>
+<script src="assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
+<script src="assets/plugins/chartjs/js/Chart.min.js"></script>
+<script src="assets/plugins/vectormap/jquery-jvectormap-2.0.2.min.js"></script>
+<script src="assets/plugins/vectormap/jquery-jvectormap-world-mill-en.js"></script>
+<script src="assets/plugins/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
+<script src="assets/plugins/sparkline-charts/jquery.sparkline.min.js"></script>
+<script src="assets/plugins/jquery-knob/excanvas.js"></script>
+<script src="assets/plugins/jquery-knob/jquery.knob.js"></script>
+  <script>
+      $(function() {
+          $(".knob").knob();
+      });
+  </script>
+  <script src="assets/js/index.js"></script>
+<!--app JS-->
+<script src="assets/js/app.js"></script>
 <!--app JS-->
 {% block js %}
 
