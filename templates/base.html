@@ -4,24 +4,43 @@
 
 <head>
     <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--favicon-->
-<!--	<link rel="icon" href="{% static 'assets/images/8.png' %}" type="image/png" />-->
-    <!--plugins-->
-    <link href="{% static 'assets/plugins/simplebar/css/simplebar.css' %}" rel="stylesheet"/>
-    <link href="{% static 'assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css' %}" rel="stylesheet"/>
-    <link href="{% static 'assets/plugins/metismenu/css/metisMenu.min.css' %}" rel="stylesheet"/>
-    <!-- loader-->
-    <link href="{% static 'assets/css/pace.min.css' %}" rel="stylesheet"/>
-    <script src="{% static 'assets/js/pace.min.js' %}"></script>
-    <!-- Bootstrap CSS -->
-    <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet">
-    <link href="{% static 'assets/css/app.css' %}" rel="stylesheet">
-    <link href="{% static 'assets/css/icons.css' %}" rel="stylesheet">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--favicon-->
+	<link rel="icon" href="{% static 'assets/images/favicon-32x32.png' %}" type="image/png" />
+	<!--plugins-->
+	<link href="{% static 'assets/plugins/vectormap/jquery-jvectormap-2.0.2.css' %}" rel="stylesheet"/>
+	<link href="{% static 'assets/plugins/simplebar/css/simplebar.css' %}" rel="stylesheet" />
+	<link href="{% static 'assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css' %}" rel="stylesheet" />
+	<link href="{% static 'assets/plugins/metismenu/css/metisMenu.min.css' %}" rel="stylesheet" />
+	<!-- loader-->
+	<link href="{% static 'assets/css/pace.min.css' %}" rel="stylesheet" />
+	<script src="{% static 'assets/js/pace.min.js' %}"></script>
+	<!-- Bootstrap CSS -->
+	<link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet">
+	<link href="{% static 'assets/css/app.css' %}" rel="stylesheet">
+	<link href="{% static 'assets/css/icons.css' %}" rel="stylesheet">
+	<!-- Theme Style CSS -->
+	<link rel="stylesheet" href="{% static 'assets/css/dark-theme.css' %}" />
+	<link rel="stylesheet" href="{% static 'assets/css/semi-dark.css' %}" />
+	<link rel="stylesheet" href="{% static 'assets/css/header-colors.css' %}" />
     {% block css %}
 
     {% endblock css %}
+    <style>
+        #acardion-btn{
+            border: 0;
+            font-size: 15px;
+            padding: 0px;
+            padding-left: 15px;
+        }   
+        #flush-collapseOne{
+            border: 0;
+        }
+        .menu-title{
+            margin-left: 10px;
+        }
+    </style>
     <title>Sport app admin</title>
 </head>
 
@@ -55,45 +74,21 @@
                 </li>
                 {% else %}
                     {% if choised_objects %}
-                    <li>
-                        <a href="javascript:;" class="has-arrow">
-                            <div class="parent-icon"><i class="bx bx-category"></i>
-                            </div>
-                            <div class="menu-title">A`zo bo`lgan sport turlari</div>
-                        </a>
-                        <ul>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="flush-headingOne">
+                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne" id="acardion-btn">
+                                <div class="parent-icon"><i class="bx bx-cart" style="font-size: 30px;"></i>
+                                </div>
+                                <div class="menu-title">A`zo bo`lgan sport <br> turlari</div>
+                              </button>
+                            </h2>
+                            <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                                 {% for object in choised_objects %}
-                                <li> <a href="{% url 'detail_url' object.id %}"><i class="bx bx-right-arrow-alt"></i>{{object.name}}</a>
+                                <li> <a href="{% url 'detail_url' object.id %}">{{object.name}}</a>
                                 </li>
                                 {% endfor %}
-                            </ul>
-                        </li>
-
-
-
-                        <li class="">
-                            <a href="javascript:;" class="has-arrow" aria-expanded="false">
-                                <div class="parent-icon"><i class="bx bx-category"></i>
-                                </div>
-                                <div class="menu-title">Application</div>
-                            </a>
-                            <ul class="mm-collapse" style="height: 2px;">
-                                <li> <a href="app-emailbox.html"><i class="bx bx-right-arrow-alt"></i>Email</a>
-                                </li>
-                                <li> <a href="app-chat-box.html"><i class="bx bx-right-arrow-alt"></i>Chat Box</a>
-                                </li>
-                                <li> <a href="app-file-manager.html"><i class="bx bx-right-arrow-alt"></i>File Manager</a>
-                                </li>
-                                <li> <a href="app-contact-list.html"><i class="bx bx-right-arrow-alt"></i>Contatcs</a>
-                                </li>
-                                <li> <a href="app-to-do.html"><i class="bx bx-right-arrow-alt"></i>Todo List</a>
-                                </li>
-                                <li> <a href="app-invoice.html"><i class="bx bx-right-arrow-alt"></i>Invoice</a>
-                                </li>
-                                <li> <a href="app-fullcalender.html"><i class="bx bx-right-arrow-alt"></i>Calendar</a>
-                                </li>
-                            </ul>
-                        </li>
+                            </div>
+                          </div>
                     {% endif %}
                 {% endif %}
             {% endif %}
@@ -178,91 +173,27 @@
         <p class="mb-0">Andijan © Digital City  2021 </p>
     </footer>
 </div>
-
-<!--end switcher-->
-<!-- Bootstrap JS -->
+<!-- Bootstrap JS -->' %}
 <script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
 <!--plugins-->
 <script src="{% static 'assets/js/jquery.min.js' %}"></script>
 <script src="{% static 'assets/plugins/simplebar/js/simplebar.min.js' %}"></script>
 <script src="{% static 'assets/plugins/metismenu/js/metisMenu.min.js' %}"></script>
 <script src="{% static 'assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js' %}"></script>
-<script src="{% static 'users/js/modernizr.custom.79639.js' %}"></script>
-
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="{% static 'users/js/jquery-1.11.2.min.js' %}"></script>
-
-
-<!-- Bootstrap Plugins -->
-<script src="{% static 'users/users/js/bootstrap.min.js' %}"></script>
-
-<!-- Retina Plugin -->
-<script src="{% static 'users/js/retina.min.js' %}"></script>
-
-<!-- ScrollReveal Plugin -->
-<script src="{% static 'users/js/scrollReveal.min.js' %}"></script>
-
-<!-- Flex Menu Plugin -->
-<script src="{% static 'users/js/jquery.flexmenu.js' %}"></script>
-
-<!-- Slider Plugin -->
-<script src="{% static 'users/js/jquery.ba-cond.min.js' %}"></script>
-<script src="{% static 'users/js/jquery.slitslider.js' %}"></script>
-
-<!-- Carousel Plugin -->
-<script src="{% static 'users/js/owl.carousel.min.js' %}"></script>
-
-<!-- Parallax Plugin -->
-<script src="{% static 'users/js/parallax.js' %}"></script>
-
-<!-- Counterup Plugin -->
-<script src="{% static 'users/js/jquery.counterup.min.js' %}"></script>
-<script src="{% static 'users/js/waypoints.min.js' %}"></script>
-
-<!-- No UI Slider Plugin -->
-<script src="{% static 'users/js/jquery.nouislider.all.min.js' %}"></script>
-
-<!-- Bootstrap Wysiwyg Plugin -->
-<script src="{% static 'users/js/bootstrap3-wysihtml5.all.min.js' %}"></script>
-
-<!-- Flickr Plugin -->
-<script src="{% static 'users/js/jflickrfeed.min.js' %}"></script>
-
-<!-- Fancybox Plugin -->
-<script src="{% static 'users/js/fancybox.pack.js' %}"></script>
-
-<!-- Magic Form Processing -->
-<script src="{% static 'users/js/magic.js' %}"></script>
-
-<!-- jQuery Settings -->
-<script src="{% static 'users/js/settings.js' %}"></script>
-<!-- Bootstrap JS -->
-<script src="assets/js/bootstrap.bundle.min.js"></script>
-<!--plugins-->
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/plugins/simplebar/js/simplebar.min.js"></script>
-<script src="assets/plugins/metismenu/js/metisMenu.min.js"></script>
-<script src="assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
-<script src="assets/plugins/chartjs/js/Chart.min.js"></script>
-<script src="assets/plugins/vectormap/jquery-jvectormap-2.0.2.min.js"></script>
-<script src="assets/plugins/vectormap/jquery-jvectormap-world-mill-en.js"></script>
-<script src="assets/plugins/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
-<script src="assets/plugins/sparkline-charts/jquery.sparkline.min.js"></script>
-<script src="assets/plugins/jquery-knob/excanvas.js"></script>
-<script src="assets/plugins/jquery-knob/jquery.knob.js"></script>
+<script src="{% static 'assets/plugins/chartjs/js/Chart.min.js' %}"></script>
+<script src="{% static 'assets/plugins/vectormap/jquery-jvectormap-2.0.2.min.js' %}"></script>
+<script src="{% static 'assets/plugins/vectormap/jquery-jvectormap-world-mill-en.js' %}"></script>
+<script src="{% static 'assets/plugins/jquery.easy-pie-chart/jquery.easypiechart.min.js' %}"></script>
+<script src="{% static 'assets/plugins/sparkline-charts/jquery.sparkline.min.js' %}"></script>
+<script src="{% static 'assets/plugins/jquery-knob/excanvas.js' %}"></script>
+<script src="{% static 'assets/plugins/jquery-knob/jquery.knob.js' %}"></script>
   <script>
       $(function() {
           $(".knob").knob();
       });
   </script>
-  <script src="assets/js/index.js"></script>
+  <script src="{% static 'assets/js/index.js' %}"></script>
 <!--app JS-->
-<script src="assets/js/app.js"></script>
-<!--app JS-->
-{% block js %}
-
-{% endblock js %}
 <script src="{% static 'assets/js/app.js' %}"></script>
-
 </body>
 </html>

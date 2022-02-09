@@ -1,11 +1,9 @@
-from tkinter.messagebox import NO
-from django.http.response import HttpResponseBadRequest
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import User
 from sport.models import Orders
 from .forms import *
-from django.http import HttpResponse, JsonResponse, request
+from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -61,9 +59,11 @@ def HomeView(request):
     else:
         if request.method == 'POST':
             user_object = request.POST['chekname']
+            print(user_object)
             object = SportObject.objects.get(id=user_object)
             user = request.user
-            object.user.add(user) 
+            object.follower.add(request.user) 
+            print(object.follower.all())
             object.save()
             return redirect('home')
         else:
@@ -71,20 +71,13 @@ def HomeView(request):
             choised_objects = []
             for i in SportObject.objects.all():
                 if request.user in i.follower.all():
-                    print(f'{i.name}ga Azo bolgan')
                     choised_objects.append(i)
                 else:
-                    print(f'{i.name} Azo bolmagan')
                     empty_objects.append(i)
-                # for f in i.follower.all():
-                #     if f.id != request.user.id:
-                #         empty_objects.append(i)
         context = {
             'objects': empty_objects,
             'choised_objects':choised_objects,
         }
-        print(f"EMPTY{empty_objects}")
-        print(f"CHOISED{choised_objects}")
         return render (request, 'account/dashboard.html', context)
 
         
