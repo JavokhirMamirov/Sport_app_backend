@@ -59,11 +59,8 @@ def HomeView(request):
     else:
         if request.method == 'POST':
             user_object = request.POST['chekname']
-            print(user_object)
             object = SportObject.objects.get(id=user_object)
-            user = request.user
             object.follower.add(request.user) 
-            print(object.follower.all())
             object.save()
             return redirect('home')
         else:
