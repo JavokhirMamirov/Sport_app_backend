@@ -1,12 +1,14 @@
+from django.http.response import HttpResponseBadRequest
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import User
 from sport.models import Orders
 from .forms import *
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse, JsonResponse, request
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 
 def PagenatorPage(List, num, request):
     paginator = Paginator(List, num)
@@ -19,9 +21,10 @@ def PagenatorPage(List, num, request):
         list = paginator.page(paginator.num_pages)
     return list
 
+
 @login_required(login_url='login')
 def HomeView(request):
-    if request.user.is_staff == True:            
+    if request.user.is_staff == True:
         category = Category.objects.all().count()
         object = SportObject.objects.all().count()
         active = SportObject.objects.filter(is_active=True).count()
@@ -36,48 +39,54 @@ def HomeView(request):
         for cat in cats:
             obj_count = SportObject.objects.filter(category__in=[cat]).count()
             dt = {
-                "id":cat.id,
-                "name":cat.name,
-                "obj_count":obj_count,
-                "color":alert[k]
+                "id": cat.id,
+                "name": cat.name,
+                "obj_count": obj_count,
+                "color": alert[k]
             }
             k += 1
             if k == 5:
                 k = 0
-            cat_list.append(dt) 
+            cat_list.append(dt)
         context = {
-            'category':category,
-            'cat_lists':cat_list,
-            'object':object,
-            'active':active,
-            'false':false,
-            'new':new,
-            'accepted':accepted,
-            'not_accepted':not_accepted        
+            'category': category,
+            'cat_lists': cat_list,
+            'object': object,
+            'active': active,
+            'false': false,
+            'new': new,
+            'accepted': accepted,
+            'not_accepted': not_accepted
         }
         return render(request, 'index.html', context)
     else:
         if request.method == 'POST':
             user_object = request.POST['chekname']
             object = SportObject.objects.get(id=user_object)
-            object.follower.add(request.user) 
+            user = request.user
+            object.user.add(user)
             object.save()
             return redirect('home')
         else:
-            empty_objects = []
-            choised_objects = []
-            for i in SportObject.objects.all():
-                if request.user in i.follower.all():
-                    choised_objects.append(i)
-                else:
-                    empty_objects.append(i)
+            choised_objects = None
+            if request.user.is_staff == False:
+                choised_objects = SportObject.objects.filter(follower=request.user)
+                empty_objects = []
+                sport = SportObject.objects.all()
+                for i in sport:
+                    for f in i.follower.all():
+                        if f.id != request.user.id:
+                            empty_objects.append(i)
+                        else:
+                            pass
         context = {
-            'objects': empty_objects,
-            'choised_objects':choised_objects,
-        }
-        return render (request, 'account/dashboard.html', context)
+            'objects': PagenatorPage(empty_objects, 6, request),
+            'choised_objects': choised_objects,
 
-        
+        }
+        return render(request, 'account/dashboard.html', context)
+
+
 @login_required(login_url='login')
 def ObjectsView(request):
     obj = SportObject.objects.all()
@@ -95,6 +104,7 @@ def ObjectsView(request):
     }
     return render(request, 'objects.html', context)
 
+
 @login_required(login_url='login')
 def AddNewObjectView(request):
     categories = Category.objects.all()
@@ -105,6 +115,7 @@ def AddNewObjectView(request):
     }
     return render(request, 'add_new_object.html', context)
 
+
 @login_required(login_url='login')
 def AddTypeUsers(request):
     if request.method == 'POST':
@@ -112,6 +123,7 @@ def AddTypeUsers(request):
         if form.is_valid:
             form.save()
             return redirect('add-sport-object')
+
 
 @login_required(login_url='login')
 def AddObjectCategory(request):
@@ -121,6 +133,7 @@ def AddObjectCategory(request):
             form.save()
             return redirect('add-sport-object')
 
+
 @login_required(login_url='login')
 def ObjectDetailView(request, pk):
     object = SportObject.objects.get(id=pk)
@@ -129,12 +142,14 @@ def ObjectDetailView(request, pk):
     }
     return render(request, 'object_detail.html', context)
 
+
 @login_required(login_url='login')
 def DeleteObjectView(request):
     object = request.GET.get('object_id')
     delete_object = SportObject.objects.get(id=object)
     delete_object.delete()
     return redirect('sport-object')
+
 
 @login_required(login_url='login')
 def UpdateObjectView(request, pk):
@@ -172,6 +187,7 @@ def login_view(request):
 def user_logout(request):
     logout(request)
     return redirect("index_url")
+
 
 @login_required(login_url='login')
 def CreateObject(request):
@@ -261,6 +277,7 @@ def CreateObject(request):
     else:
         return redirect('add-sport-object')
 
+
 @login_required(login_url='login')
 def UpdateObject(request, id):
     if request.method == "POST":
@@ -343,10 +360,11 @@ def UpdateObject(request, id):
                     messages.error(request, "Obyekt yangilashda xatolik1!")
             object.save()
             return redirect('sport-object-detail', pk=object.id)
-# images
+        # images
         except:
             messages.error(request, "Obyekt yangilashda xatolik2!")
             return redirect('sport-object-detail', pk=id)
+
 
 @login_required(login_url='login')
 def add_image(request):
@@ -366,6 +384,7 @@ def add_image(request):
         }
     return JsonResponse(context)
 
+
 @login_required(login_url='login')
 def delete_image(request):
     try:
@@ -384,6 +403,7 @@ def delete_image(request):
         }
     return JsonResponse(context)
 
+
 def notf(request):
     return render(request, 'errors/404.html')
 
@@ -391,12 +411,13 @@ def notf(request):
 def server(request):
     return render(request, 'errors/500.html')
 
+
 def order_new(request):
     count = Orders.objects.filter(is_active='new').count()
     object = Orders.objects.filter(is_active='new')
     context = {
-        'count':count,
-        'object':object
+        'count': count,
+        'object': object
     }
     return render(request, 'order-new.html', context)
 
@@ -405,8 +426,8 @@ def order_accepted(request):
     count = Orders.objects.filter(is_active='accepted').count()
     object = Orders.objects.filter(is_active='accepted')
     context = {
-        'count':count,
-        'object':object
+        'count': count,
+        'object': object
     }
     return render(request, 'order-accepted.html', context)
 
@@ -415,10 +436,11 @@ def order_not_accepted(request):
     count = Orders.objects.filter(is_active='not_accepted').count()
     object = Orders.objects.filter(is_active='not_accepted')
     context = {
-        'count':count,
-        'object':object
+        'count': count,
+        'object': object
     }
     return render(request, 'order-not_accepted.html', context)
+
 
 def delete_order(request):
     try:
@@ -429,6 +451,7 @@ def delete_order(request):
     except:
         return HttpResponse(False)
 
+
 def change_order(request, pk):
     order = Orders.objects.get(id=pk)
     rad = request.POST.get('RAD')
@@ -437,9 +460,10 @@ def change_order(request, pk):
         order.is_active = 'not_accepted'
     elif qabul is not None:
         order.is_active = 'accepted'
-    order.save()   
+    order.save()
     return redirect('home')
-    
+
+
 def user_create(request):
     if request.method == 'POST':
         try:
@@ -450,7 +474,8 @@ def user_create(request):
             password = request.POST['password']
             password2 = request.POST['password2']
             if password == password2:
-                new_user = User.objects.create_user(username=username, first_name=first_name, last_name=last_name, email=email, password=password)
+                new_user = User.objects.create_user(username=username, first_name=first_name, last_name=last_name,
+                                                    email=email, password=password)
                 login(request, new_user)
             else:
                 messages.error(request, 'Parolingizni takrorlashda xatolik ro`y berdi')
