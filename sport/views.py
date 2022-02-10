@@ -76,9 +76,7 @@ def HomeView(request):
                 else:
                     print(f'{i.name} Azo bolmagan')
                     empty_objects.append(i)
-                # for f in i.follower.all():
-                #     if f.id != request.user.id:
-                #         empty_objects.append(i)
+                    print(True)
         context = {
             'objects': empty_objects,
             'choised_objects':choised_objects,
