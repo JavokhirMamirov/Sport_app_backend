@@ -2,14 +2,22 @@
 {% load static %}
 {% block css %}
 <style>
-#chek{
-	margin-top: 10px;
-}
 #sbm{
-	margin-top: 2%;
+	margin: 0;
+	margin-top: 5%;
+	padding: 0%;
+	width: 100%;
 }
 .card{
 	width: 100%;
+}
+#btn-id{
+	padding-left: 0;
+	padding-right: 0;
+}
+#chek{
+	margin: 5px;
+	margin-left: 8px;
 }
 </style>
 {% endblock css %}
@@ -76,14 +84,11 @@
 					</div>
 					<p class="mb-0 ms-auto">4.2(182)</p>
 				</div>
-				<div class="form-check" id="chek">
 					<form method="post">
 						{% csrf_token %}
-						<input class="form-check-input" type="checkbox" id="flexCheckDefault" name="chekname" value="{{object.id}}">
-						<label class="form-check-label" for="flexCheckDefault">Sport Obyetini tanlash</label>
-						<button type="submit" class="btn btn-primary px-5" id="sbm">Saqlash</button>
+						<input type="hidden" name="chekname" value="{{object.id}}">
+						<button type="submit" class="btn btn-primary px-5" id="sbm" >Tanlash <i class="lni lni-checkmark" id="chek"></i></button>
 					</form>
-				</div>
 			</div>
 		</div>
 	</div>
