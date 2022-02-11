@@ -78,7 +78,7 @@ def HomeView(request):
                         if f.id != request.user.id:
                             empty_objects.append(i)
                         else:
-                            pass
+                            passsa
         context = {
             'objects': PagenatorPage(empty_objects, 6, request),
             'choised_objects': choised_objects,
