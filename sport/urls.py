@@ -20,6 +20,7 @@ urlpatterns = [
     path('update-object-post/<int:id>/', UpdateObject, name='update-object-post'),
     path('add-image', add_image, name="add_image"),
     path('delete-image', delete_image, name='delete_image'),
+    path('add_user_info', add_info_user, name='user_info'),
     # error
     path('404', notf),
     path('500', server),

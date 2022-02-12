@@ -37,7 +37,58 @@
 			</div>
 		</div>
 	</div>
-</div>
+	
+	<div class="col-6">
+		<!-- Button trigger modal -->
+		<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleVerticallycenteredModal">Ma`lumotlarni to`ldirish</button>
+		<!-- Modal -->
+		<div class="modal fade" id="exampleVerticallycenteredModal" tabindex="-1" style="display: none;" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Ma`lumotlarizni to`ldiring</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<form action="{% url 'user_info' %}" method="post">
+					<div class="modal-body">
+							{% csrf_token %}
+						<div class="col-md-12">
+							<label for="inputFirstName" class="form-label">Bo`yingiz</label>
+							<input type="text" class="form-control" id="inputFirstName" placeholder="1.75" name="height">
+						</div>
+						<div class="col-md-12">
+							<label for="inputFirstName" class="form-label">Vazningiz nesha kg</label>
+							<input type="number" class="form-control" id="inputFirstName" placeholder="65" name="weight">
+						</div>
+						<div class="col-md-12">
+							<label for="inputFirstName" class="form-label">Yoshingiz</label>
+							<input type="number" class="form-control" id="inputFirstName" placeholder="23" name="age">
+						</div> <br>
+						<label for="inputFirstName" class="form-label">Qaysi turga tegishliksiz</label>
+						<select class="form-select form-select mb-3" aria-label=".form-select-sm example" name="status">
+							{% for tur in turlar %}	
+									<option value="{{tur.id}}">{{tur}}</option>
+							{% endfor %}
+						</select>
+						<div class="col-md-12">
+							<label for="inputFirstName" class="form-label">Yoqtirgan sport turiz</label>
+							<input type="text" class="form-control" id="inputFirstName" placeholder="boks" name="favourite_sport">
+						</div>
+						<div class="col-md-12">
+							<label for="inputFirstName" class="form-label">Manziliz</label>
+							<input type="text" class="form-control" id="inputFirstName" placeholder="Andijon shaxar" name="address" >
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Qaytish</button>
+						<button type="submit" class="btn btn-primary">Saqlash</button>
+					</div>
+				</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div> <br>
 <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-5 product-grid">
 	<!-- <div class="row"> -->
 	{% for object in objects %}

@@ -2,7 +2,7 @@ from django.http.response import HttpResponseBadRequest
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import User
-from sport.models import Orders
+from sport.models import Orders, UserInfo
 from .forms import *
 from django.http import HttpResponse, JsonResponse, request
 from django.contrib.auth.decorators import login_required
@@ -75,13 +75,14 @@ def HomeView(request):
                     choised_objects.append(i)
                 else:
                     empty_objects.append(i)
-<<<<<<< HEAD
-                    print(True)
-=======
->>>>>>> 5e84e1fab49e8b0fed4e8f718faaafd3edcc951b
+            if request.user.UserInfo is not None:
+                print(True)
+            else:
+                print(False)
         context = {
             'objects': empty_objects,
             'choised_objects':choised_objects,
+            'turlar':ObjectType.objects.all()
         }
         return render (request, 'account/dashboard.html', context)
 
@@ -270,7 +271,6 @@ def CreateObject(request):
             return redirect('sport-object')
 
         except Exception as err:
-            print(err)
             messages.error(request, "Obyekt yaratishda xatolik!")
             return redirect('add-sport-object')
     else:
@@ -483,3 +483,31 @@ def user_create(request):
     else:
         pass
     return render(request, 'account/signup.html')
+
+
+def add_info_user(request):
+    if request.method == 'POST':
+        height = request.POST['height']
+        weight = request.POST['weight']
+        age = request.POST['age']
+        status = request.POST['status']
+        favourite_sport = request.POST['favourite_sport']
+        address = request.POST['address']
+        print(height)
+        print(weight)
+        print(age)
+        print(status)
+        print(favourite_sport)
+        print(address)
+        UserInfo.objects.create(
+            user=request.user, 
+            height = height,
+            weight=weight,
+            age=age,
+            status = ObjectType.objects.get(id=status),
+            favourite_sport=favourite_sport,
+            address=address          
+        )
+        return redirect('home')
+    else:
+        return HttpResponse('Not allowed')
