@@ -513,34 +513,30 @@ def add_info_user(request):
 
 
 def user_update(request, pk):
-    try:
+    # try:
         user_info = UserInfo.objects.get(pk=pk)
         height = request.POST['height']
         weight = request.POST['weight']
         age = request.POST['age']
-        try:
-            status = request.POST['status']
-        except:
-            status = user_info.status.id
+        status_id = request.POST['status']
         favourite_sport = request.POST['favourite_sport']
         address = request.POST['address']
         try:
             image = request.FILES['image']
         except:
             image = user_info.img
-
         user_info.height = height
         user_info.weight = weight
         user_info.age = age
-        user_info.status = ObjectType.objects.get(id=status)
+        user_info.status = ObjectType.objects.get(id=status_id)
         user_info.favourite_sport = favourite_sport
         user_info.address = address
-        user_info.image = image
+        user_info.img = image
 
         user_info.save()
         return redirect('home')
-    except:
-        return HttpResponse('Xatolik ro`y berdi')
+    # except:
+    #     return HttpResponse('Xatolik ro`y berdi')
 
 def user_list(request):
     users = User.objects.filter(is_staff=False)

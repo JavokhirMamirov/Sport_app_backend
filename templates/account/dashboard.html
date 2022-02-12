@@ -73,7 +73,7 @@
 						</div> <br>
 						<label for="inputFirstName" class="form-label">Qaysi turga tegishliksiz</label>
 						<select class="form-select form-select mb-3" aria-label=".form-select-sm example" name="status">
-							<option value="{{tur.id}}" selected>{{information.status}}</option>
+							<option value="{{information.status.id}}" selected>{{information.status.name}}</option>
 							{% for tur in turlar %}	
 									<option value="{{tur.id}}">{{tur}}</option>
 							{% endfor %}
