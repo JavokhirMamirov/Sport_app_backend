@@ -69,14 +69,14 @@ class Orders(models.Model):
 
 
 class UserInfo(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name= 'information' )
     height = models.CharField(max_length=255, blank=True)
     weight = models.CharField(max_length=255, blank=True)
     age = models.PositiveIntegerField(blank=True)
     status = models.ForeignKey(ObjectType, on_delete=models.CASCADE, verbose_name='qanday turdagi sport obyektlari kerak', blank=True)
     favourite_sport = models.CharField(max_length=255, blank=True)    
     address = models.CharField(max_length=255, blank=True)
-    img = models.ImageField(upload_to='user/', blank=True)
+    img = models.ImageField(upload_to='user/', blank=True,)
 
     def __str__(self):
         return self.user.username

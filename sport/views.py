@@ -32,6 +32,7 @@ def HomeView(request):
         new = Orders.objects.filter(is_active='new').count()
         accepted = Orders.objects.filter(is_active='accepted').count()
         not_accepted = Orders.objects.filter(is_active='not_accepted').count()
+        users = User.objects.filter(is_staff=False).count()
         alert = ['primary', 'success', 'danger', "info", "warning"]
         cats = Category.objects.all()
         cat_list = []
@@ -56,15 +57,15 @@ def HomeView(request):
             'false': false,
             'new': new,
             'accepted': accepted,
-            'not_accepted': not_accepted
+            'not_accepted': not_accepted,
+            'users':users
         }
         return render(request, 'index.html', context)
     else:
         if request.method == 'POST':
             user_object = request.POST['chekname']
             object = SportObject.objects.get(id=user_object)
-            user = request.user
-            object.user.add(user)
+            object.follower.add(request.user)
             object.save()
             return redirect('home')
         else:
@@ -512,6 +513,7 @@ def add_info_user(request):
 
 
 def user_update(request, pk):
+    try:
         user_info = UserInfo.objects.get(pk=pk)
         height = request.POST['height']
         weight = request.POST['weight']
@@ -536,3 +538,10 @@ def user_update(request, pk):
         user_info.image = image
 
         user_info.save()
+        return redirect('home')
+    except:
+        return HttpResponse('Xatolik ro`y berdi')
+
+def user_list(request):
+    users = User.objects.filter(is_staff=False)
+    return render(request, 'users-list.html', {'users': PagenatorPage(users, 10, request)})

@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+    <div class="breadcrumb-title pe-3">Sport App</div>
+    <div class="ps-3">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0 p-0">
+                <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">Foydalanuvchilar ro`yxati</li>
+            </ol>
+        </nav>
+    </div>
+
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <table class="table mb-0">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">№</th>
+                    <th scope="col">Rasm</th>
+                    <th scope="col">Ism</th>
+                    <th scope="col">Familiya</th>
+                    <th scope="col">Tel raqam</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Manzil</th>
+                    <th scope="col">Bo`y uzunlik</th>
+                    <th scope="col">Vazn</th>
+                    <th scope="col">Yosh</th>
+                    <th scope="col">Yooqtirgan sport</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <th scope="row">{{forloop.counter}}</th>
+                    <td><img src="{{ user.information.img.url }}" class="user-img" alt="user avatar"></td>
+                    <td>{{user.first_name}}</td>
+                    <td>{{user.last_name}}</td>
+                    <td>{{user.username}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.information.address}}</td>
+                    <td>{{user.information.height}}</td>
+                    <td>{{user.information.weight}}</td>
+                    <td>{{user.information.age}}</td>
+                    <td>{{user.information.favourite_sport}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="float-end" style="position: fixed; bottom: 0; ">
+   {% if users.paginator.num_pages > 1 %}
+            <nav aria-label="Page navigation">
+            <ul class="pagination pagination-lg round-pagination">
+                    {% if users.has_previous %}
+                      <li class="page-item">
+                            <a class="page-link" href="?page={{users.previous_page_number }}"><i class="bx bx-left-arrow-alt"></i></a>
+                        </li>
+                      {% endif %}
+                      {% for num in users.paginator.page_range %}
+                      {% if num == objects.number %}
+                      <li class="page-item active">
+                        <a class="page-link" href="#" tabindex="-1">{{ num }}</a>
+                        </li>
+                      {% elif num > objects.number|add:'-3' and num < users.number|add:'3' %}
+                      <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                      {% endif %}
+                      {% endfor %}
+                      {% if users.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ users.next_page_number }}" aria-label="Next">
+                            <i class="bx bx-right-arrow-alt"></i>
+                        </a>
+                    </li>
+                      {% endif %}
+                </ul>
+            </nav>
+        {% endif %}
+        <br> <br>
+    </div>  
+{% endblock content %}
+
+{% block js %}
+<script>
+    $(document).ready(function () {
+        $('.form-check-input').on('change', function () {
+            $('.form-check-input').not(this).prop('checked', false);
+            $('#result').html($(this).data("id"));
+            if ($(this).is(":checked"))
+                $('#result').html($(this).data("id"));
+            else
+                $('#result').html('Empty...!');
+        });
+    });
+</script>
+{% endblock js %}

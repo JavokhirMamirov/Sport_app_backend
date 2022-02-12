@@ -14,21 +14,22 @@
 
 				</div>
 				<div class="row row-cols-1 row-cols-md-2 row-cols-xl-3">
-					<div class="col">
-						<div class="card radius-10 bg-info bg-gradient">
-							<div class="card-body">
-								<div class="d-flex align-items-center">
-									<div>
-										<p class="mb-0 text-white">Umumiy sport obyektlari</p>
-										<h4 class="my-1 text-white">{{category}}</h4>
-									</div>
-									<div class="widgets-icons bg-white text-dark ms-auto"><i class="fadeIn animated bx bx-news"></i>
+					<a href="{% url 'user_list' %}">
+						<div class="col">
+							<div class="card radius-10 bg-info bg-gradient">
+								<div class="card-body">
+									<div class="d-flex align-items-center">
+										<div>
+											<p class="mb-0 text-white">Foydalanuvchilar</p>
+											<h4 class="my-1 text-white">{{users}}</h4>
+										</div>
+										<div class="widgets-icons bg-white text-dark ms-auto"><i class="fadeIn animated bx bx-news"></i>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-					
+					</a>
 					<div class="col">
 						<div class="card radius-10 bg-warning bg-gradient">
 							<div class="card-body">

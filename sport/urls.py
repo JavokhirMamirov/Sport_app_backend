@@ -12,6 +12,7 @@ urlpatterns = [
     path('login/', login_view, name="login"),
     path('sign-up', user_create, name='sign-up-url'),
     path('logout/', user_logout, name="logout"),
+    path('user_list', user_list, name='user_list'),
     ## action
     path('add-type-users', AddTypeUsers, name='add-type-url'),
     path('add-category-users', AddObjectCategory, name='add-category-url'),
