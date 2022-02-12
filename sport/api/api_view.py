@@ -49,7 +49,3 @@ class ProductList(generics.ListAPIView):
     filter_backends = [SearchFilter, DjangoFilterBackend]
     filterset_fields = ['category']
     search_fields = ('name', 'address',)
-
-class OrderCreate(generics.CreateAPIView):
-    queryset = Orders.objects.all()
-    serializer_class = OrdersSerializer

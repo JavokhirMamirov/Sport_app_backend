@@ -32,3 +32,4 @@ class SportObjectAdmin(admin.ModelAdmin):
     ]
 
 admin.site.register(ObjectType)
+admin.site.register(UserInfo)

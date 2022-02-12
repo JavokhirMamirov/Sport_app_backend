@@ -1,10 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-# Create your models here.
-from location_field.models.plain import PlainLocationField
-
-
 class Category(models.Model):
     name = models.CharField(max_length=255)
     img = models.ImageField(upload_to='category')
@@ -70,3 +66,16 @@ class Orders(models.Model):
 
     def __str__(self):
         return self.object_name
+
+
+class UserInfo(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    height = models.CharField(max_length=255, blank=True)
+    weight = models.CharField(max_length=255, blank=True)
+    age = models.PositiveIntegerField(blank=True)
+    status = models.ForeignKey(ObjectType, on_delete=models.CASCADE, verbose_name='qanday turdagi sport obyektlari kerak', blank=True)
+    favourite_sport = models.CharField(max_length=255, blank=True)    
+    address = models.CharField(max_length=255, blank=True)
+
+    def __str__(self):
+        return self.user.username
