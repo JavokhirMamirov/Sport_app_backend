@@ -76,6 +76,7 @@ class UserInfo(models.Model):
     status = models.ForeignKey(ObjectType, on_delete=models.CASCADE, verbose_name='qanday turdagi sport obyektlari kerak', blank=True)
     favourite_sport = models.CharField(max_length=255, blank=True)    
     address = models.CharField(max_length=255, blank=True)
+    img = models.ImageField(upload_to='user/', blank=True)
 
     def __str__(self):
         return self.user.username

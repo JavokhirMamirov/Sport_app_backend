@@ -75,14 +75,16 @@ def HomeView(request):
                     choised_objects.append(i)
                 else:
                     empty_objects.append(i)
-            if request.user.UserInfo is not None:
-                print(True)
-            else:
-                print(False)
+            try:
+                information = UserInfo.objects.get(user = request.user)
+            except:
+                information = None                
+            
         context = {
             'objects': empty_objects,
             'choised_objects':choised_objects,
-            'turlar':ObjectType.objects.all()
+            'turlar':ObjectType.objects.all(),
+            'information':information
         }
         return render (request, 'account/dashboard.html', context)
 
@@ -493,12 +495,7 @@ def add_info_user(request):
         status = request.POST['status']
         favourite_sport = request.POST['favourite_sport']
         address = request.POST['address']
-        print(height)
-        print(weight)
-        print(age)
-        print(status)
-        print(favourite_sport)
-        print(address)
+        image = request.FILES['image']
         UserInfo.objects.create(
             user=request.user, 
             height = height,
@@ -506,8 +503,36 @@ def add_info_user(request):
             age=age,
             status = ObjectType.objects.get(id=status),
             favourite_sport=favourite_sport,
-            address=address          
+            address=address,
+            img=image
         )
         return redirect('home')
     else:
         return HttpResponse('Not allowed')
+
+
+def user_update(request, pk):
+        user_info = UserInfo.objects.get(pk=pk)
+        height = request.POST['height']
+        weight = request.POST['weight']
+        age = request.POST['age']
+        try:
+            status = request.POST['status']
+        except:
+            status = user_info.status.id
+        favourite_sport = request.POST['favourite_sport']
+        address = request.POST['address']
+        try:
+            image = request.FILES['image']
+        except:
+            image = user_info.img
+
+        user_info.height = height
+        user_info.weight = weight
+        user_info.age = age
+        user_info.status = ObjectType.objects.get(id=status)
+        user_info.favourite_sport = favourite_sport
+        user_info.address = address
+        user_info.image = image
+
+        user_info.save()
