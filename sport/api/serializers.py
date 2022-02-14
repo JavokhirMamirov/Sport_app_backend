@@ -1,9 +1,12 @@
-from django.db import models
-from django.db.models import fields
 from rest_framework import serializers
 
-from sport.models import Category, SportObject, Orders
+from sport.models import Category, SportObject, Orders, Images
 
+
+class ImagesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Images
+        fields = ['image']
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
@@ -11,9 +14,11 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 class ObjectSerializer(serializers.ModelSerializer):
+
+    images = ImagesSerializer(many=True, read_only=True)
     class Meta:
         model = SportObject
-        fields = '__all__'
+        fields = "__all__"
 
 class OrdersSerializer(serializers.ModelSerializer):
     class Meta:
