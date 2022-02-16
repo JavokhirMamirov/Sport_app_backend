@@ -39,16 +39,15 @@ INSTALLED_APPS = [
     'forusers.apps.ForusersConfig',
     'rest_framework',
     'django_filters',
-    'drf_yasg'
+    'drf_yasg',
+    'rest_framework.authtoken'
 ]
-
 
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
     'DEFAULT_PAGINATION_CLASS': 'sport.api.pagination.CustomPagination',
     'PAGE_SIZE': 1,
 }
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -102,7 +101,6 @@ DATABASES = {
     }
 }
 
-
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 
@@ -121,7 +119,6 @@ AUTH_PASSWORD_VALIDATORS = [
     # },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
@@ -138,11 +135,9 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 MEDIA_URL = '/media/'
-STATICFILES_DIRS = [BASE_DIR/'static']
+STATICFILES_DIRS = [BASE_DIR / 'static']
 # STATIC_ROOT = BASE_DIR/ 'static'
 
 MEDIA_ROOT = BASE_DIR / 'media'
-
-
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
